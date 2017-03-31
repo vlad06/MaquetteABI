@@ -8,55 +8,207 @@ namespace WindowsFormsApplication1
 {
     public class Client
     {
+
         public static int NClient;
 
         private int numeroClient;
-        public int NumeroClient { get; set; }
-
         private string raisonSociale;
+        private string typeClient;
+        private string activiteClient;
+        private string adresseClient;
+        private string telephoneClient;
+        private string faxClient;
+        private string emailClient;
+        private string natureClient;
+        private string domaineClient;
+        private decimal caClient;
+        private int effectifClient;
+        private string commentComm;
+
+        public Client(int numeroClient, string raisonSociale, string typeClient, string activiteClient, string adresseClient, string telephoneClient, string faxClient, string emailClient, string natureClient, string domaineClient, decimal caClient, int effectifClient, string commentComm)
+        {
+            this.numeroClient = numeroClient;
+            this.raisonSociale = raisonSociale;
+            this.typeClient = typeClient;
+            this.activiteClient = activiteClient;
+            this.adresseClient = adresseClient;
+            this.telephoneClient = telephoneClient;
+            this.faxClient = faxClient;
+            this.emailClient = emailClient;
+            this.natureClient = natureClient;
+            this.domaineClient = domaineClient;
+            this.caClient = caClient;
+            this.effectifClient = effectifClient;
+            this.commentComm = commentComm;
+        }
+
+        public int NumeroClient
+        {
+            get
+            {
+                return numeroClient;
+            }
+
+            set
+            {
+                numeroClient = value;
+            }
+        }
+
         public string RaisonSociale
         {
-            get { return this.raisonSociale; }
-            set { this.raisonSociale = value.ToUpper(); }
+            get
+            {
+                return raisonSociale;
+            }
+
+            set
+            {
+                raisonSociale = value.Trim().ToUpper();
+            }
         }
 
-        private string typeClient;
-        public string TypeClient { get; set; }
+        public string TypeClient
+        {
+            get
+            {
+                return typeClient;
+            }
 
-        private string activiteClient;
-        public string ActiviteClient { get; set; }
+            set
+            {
+                typeClient = value;
+            }
+        }
 
-        private string adresseClient;
-        public string AdresseClient { get; set; }
+        public string ActiviteClient
+        {
+            get
+            {
+                return activiteClient;
+            }
 
-        private string telephoneClient;
-        public string TelephoneClient { get; set; }
+            set
+            {
+                activiteClient = value;
+            }
+        }
 
-        private string faxClient;
-        public string FaxClient { get; set; }
+        public string AdresseClient
+        {
+            get
+            {
+                return adresseClient;
+            }
 
-        private string emailClient;
-        public string EmailClient { get; set; }
+            set
+            {
+                adresseClient = value;
+            }
+        }
 
-        private string natureClient;
-        public string NatureClient { get; set; }
+        public string TelephoneClient
+        {
+            get
+            {
+                return telephoneClient;
+            }
 
-        private string domaineClient;
+            set
+            {
+                telephoneClient = value;
+            }
+        }
+
+        public string FaxClient
+        {
+            get
+            {
+                return faxClient;
+            }
+
+            set
+            {
+                faxClient = value;
+            }
+        }
+
+        public string EmailClient
+        {
+            get
+            {
+                return emailClient;
+            }
+
+            set
+            {
+                emailClient = value;
+            }
+        }
+
+        public string NatureClient
+        {
+            get
+            {
+                return natureClient;
+            }
+
+            set
+            {
+                natureClient = value;
+            }
+        }
+
         public string DomaineClient
         {
-            get { return this.domaineClient; }
-            set { this.domaineClient = value; }
+            get
+            {
+                return domaineClient;
+            }
+
+            set
+            {
+                domaineClient = value;
+            }
         }
 
-        private decimal caClient;
-        public decimal CAClient{ get; set; }
+        public decimal CaClient
+        {
+            get
+            {
+                return caClient;
+            }
 
-        private int effectifClient;
-        public int EffectifClient { get; set; }
+            set
+            {
+                caClient = value;
+            }
+        }
 
-        private string commentComm;
-        public string CommentComm { get; set; }
+        public int EffectifClient
+        {
+            get
+            {
+                return effectifClient;
+            }
 
-            
+            set
+            {
+                effectifClient = value;
+            }
+        }
+
+        public string CommentComm
+        {
+            get
+            {
+                return commentComm;
+            }
+
+            set
+            {
+                commentComm = value;
+            }
+        }
     }
 }
