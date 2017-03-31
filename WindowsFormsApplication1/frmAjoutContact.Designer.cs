@@ -182,7 +182,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 244);
+            this.ClientSize = new System.Drawing.Size(304, 238);
             this.Controls.Add(this.lblFonctionContact);
             this.Controls.Add(this.txtEmailContact);
             this.Controls.Add(this.txtTotalHeures);
@@ -199,6 +199,7 @@
             this.Controls.Add(this.lblPrenomContact);
             this.Controls.Add(this.lblNomContact);
             this.Controls.Add(this.lblNumeroContact);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmAjoutContact";
             this.Text = "AjoutContact";
             this.ResumeLayout(false);

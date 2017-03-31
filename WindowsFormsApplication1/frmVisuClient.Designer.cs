@@ -43,7 +43,7 @@
             this.groupBox1.Controls.Add(this.btnQuitter);
             this.groupBox1.Controls.Add(this.btnVoirContact);
             this.groupBox1.Controls.Add(this.btnDeverouiller);
-            this.groupBox1.Size = new System.Drawing.Size(529, 543);
+            this.groupBox1.Size = new System.Drawing.Size(528, 522);
             this.groupBox1.Controls.SetChildIndex(this.txtCommentaire, 0);
             this.groupBox1.Controls.SetChildIndex(this.lblCommentaire, 0);
             this.groupBox1.Controls.SetChildIndex(this.lblNumeroClient, 0);
@@ -123,7 +123,7 @@
             // 
             // btnValider
             // 
-            this.btnValider.Location = new System.Drawing.Point(337, 490);
+            this.btnValider.Location = new System.Drawing.Point(323, 490);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(93, 23);
             this.btnValider.TabIndex = 6;
@@ -133,7 +133,7 @@
             // 
             // btnQuitter
             // 
-            this.btnQuitter.Location = new System.Drawing.Point(436, 490);
+            this.btnQuitter.Location = new System.Drawing.Point(422, 490);
             this.btnQuitter.Name = "btnQuitter";
             this.btnQuitter.Size = new System.Drawing.Size(93, 23);
             this.btnQuitter.TabIndex = 7;
@@ -144,7 +144,8 @@
             // frmVisuClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(532, 547);
+            this.ClientSize = new System.Drawing.Size(533, 527);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmVisuClient";
             this.Text = "Detail Client";
             this.Load += new System.EventHandler(this.frmDetailClient_Load);

@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
         private decimal caClient;
         private int effectifClient;
         private string commentComm;
-        //ajouter une liste contact
+        
 
         public Client(int numeroClient, string raisonSociale, string typeClient, string activiteClient, string adresseClient, string telephoneClient, string faxClient, string emailClient, string natureClient, string domaineClient, decimal caClient, int effectifClient, string commentComm)
         {

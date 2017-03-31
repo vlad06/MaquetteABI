@@ -39,7 +39,7 @@
             this.groupBox1.Controls.Add(this.btnValider);
             this.groupBox1.Controls.Add(this.btnAnnuler);
             this.groupBox1.Controls.Add(this.btnAjouterContacts);
-            this.groupBox1.Size = new System.Drawing.Size(526, 523);
+            this.groupBox1.Size = new System.Drawing.Size(526, 519);
             this.groupBox1.Controls.SetChildIndex(this.txtCommentaire, 0);
             this.groupBox1.Controls.SetChildIndex(this.lblCommentaire, 0);
             this.groupBox1.Controls.SetChildIndex(this.lblNumeroClient, 0);
@@ -113,7 +113,8 @@
             // frmAjoutClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(530, 527);
+            this.ClientSize = new System.Drawing.Size(531, 523);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAjoutClient";

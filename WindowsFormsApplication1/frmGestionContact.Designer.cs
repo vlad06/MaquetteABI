@@ -55,7 +55,7 @@
             this.grdContact.ReadOnly = true;
             this.grdContact.RowHeadersVisible = false;
             this.grdContact.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdContact.Size = new System.Drawing.Size(614, 254);
+            this.grdContact.Size = new System.Drawing.Size(614, 252);
             this.grdContact.TabIndex = 0;
             // 
             // txtRechercher
@@ -116,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 323);
+            this.ClientSize = new System.Drawing.Size(620, 321);
             this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.btnSupprimerContact);
             this.Controls.Add(this.btnModifierContact);
@@ -124,6 +124,7 @@
             this.Controls.Add(this.btnRechercher);
             this.Controls.Add(this.txtRechercher);
             this.Controls.Add(this.grdContact);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmGestionContact";
             this.Text = "Contacts";
             this.Load += new System.EventHandler(this.frmGestionContact_Load);
