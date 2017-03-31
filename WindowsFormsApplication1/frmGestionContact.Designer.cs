@@ -78,6 +78,7 @@
             this.btnAjouterContact.TabIndex = 3;
             this.btnAjouterContact.Text = "Ajouter contact";
             this.btnAjouterContact.UseVisualStyleBackColor = true;
+            this.btnAjouterContact.Click += new System.EventHandler(this.btnAjouterContact_Click);
             // 
             // btnModifierContact
             // 

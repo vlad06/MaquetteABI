@@ -105,7 +105,7 @@
             this.btnValider.Location = new System.Drawing.Point(139, 207);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(70, 23);
-            this.btnValider.TabIndex = 6;
+            this.btnValider.TabIndex = 15;
             this.btnValider.Text = "Valider";
             this.btnValider.UseVisualStyleBackColor = true;
             this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
@@ -115,9 +115,10 @@
             this.btnAnnuler.Location = new System.Drawing.Point(215, 207);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(70, 23);
-            this.btnAnnuler.TabIndex = 7;
+            this.btnAnnuler.TabIndex = 16;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // txtNumeroContact
             // 
@@ -131,21 +132,21 @@
             this.txtFonctionContact.Location = new System.Drawing.Point(82, 93);
             this.txtFonctionContact.Name = "txtFonctionContact";
             this.txtFonctionContact.Size = new System.Drawing.Size(208, 20);
-            this.txtFonctionContact.TabIndex = 9;
+            this.txtFonctionContact.TabIndex = 11;
             // 
             // txtNomContact
             // 
             this.txtNomContact.Location = new System.Drawing.Point(82, 41);
             this.txtNomContact.Name = "txtNomContact";
             this.txtNomContact.Size = new System.Drawing.Size(208, 20);
-            this.txtNomContact.TabIndex = 10;
+            this.txtNomContact.TabIndex = 9;
             // 
             // txtPrenomContact
             // 
             this.txtPrenomContact.Location = new System.Drawing.Point(82, 67);
             this.txtPrenomContact.Name = "txtPrenomContact";
             this.txtPrenomContact.Size = new System.Drawing.Size(208, 20);
-            this.txtPrenomContact.TabIndex = 11;
+            this.txtPrenomContact.TabIndex = 10;
             // 
             // txtTelephoneContact
             // 
@@ -159,14 +160,14 @@
             this.txtTotalHeures.Location = new System.Drawing.Point(139, 172);
             this.txtTotalHeures.Name = "txtTotalHeures";
             this.txtTotalHeures.Size = new System.Drawing.Size(151, 20);
-            this.txtTotalHeures.TabIndex = 13;
+            this.txtTotalHeures.TabIndex = 14;
             // 
             // txtEmailContact
             // 
             this.txtEmailContact.Location = new System.Drawing.Point(82, 146);
             this.txtEmailContact.Name = "txtEmailContact";
             this.txtEmailContact.Size = new System.Drawing.Size(208, 20);
-            this.txtEmailContact.TabIndex = 14;
+            this.txtEmailContact.TabIndex = 13;
             // 
             // lblFonctionContact
             // 
@@ -174,7 +175,7 @@
             this.lblFonctionContact.Location = new System.Drawing.Point(12, 96);
             this.lblFonctionContact.Name = "lblFonctionContact";
             this.lblFonctionContact.Size = new System.Drawing.Size(54, 13);
-            this.lblFonctionContact.TabIndex = 15;
+            this.lblFonctionContact.TabIndex = 19;
             this.lblFonctionContact.Text = "Fonction :";
             // 
             // frmAjoutContact

@@ -61,7 +61,11 @@ namespace WindowsFormsApplication1
         private void btnAjouterContacts_Click(object sender, EventArgs e)
         {
             frmAjoutContact frmAddCont = new frmAjoutContact();
-            frmAddCont.Show();
+            if (frmAddCont.ShowDialog() == DialogResult.OK)
+            {
+                frmGestionContact frmGestCont = new frmGestionContact();
+                frmGestCont.Show();
+            }
         }
     }
 }

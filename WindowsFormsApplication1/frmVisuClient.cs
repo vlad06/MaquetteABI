@@ -126,7 +126,7 @@ namespace WindowsFormsApplication1
             catch (Exception ex)
             {
                 this.leClient = null;
-                MessageBox.Show("Erreur :\n" + ex.Message, "Ajout de client");
+                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
                 return false;
             }
         }
