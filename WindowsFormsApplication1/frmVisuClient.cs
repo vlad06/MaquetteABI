@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1
             this.txtEmailClient.Text = unClient.EmailClient;
             this.txtAdresseClient.Text = unClient.AdresseClient;
             this.txtDomaine.Text = unClient.DomaineClient;
-            this.txtCAClient.Text = unClient.CAClient.ToString();
+            this.txtCAClient.Text = unClient.CaClient.ToString();
             this.txtEffectifClient.Text = unClient.EffectifClient.ToString();
             this.txtCommentaire.Text = unClient.CommentComm;
         }
@@ -118,7 +118,7 @@ namespace WindowsFormsApplication1
                 this.leClient.EmailClient = base.txtEmailClient.Text;
                 this.leClient.AdresseClient = base.txtAdresseClient.Text;
                 this.leClient.DomaineClient = base.txtDomaine.Text;
-                this.leClient.CAClient = decimal.Parse(base.txtCAClient.Text.Trim());
+                this.leClient.CaClient = decimal.Parse(base.txtCAClient.Text.Trim());
                 this.leClient.EffectifClient = int.Parse(base.txtEffectifClient.Text.Trim());
                 this.leClient.CommentComm = base.txtCommentaire.Text;
                 return true;

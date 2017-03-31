@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1
                 nouveauClient.EmailClient = base.txtEmailClient.Text;
                 nouveauClient.AdresseClient = base.txtAdresseClient.Text;
                 nouveauClient.DomaineClient = base.txtDomaine.Text;
-                nouveauClient.CAClient = decimal.Parse(base.txtCAClient.Text.Trim());
+                nouveauClient.CaClient = decimal.Parse(base.txtCAClient.Text.Trim());
                 nouveauClient.EffectifClient = int.Parse(base.txtEffectifClient.Text.Trim());
                 nouveauClient.CommentComm = base.txtCommentaire.Text;
                 Donnees.ArrayClient.Add(nouveauClient);

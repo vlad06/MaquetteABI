@@ -41,6 +41,22 @@ namespace WindowsFormsApplication1
             this.effectifClient = effectifClient;
             this.commentComm = commentComm;
         }
+        public Client()
+        {
+           /* this.numeroClient = 0;
+            this.raisonSociale = "";
+            this.typeClient = "";
+            this.activiteClient = "";
+            this.adresseClient = "";
+            this.telephoneClient = "";
+            this.faxClient = "";
+            this.emailClient = "";
+            this.natureClient = "";
+            this.domaineClient = "";
+            this.caClient = 0;
+            this.effectifClient = 0;
+            this.commentComm = "";*/
+        }
 
         public int NumeroClient
         {
@@ -119,6 +135,11 @@ namespace WindowsFormsApplication1
         {
             get { return commentComm;  }
             set { commentComm = value; }
+        }
+
+        public decimal RatioCaEffectif()
+        {
+            return (this.caClient / this.effectifClient);
         }
     }
 }

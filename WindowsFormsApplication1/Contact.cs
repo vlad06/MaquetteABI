@@ -29,6 +29,11 @@ namespace WindowsFormsApplication1
             this.TotalHeuresContact = totalHeuresContact;
         }
 
+        public Contact()
+        {
+
+        }
+
         public int NumeroContact
         {
             get { return numeroContact; }

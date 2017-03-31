@@ -39,7 +39,7 @@ namespace WindowsFormsApplication1
                 dr[2] = Donnees.ArrayClient[i].NatureClient;
                 dr[3] = Donnees.ArrayClient[i].TelephoneClient;
                 dr[4] = Donnees.ArrayClient[i].EmailClient;
-                dr[5] = Donnees.ArrayClient[i].CAClient;
+                dr[5] = Donnees.ArrayClient[i].CaClient;
                 dr[6] = Donnees.ArrayClient[i].EffectifClient;
                 dt.Rows.Add(dr);
             }
@@ -150,7 +150,7 @@ namespace WindowsFormsApplication1
                 Client1.EmailClient = "lol" + i + "@lol.com";
                 Client1.AdresseClient = i + " ,route de turin 06000 NICE";
                 Client1.DomaineClient = "Industrie";
-                Client1.CAClient = i * 10000;
+                Client1.CaClient = i * 10000;
                 Client1.EffectifClient = i * 2;
                 Client1.CommentComm = i + ") Putain de bordel de merde...";
                 Donnees.ArrayClient.Add(Client1);
