@@ -114,7 +114,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(530, 527);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmAjoutClient";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Ajout Client";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

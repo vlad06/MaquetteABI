@@ -41,6 +41,7 @@
             // grdContact
             // 
             this.grdContact.AllowUserToAddRows = false;
+            this.grdContact.AllowUserToDeleteRows = false;
             this.grdContact.AllowUserToOrderColumns = true;
             this.grdContact.AllowUserToResizeRows = false;
             this.grdContact.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -49,21 +50,24 @@
             this.grdContact.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdContact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdContact.Location = new System.Drawing.Point(2, 32);
+            this.grdContact.MultiSelect = false;
             this.grdContact.Name = "grdContact";
+            this.grdContact.ReadOnly = true;
             this.grdContact.RowHeadersVisible = false;
-            this.grdContact.Size = new System.Drawing.Size(635, 255);
+            this.grdContact.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdContact.Size = new System.Drawing.Size(614, 254);
             this.grdContact.TabIndex = 0;
             // 
             // txtRechercher
             // 
-            this.txtRechercher.Location = new System.Drawing.Point(219, 5);
+            this.txtRechercher.Location = new System.Drawing.Point(2, 5);
             this.txtRechercher.Name = "txtRechercher";
             this.txtRechercher.Size = new System.Drawing.Size(208, 20);
             this.txtRechercher.TabIndex = 1;
             // 
             // btnRechercher
             // 
-            this.btnRechercher.Location = new System.Drawing.Point(433, 3);
+            this.btnRechercher.Location = new System.Drawing.Point(219, 3);
             this.btnRechercher.Name = "btnRechercher";
             this.btnRechercher.Size = new System.Drawing.Size(72, 23);
             this.btnRechercher.TabIndex = 2;
@@ -112,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 324);
+            this.ClientSize = new System.Drawing.Size(620, 323);
             this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.btnSupprimerContact);
             this.Controls.Add(this.btnModifierContact);

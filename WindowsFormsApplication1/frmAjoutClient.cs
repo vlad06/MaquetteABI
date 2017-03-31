@@ -64,7 +64,6 @@ namespace WindowsFormsApplication1
             if (frmAddCont.ShowDialog() == DialogResult.OK)
             {
                 frmGestionContact frmGestCont = new frmGestionContact();
-                frmGestCont.Show();
             }
         }
     }

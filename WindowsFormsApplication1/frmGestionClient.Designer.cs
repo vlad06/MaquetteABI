@@ -126,6 +126,7 @@
             this.grdClient.Location = new System.Drawing.Point(184, 62);
             this.grdClient.MultiSelect = false;
             this.grdClient.Name = "grdClient";
+            this.grdClient.ReadOnly = true;
             this.grdClient.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.grdClient.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.grdClient.RowHeadersVisible = false;
