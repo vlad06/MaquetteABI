@@ -11,45 +11,66 @@ namespace WindowsFormsApplication1
         public static int NContact;
 
         private int numeroContact;
+        private string nomContact;
+        private string prenomContact;
+        private string telephoneContact;
+        private string emailContact;
+        private string fonctionContact;
+        private double totalHeuresContact;
+
+        public Contact(int numeroContact, string nomContact, string prenomContact, string telephoneContact, string emailContact, string fonctionContact, double totalHeuresContact)
+        {
+            this.NumeroContact = numeroContact;
+            this.NomContact = nomContact;
+            this.PrenomContact = prenomContact;
+            this.TelephoneContact = telephoneContact;
+            this.EmailContact = emailContact;
+            this.FonctionContact = fonctionContact;
+            this.TotalHeuresContact = totalHeuresContact;
+        }
+
         public int NumeroContact
         {
-            get { return this.numeroContact; }
-            set { this.numeroContact = value; }
+            get { return numeroContact; }
+            set { numeroContact = value;}
         }
 
-        private string nomContact;
         public string NomContact
         {
-            get { return this.nomContact; }
-            set { this.nomContact = value.Trim().ToUpper(); }
+            get{ return nomContact;}
+            set{nomContact = value.Trim().ToUpper();}
         }
 
-        private string prenomContact;
         public string PrenomContact
         {
-            get { return this.prenomContact; }
-            set { this.prenomContact = value.Trim().ToLower(); }
+            get{ return prenomContact;}
+            set { prenomContact = value.Trim().ToLower();}
         }
 
-        private string telephoneContact;
         public string TelephoneContact
         {
-            get { return this.telephoneContact; }
-            set { this.telephoneContact = value; }
+            get { return telephoneContact; }
+            set { telephoneContact = value;}
         }
 
-        private string fonctionContact;
+        public string EmailContact
+        {
+            get{ return emailContact;}
+            set { emailContact = value;}
+        }
+
         public string FonctionContact
         {
-            get { return this.fonctionContact; }
-            set { this.fonctionContact = value; }
+            get{return fonctionContact;}
+            set { fonctionContact = value;}
         }
 
-        private double totalHeureContact;
-        public double TotalHeureContact
+        public double TotalHeuresContact
         {
-            get { return this.totalHeureContact; }
-            set { this.totalHeureContact = value; }
+            get {return totalHeuresContact; }
+            set { totalHeuresContact = value; }
         }
+
+
     }
 }
