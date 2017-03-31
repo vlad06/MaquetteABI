@@ -59,7 +59,8 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("E-mail", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Total heure effectuées", typeof(System.Double)));
-            this.grdContact.DataSource = dt;
+            //this.grdContact.DataSource = dt;
+            this.afficheContacts();
         }
 
         private void btnAjouterContact_Click(object sender, EventArgs e)

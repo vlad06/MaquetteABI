@@ -44,6 +44,7 @@
             this.btnAjouterClient = new System.Windows.Forms.Button();
             this.btnDetailClient = new System.Windows.Forms.Button();
             this.btnAfficheListe = new System.Windows.Forms.Button();
+            this.btnVoirContact = new System.Windows.Forms.Button();
             this.msGestionClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdClient)).BeginInit();
             this.SuspendLayout();
@@ -199,11 +200,22 @@
             this.btnAfficheListe.UseVisualStyleBackColor = true;
             this.btnAfficheListe.Click += new System.EventHandler(this.btnAfficheListe_Click);
             // 
+            // btnVoirContact
+            // 
+            this.btnVoirContact.Location = new System.Drawing.Point(12, 134);
+            this.btnVoirContact.Name = "btnVoirContact";
+            this.btnVoirContact.Size = new System.Drawing.Size(151, 23);
+            this.btnVoirContact.TabIndex = 13;
+            this.btnVoirContact.Text = "Voir les contacts";
+            this.btnVoirContact.UseVisualStyleBackColor = true;
+            this.btnVoirContact.Click += new System.EventHandler(this.btnVoirContact_Click);
+            // 
             // frmGestionClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1091, 597);
+            this.Controls.Add(this.btnVoirContact);
             this.Controls.Add(this.btnSupprimerClient);
             this.Controls.Add(this.btnDetailClient);
             this.Controls.Add(this.btnModifierClient);
@@ -243,6 +255,7 @@
         private System.Windows.Forms.Button btnDetailClient;
         private System.Windows.Forms.Button btnAfficheListe;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
+        private System.Windows.Forms.Button btnVoirContact;
     }
 }
 

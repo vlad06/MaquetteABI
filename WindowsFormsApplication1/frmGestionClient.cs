@@ -53,6 +53,7 @@ namespace WindowsFormsApplication1
             {
                 this.afficheClients();
             }
+            this.afficheClients();
         }
 
         private void btnSupprimerClient_Click(object sender, EventArgs e)
@@ -169,6 +170,11 @@ namespace WindowsFormsApplication1
                 frmDetail.Show();
                 this.afficheClients();
             }
+        }
+
+        private void btnVoirContact_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

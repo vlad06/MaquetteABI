@@ -19,36 +19,31 @@ namespace WindowsFormsApplication1
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            if (this.instancie())
+            if (this.instancieContact())
             {
                 Contact.NContact += 1;
                 this.DialogResult = DialogResult.OK;
             }
         }
 
-        private bool instancie()
+        private bool instancieContact()
         {
-            Client nouveauClient = new Client();
+            Contact nouveauContact = new Contact();
             try
             {
-                nouveauClient.NumeroClient = int.Parse(base.txtNumeroClient.Text.Trim());
-                nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
-                nouveauClient.NatureClient = base.cbxNatureClient.Text;
-                nouveauClient.TypeClient = base.cbxTypeClient.Text;
-                nouveauClient.TelephoneClient = base.txtTelephoneClient.Text;
-                nouveauClient.FaxClient = base.txtFaxClient.Text;
-                nouveauClient.EmailClient = base.txtEmailClient.Text;
-                nouveauClient.AdresseClient = base.txtAdresseClient.Text;
-                nouveauClient.DomaineClient = base.txtDomaine.Text;
-                nouveauClient.CaClient = decimal.Parse(base.txtCAClient.Text.Trim());
-                nouveauClient.EffectifClient = int.Parse(base.txtEffectifClient.Text.Trim());
-                nouveauClient.CommentComm = base.txtCommentaire.Text;
-                Donnees.ArrayClient.Add(nouveauClient);
+                nouveauContact.NumeroContact = int.Parse(txtNumeroContact.Text.Trim());
+                nouveauContact.NomContact = txtNomContact.Text;
+                nouveauContact.PrenomContact = txtPrenomContact.Text;
+                nouveauContact.TelephoneContact = txtTelephoneContact.Text;
+                nouveauContact.EmailContact = txtEmailContact.Text;
+                nouveauContact.FonctionContact = txtFonctionContact.Text;
+                nouveauContact.TotalHeuresContact = double.Parse(txtTotalHeures.Text.Trim());
+                Donnees.ArrayContact.Add(nouveauContact);
                 return true;
             }
             catch (Exception ex)
             {
-                nouveauClient = null;
+                nouveauContact = null;
                 MessageBox.Show("Erreur :\n" + ex.Message, "Ajout de client");
                 return false;
             }

@@ -17,14 +17,14 @@ namespace WindowsFormsApplication1
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            if (this.instancie())
+            if (this.instancieClient())
             {
                 Client.NClient += 1;
                 this.DialogResult = DialogResult.OK;
             }
         }
 
-        private bool instancie()
+        private bool instancieClient()
         {
             Client nouveauClient = new Client();
             try
