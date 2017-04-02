@@ -201,6 +201,7 @@
             this.btnAjouterClient.TabIndex = 10;
             this.btnAjouterClient.Text = "Ajouter un client";
             this.btnAjouterClient.UseVisualStyleBackColor = true;
+            this.btnAjouterClient.Click += new System.EventHandler(this.btnAjouterClient_Click);
             // 
             // btnDetailClient
             // 
@@ -210,6 +211,7 @@
             this.btnDetailClient.TabIndex = 1;
             this.btnDetailClient.Text = "Details client";
             this.btnDetailClient.UseVisualStyleBackColor = true;
+            this.btnDetailClient.Click += new System.EventHandler(this.btnDetailClient_Click);
             // 
             // btnAfficheListe
             // 
@@ -219,6 +221,7 @@
             this.btnAfficheListe.TabIndex = 0;
             this.btnAfficheListe.Text = "Afficher liste clients";
             this.btnAfficheListe.UseVisualStyleBackColor = true;
+            this.btnAfficheListe.Click += new System.EventHandler(this.btnAfficheListe_Click);
             // 
             // btnVoirContact
             // 

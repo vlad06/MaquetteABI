@@ -10,10 +10,13 @@ namespace WindowsFormsApplication1
 {
     public partial class frmAjoutClient : WindowsFormsApplication1.frmClient
     {
-        public frmAjoutClient()
+        private frmGestionClient frmPrincipale;
+        public frmAjoutClient(frmGestionClient frm)
         {
             InitializeComponent();
-            btnAjouterContact.Enabled = true;
+            this.frmPrincipale = frm;
+            btnSupprimerContact.Enabled = false;
+            this.Size = new Size(370, 475);
         }
 
         private bool instancieClient()
@@ -27,7 +30,6 @@ namespace WindowsFormsApplication1
                 nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
                 nouveauClient.Telephone = base.txtTelephone.Text;
                 nouveauClient.Adresse = base.txtAdresse.Text;
-                nouveauClient.Activite  = base.txtActivite.Text;
                 nouveauClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
                 nouveauClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
                 nouveauClient.CommentComm = base.txtCommentComm.Text;
@@ -41,6 +43,40 @@ namespace WindowsFormsApplication1
                 return false;
             }
             
+        }
+
+        private void btnAjouterContact_Click(object sender, EventArgs e)
+        {
+            if(btnAjouterContact.Text== "Ajouter un contact >>")
+            {
+                btnAjouterContact.Text = "Cacher les contacts";
+                this.Size = new Size(790, 475);
+                this.gbxAjoutContact.Enabled = true;
+                this.gbxListeContact.Enabled = true;
+                this.Show();
+            }
+            else
+            {
+                btnAjouterContact.Text = "Ajouter un contact >>";
+                this.Size = new Size(370, 475);
+                this.gbxAjoutContact.Enabled = false;
+                this.gbxListeContact.Enabled = false;
+                this.Show();
+            }
+        }
+
+        private void btnValiderClient_Click(object sender, EventArgs e)
+        {
+            if (this.instancieClient())
+            {
+                Client.nClient++;
+                this.DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void btnAnnulerClient_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

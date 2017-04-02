@@ -42,19 +42,7 @@ namespace WindowsFormsApplication1
                 }
                 public Client()
                 {
-                    this.numeroClient = 0;
-                    this.raisonSociale = "";
-                    this.typeClient = "";
-                    this.activiteClient = "";
-                    this.adresseClient = "";
-                    this.telephoneClient = "";
-                    this.faxClient = "";
-                    this.emailClient = "";
-                    this.natureClient = "";
-                    this.domaineClient = "";
-                    this.caClient = 0;
-                    this.effectifClient = 0;
-                    this.commentComm = "";
+
                 }*/
 
         public static int NClient

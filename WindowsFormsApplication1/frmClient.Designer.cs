@@ -32,7 +32,6 @@
             this.txtCommentComm = new System.Windows.Forms.TextBox();
             this.txtEffectif = new System.Windows.Forms.TextBox();
             this.cbxNature = new System.Windows.Forms.ComboBox();
-            this.txtActivite = new System.Windows.Forms.TextBox();
             this.txtCa = new System.Windows.Forms.TextBox();
             this.txtAdresse = new System.Windows.Forms.TextBox();
             this.lblActivite = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
             this.lblTypeSociete = new System.Windows.Forms.Label();
             this.lblRaisonSociale = new System.Windows.Forms.Label();
             this.lblIdClient = new System.Windows.Forms.Label();
+            this.cbxActivite = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblCommentComm
@@ -72,7 +72,7 @@
             this.txtEffectif.Location = new System.Drawing.Point(106, 164);
             this.txtEffectif.Name = "txtEffectif";
             this.txtEffectif.Size = new System.Drawing.Size(202, 20);
-            this.txtEffectif.TabIndex = 43;
+            this.txtEffectif.TabIndex = 41;
             // 
             // cbxNature
             // 
@@ -84,21 +84,14 @@
             this.cbxNature.Location = new System.Drawing.Point(106, 58);
             this.cbxNature.Name = "cbxNature";
             this.cbxNature.Size = new System.Drawing.Size(202, 21);
-            this.cbxNature.TabIndex = 38;
-            // 
-            // txtActivite
-            // 
-            this.txtActivite.Location = new System.Drawing.Point(106, 112);
-            this.txtActivite.Name = "txtActivite";
-            this.txtActivite.Size = new System.Drawing.Size(202, 20);
-            this.txtActivite.TabIndex = 41;
+            this.cbxNature.TabIndex = 37;
             // 
             // txtCa
             // 
             this.txtCa.Location = new System.Drawing.Point(106, 138);
             this.txtCa.Name = "txtCa";
             this.txtCa.Size = new System.Drawing.Size(202, 20);
-            this.txtCa.TabIndex = 42;
+            this.txtCa.TabIndex = 40;
             // 
             // txtAdresse
             // 
@@ -106,7 +99,7 @@
             this.txtAdresse.Multiline = true;
             this.txtAdresse.Name = "txtAdresse";
             this.txtAdresse.Size = new System.Drawing.Size(242, 57);
-            this.txtAdresse.TabIndex = 40;
+            this.txtAdresse.TabIndex = 43;
             // 
             // lblActivite
             // 
@@ -126,28 +119,28 @@
             this.cbxTypeSociete.Location = new System.Drawing.Point(106, 85);
             this.cbxTypeSociete.Name = "cbxTypeSociete";
             this.cbxTypeSociete.Size = new System.Drawing.Size(202, 21);
-            this.cbxTypeSociete.TabIndex = 39;
+            this.cbxTypeSociete.TabIndex = 38;
             // 
             // txtTelephone
             // 
             this.txtTelephone.Location = new System.Drawing.Point(106, 190);
             this.txtTelephone.Name = "txtTelephone";
             this.txtTelephone.Size = new System.Drawing.Size(202, 20);
-            this.txtTelephone.TabIndex = 37;
+            this.txtTelephone.TabIndex = 42;
             // 
             // txtIdClient
             // 
             this.txtIdClient.Location = new System.Drawing.Point(106, 6);
             this.txtIdClient.Name = "txtIdClient";
             this.txtIdClient.Size = new System.Drawing.Size(202, 20);
-            this.txtIdClient.TabIndex = 36;
+            this.txtIdClient.TabIndex = 35;
             // 
             // txtRaisonSociale
             // 
             this.txtRaisonSociale.Location = new System.Drawing.Point(106, 32);
             this.txtRaisonSociale.Name = "txtRaisonSociale";
             this.txtRaisonSociale.Size = new System.Drawing.Size(202, 20);
-            this.txtRaisonSociale.TabIndex = 35;
+            this.txtRaisonSociale.TabIndex = 36;
             // 
             // lblEffectif
             // 
@@ -221,16 +214,27 @@
             this.lblIdClient.TabIndex = 26;
             this.lblIdClient.Text = "N° client :";
             // 
+            // cbxActivite
+            // 
+            this.cbxActivite.FormattingEnabled = true;
+            this.cbxActivite.Items.AddRange(new object[] {
+            "Agro-alimentaire",
+            "Industrie"});
+            this.cbxActivite.Location = new System.Drawing.Point(106, 112);
+            this.cbxActivite.Name = "cbxActivite";
+            this.cbxActivite.Size = new System.Drawing.Size(202, 21);
+            this.cbxActivite.TabIndex = 39;
+            // 
             // frmClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 406);
+            this.Controls.Add(this.cbxActivite);
             this.Controls.Add(this.lblCommentComm);
             this.Controls.Add(this.txtCommentComm);
             this.Controls.Add(this.txtEffectif);
             this.Controls.Add(this.cbxNature);
-            this.Controls.Add(this.txtActivite);
             this.Controls.Add(this.txtCa);
             this.Controls.Add(this.txtAdresse);
             this.Controls.Add(this.lblActivite);
@@ -259,7 +263,6 @@
         protected System.Windows.Forms.TextBox txtCommentComm;
         protected System.Windows.Forms.TextBox txtEffectif;
         protected System.Windows.Forms.ComboBox cbxNature;
-        protected System.Windows.Forms.TextBox txtActivite;
         protected System.Windows.Forms.TextBox txtCa;
         protected System.Windows.Forms.TextBox txtAdresse;
         protected System.Windows.Forms.Label lblActivite;
@@ -275,5 +278,6 @@
         protected System.Windows.Forms.Label lblTypeSociete;
         protected System.Windows.Forms.Label lblRaisonSociale;
         protected System.Windows.Forms.Label lblIdClient;
+        protected System.Windows.Forms.ComboBox cbxActivite;
     }
 }

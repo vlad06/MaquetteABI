@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnVoirContact = new System.Windows.Forms.Button();
-            this.btnDeverouiller = new System.Windows.Forms.Button();
-            this.btnAnnuler = new System.Windows.Forms.Button();
-            this.btnValider = new System.Windows.Forms.Button();
             this.btnQuitter = new System.Windows.Forms.Button();
-            this.gbxContact = new System.Windows.Forms.GroupBox();
+            this.gbxListeContact = new System.Windows.Forms.GroupBox();
             this.grdContact = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
             this.gbxAjoutContact = new System.Windows.Forms.GroupBox();
+            this.btnAnnulerContact = new System.Windows.Forms.Button();
+            this.btnValiderContact = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblFonctionContact = new System.Windows.Forms.Label();
@@ -50,7 +47,10 @@
             this.txtFonctionContact = new System.Windows.Forms.TextBox();
             this.lblTelephoneContact = new System.Windows.Forms.Label();
             this.btnAfficherContact = new System.Windows.Forms.Button();
-            this.gbxContact.SuspendLayout();
+            this.btnDeverrouiller = new System.Windows.Forms.Button();
+            this.btnValiderClient = new System.Windows.Forms.Button();
+            this.btnReinitialiser = new System.Windows.Forms.Button();
+            this.gbxListeContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).BeginInit();
             this.gbxAjoutContact.SuspendLayout();
             this.SuspendLayout();
@@ -63,10 +63,6 @@
             // 
             this.cbxNature.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxNature.Size = new System.Drawing.Size(158, 21);
-            // 
-            // txtActivite
-            // 
-            this.txtActivite.Size = new System.Drawing.Size(158, 20);
             // 
             // txtCa
             // 
@@ -89,43 +85,9 @@
             // 
             this.txtRaisonSociale.Size = new System.Drawing.Size(158, 20);
             // 
-            // btnVoirContact
+            // cbxActivite
             // 
-            this.btnVoirContact.Location = new System.Drawing.Point(317, 226);
-            this.btnVoirContact.Name = "btnVoirContact";
-            this.btnVoirContact.Size = new System.Drawing.Size(172, 46);
-            this.btnVoirContact.TabIndex = 4;
-            this.btnVoirContact.Text = "Voir les contacts";
-            this.btnVoirContact.UseVisualStyleBackColor = true;
-            // 
-            // btnDeverouiller
-            // 
-            this.btnDeverouiller.Location = new System.Drawing.Point(140, 490);
-            this.btnDeverouiller.Name = "btnDeverouiller";
-            this.btnDeverouiller.Size = new System.Drawing.Size(118, 23);
-            this.btnDeverouiller.TabIndex = 4;
-            this.btnDeverouiller.Text = "Dévérrouiller";
-            this.btnDeverouiller.UseVisualStyleBackColor = true;
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.Location = new System.Drawing.Point(6, 490);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(128, 23);
-            this.btnAnnuler.TabIndex = 5;
-            this.btnAnnuler.Text = "Annuler les mofifications";
-            this.btnAnnuler.UseVisualStyleBackColor = true;
-            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
-            // 
-            // btnValider
-            // 
-            this.btnValider.Location = new System.Drawing.Point(323, 490);
-            this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(93, 23);
-            this.btnValider.TabIndex = 6;
-            this.btnValider.Text = "Valider";
-            this.btnValider.UseVisualStyleBackColor = true;
-            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            this.cbxActivite.Size = new System.Drawing.Size(158, 21);
             // 
             // btnQuitter
             // 
@@ -137,15 +99,15 @@
             this.btnQuitter.UseVisualStyleBackColor = true;
             this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
             // 
-            // gbxContact
+            // gbxListeContact
             // 
-            this.gbxContact.Controls.Add(this.grdContact);
-            this.gbxContact.Location = new System.Drawing.Point(354, 107);
-            this.gbxContact.Name = "gbxContact";
-            this.gbxContact.Size = new System.Drawing.Size(415, 295);
-            this.gbxContact.TabIndex = 57;
-            this.gbxContact.TabStop = false;
-            this.gbxContact.Text = "Liste Contacts :";
+            this.gbxListeContact.Controls.Add(this.grdContact);
+            this.gbxListeContact.Location = new System.Drawing.Point(354, 126);
+            this.gbxListeContact.Name = "gbxListeContact";
+            this.gbxListeContact.Size = new System.Drawing.Size(415, 276);
+            this.gbxListeContact.TabIndex = 57;
+            this.gbxListeContact.TabStop = false;
+            this.gbxListeContact.Text = "Liste Contacts :";
             // 
             // grdContact
             // 
@@ -161,20 +123,13 @@
             this.grdContact.ReadOnly = true;
             this.grdContact.RowHeadersVisible = false;
             this.grdContact.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdContact.Size = new System.Drawing.Size(405, 270);
+            this.grdContact.Size = new System.Drawing.Size(405, 251);
             this.grdContact.TabIndex = 50;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(245, 408);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 23);
-            this.button2.TabIndex = 54;
-            this.button2.Text = "Quitter";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // gbxAjoutContact
             // 
+            this.gbxAjoutContact.Controls.Add(this.btnAnnulerContact);
+            this.gbxAjoutContact.Controls.Add(this.btnValiderContact);
             this.gbxAjoutContact.Controls.Add(this.textBox1);
             this.gbxAjoutContact.Controls.Add(this.label1);
             this.gbxAjoutContact.Controls.Add(this.lblFonctionContact);
@@ -189,22 +144,40 @@
             this.gbxAjoutContact.Controls.Add(this.lblTelephoneContact);
             this.gbxAjoutContact.Location = new System.Drawing.Point(354, 6);
             this.gbxAjoutContact.Name = "gbxAjoutContact";
-            this.gbxAjoutContact.Size = new System.Drawing.Size(415, 95);
+            this.gbxAjoutContact.Size = new System.Drawing.Size(415, 120);
             this.gbxAjoutContact.TabIndex = 56;
             this.gbxAjoutContact.TabStop = false;
             this.gbxAjoutContact.Text = "Contact sélectionné :";
             // 
+            // btnAnnulerContact
+            // 
+            this.btnAnnulerContact.Location = new System.Drawing.Point(257, 91);
+            this.btnAnnulerContact.Name = "btnAnnulerContact";
+            this.btnAnnulerContact.Size = new System.Drawing.Size(70, 23);
+            this.btnAnnulerContact.TabIndex = 39;
+            this.btnAnnulerContact.Text = "Annuler";
+            this.btnAnnulerContact.UseVisualStyleBackColor = true;
+            // 
+            // btnValiderContact
+            // 
+            this.btnValiderContact.Location = new System.Drawing.Point(333, 91);
+            this.btnValiderContact.Name = "btnValiderContact";
+            this.btnValiderContact.Size = new System.Drawing.Size(70, 23);
+            this.btnValiderContact.TabIndex = 38;
+            this.btnValiderContact.Text = "Valider";
+            this.btnValiderContact.UseVisualStyleBackColor = true;
+            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(283, 68);
+            this.textBox1.Location = new System.Drawing.Point(283, 65);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(120, 20);
-            this.textBox1.TabIndex = 37;
+            this.textBox1.TabIndex = 31;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(203, 71);
+            this.label1.Location = new System.Drawing.Point(203, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 36;
@@ -298,18 +271,51 @@
             this.btnAfficherContact.TabIndex = 58;
             this.btnAfficherContact.Text = "Afficher les contacts >>";
             this.btnAfficherContact.UseVisualStyleBackColor = true;
+            this.btnAfficherContact.Click += new System.EventHandler(this.btnAfficherContact_Click);
+            // 
+            // btnDeverrouiller
+            // 
+            this.btnDeverrouiller.Location = new System.Drawing.Point(270, 51);
+            this.btnDeverrouiller.Name = "btnDeverrouiller";
+            this.btnDeverrouiller.Size = new System.Drawing.Size(78, 40);
+            this.btnDeverrouiller.TabIndex = 59;
+            this.btnDeverrouiller.Text = "Dévérrouiller";
+            this.btnDeverrouiller.UseVisualStyleBackColor = true;
+            // 
+            // btnValiderClient
+            // 
+            this.btnValiderClient.Location = new System.Drawing.Point(245, 408);
+            this.btnValiderClient.Name = "btnValiderClient";
+            this.btnValiderClient.Size = new System.Drawing.Size(103, 23);
+            this.btnValiderClient.TabIndex = 60;
+            this.btnValiderClient.Text = "Valider";
+            this.btnValiderClient.UseVisualStyleBackColor = true;
+            // 
+            // btnReinitialiser
+            // 
+            this.btnReinitialiser.Location = new System.Drawing.Point(136, 408);
+            this.btnReinitialiser.Name = "btnReinitialiser";
+            this.btnReinitialiser.Size = new System.Drawing.Size(103, 23);
+            this.btnReinitialiser.TabIndex = 61;
+            this.btnReinitialiser.Text = "Réinitialiser";
+            this.btnReinitialiser.UseVisualStyleBackColor = true;
+            this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
             // 
             // frmVisuClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(774, 436);
+            this.Controls.Add(this.btnReinitialiser);
+            this.Controls.Add(this.btnValiderClient);
+            this.Controls.Add(this.btnDeverrouiller);
             this.Controls.Add(this.btnAfficherContact);
-            this.Controls.Add(this.gbxContact);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.gbxListeContact);
             this.Controls.Add(this.gbxAjoutContact);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmVisuClient";
             this.Text = "Detail Client";
+            this.Load += new System.EventHandler(this.frmVisuClient_Load);
+            this.Controls.SetChildIndex(this.cbxActivite, 0);
             this.Controls.SetChildIndex(this.lblIdClient, 0);
             this.Controls.SetChildIndex(this.lblRaisonSociale, 0);
             this.Controls.SetChildIndex(this.lblTypeSociete, 0);
@@ -325,16 +331,17 @@
             this.Controls.SetChildIndex(this.lblActivite, 0);
             this.Controls.SetChildIndex(this.txtAdresse, 0);
             this.Controls.SetChildIndex(this.txtCa, 0);
-            this.Controls.SetChildIndex(this.txtActivite, 0);
             this.Controls.SetChildIndex(this.cbxNature, 0);
             this.Controls.SetChildIndex(this.txtEffectif, 0);
             this.Controls.SetChildIndex(this.txtCommentComm, 0);
             this.Controls.SetChildIndex(this.lblCommentComm, 0);
             this.Controls.SetChildIndex(this.gbxAjoutContact, 0);
-            this.Controls.SetChildIndex(this.button2, 0);
-            this.Controls.SetChildIndex(this.gbxContact, 0);
+            this.Controls.SetChildIndex(this.gbxListeContact, 0);
             this.Controls.SetChildIndex(this.btnAfficherContact, 0);
-            this.gbxContact.ResumeLayout(false);
+            this.Controls.SetChildIndex(this.btnDeverrouiller, 0);
+            this.Controls.SetChildIndex(this.btnValiderClient, 0);
+            this.Controls.SetChildIndex(this.btnReinitialiser, 0);
+            this.gbxListeContact.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).EndInit();
             this.gbxAjoutContact.ResumeLayout(false);
             this.gbxAjoutContact.PerformLayout();
@@ -344,14 +351,9 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnVoirContact;
-        private System.Windows.Forms.Button btnDeverouiller;
-        private System.Windows.Forms.Button btnAnnuler;
-        private System.Windows.Forms.Button btnValider;
         private System.Windows.Forms.Button btnQuitter;
-        private System.Windows.Forms.GroupBox gbxContact;
+        private System.Windows.Forms.GroupBox gbxListeContact;
         internal System.Windows.Forms.DataGridView grdContact;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox gbxAjoutContact;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
@@ -366,5 +368,10 @@
         private System.Windows.Forms.TextBox txtFonctionContact;
         private System.Windows.Forms.Label lblTelephoneContact;
         private System.Windows.Forms.Button btnAfficherContact;
+        private System.Windows.Forms.Button btnDeverrouiller;
+        private System.Windows.Forms.Button btnValiderClient;
+        private System.Windows.Forms.Button btnReinitialiser;
+        private System.Windows.Forms.Button btnValiderContact;
+        private System.Windows.Forms.Button btnAnnulerContact;
     }
 }

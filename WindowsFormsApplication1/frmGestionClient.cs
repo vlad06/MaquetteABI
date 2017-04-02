@@ -13,9 +13,13 @@ namespace WindowsFormsApplication1
 {
     public partial class frmGestionClient : Form
     {
+        private frmGestionClient frmPrincipale;
+        private frmAjoutClient frmAjout;
         public frmGestionClient()
         {
             InitializeComponent();
+            this.btnDetailClient.Enabled = false;
+            this.btnVoirContact.Enabled = false;
         }
 
         private void afficheClients()
@@ -45,15 +49,7 @@ namespace WindowsFormsApplication1
 
         private void grdClient_DoubleClick(object sender, EventArgs e)
         {
-            if (this.grdClient.CurrentRow != null)
-            {
-                int iClient;
-                iClient = this.grdClient.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
-                Client leClient = Donnees.ArrayClient[iClient];
-                frmVisuClient frmDetail = new frmVisuClient(leClient);
-                frmDetail.Show();
-                this.afficheClients();
-            }
+            afficheDetailClient();
         }
 
         private void frmGestionClient_Load(object sender, EventArgs e)
@@ -87,6 +83,39 @@ namespace WindowsFormsApplication1
                 Donnees.ArrayClient.Add(Client1);
             }
             this.afficheClients();
+        }
+
+        private void btnAjouterClient_Click(object sender, EventArgs e)
+        {
+            this.frmAjout = new frmAjoutClient(this.frmPrincipale);
+            if (this.frmAjout.ShowDialog() == DialogResult.OK)
+                {
+                    this.afficheClients();
+                }
+        }
+
+        private void btnAfficheListe_Click(object sender, EventArgs e)
+        {
+            creerClientTest();
+        }
+
+        private void btnDetailClient_Click(object sender, EventArgs e)
+        {
+            afficheDetailClient();
+        }
+
+        private void afficheDetailClient()
+        {
+            if (this.grdClient.CurrentRow != null)
+            {
+                int iClient;
+                iClient = this.grdClient.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
+                Client leClient = Donnees.ArrayClient[iClient];
+                frmVisuClient frmVisu = new frmVisuClient(leClient);
+                frmVisu.Show();
+                frmVisu.TopMost = true;
+                this.afficheClients();
+            }
         }
     }
 }
