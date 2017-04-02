@@ -10,6 +10,7 @@ namespace WindowsFormsApplication1
 {
     public partial class frmVisuClient : WindowsFormsApplication1.frmClient
     {
+        private frmVisuClient frmVisu;
         private Client leClient;    //leClient est un attribut de la classe visu et permettra de stocker 
                                     //le client passé en paramètre au constructeur de la form
         /// <summary>

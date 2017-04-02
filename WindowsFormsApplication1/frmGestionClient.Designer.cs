@@ -158,6 +158,7 @@
             this.grdClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdClient.Size = new System.Drawing.Size(899, 531);
             this.grdClient.TabIndex = 6;
+            this.grdClient.SelectionChanged += new System.EventHandler(this.grdClient_SelectionChanged);
             this.grdClient.DoubleClick += new System.EventHandler(this.grdClient_DoubleClick);
             // 
             // txtRechercher

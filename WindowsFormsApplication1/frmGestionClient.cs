@@ -63,7 +63,7 @@ namespace WindowsFormsApplication1
 
         private void creerClientTest()
         {
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 5; i++)
             {
                 Client Client1 = new Client();
                 Client1.IdClient = i;
@@ -92,7 +92,10 @@ namespace WindowsFormsApplication1
 
         private void btnAfficheListe_Click(object sender, EventArgs e)
         {
-            creerClientTest();
+            if(this.grdClient.CurrentRow == null)
+            {
+                creerClientTest();
+            }
         }
         private void grdClient_DoubleClick(object sender, EventArgs e)
         {
@@ -100,7 +103,7 @@ namespace WindowsFormsApplication1
         }
         private void btnDetailClient_Click(object sender, EventArgs e)
         {
-                afficheDetailClient();
+            afficheDetailClient();
         }
 
         private void afficheDetailClient()
@@ -112,7 +115,17 @@ namespace WindowsFormsApplication1
                 if (!isFormOpen())  //si la form client n'est pas encore ouverte
                 {
                     frmVisuClient frmVisu = new frmVisuClient(leClient); //on crée une instance de la form client
-                    frmVisu.Show(); //on l'ouvre
+                    Donnees.ArrayfrmVisu.Add(frmVisu);//TODO, arriver à extraire la ref du form pour comparaison lors de la suppression d'une ligne
+                                                      //dans le datagrid afin de fermer la fenêtre correspondante à la ligne supprimée
+                                                      //
+                                                      //
+                                                      //
+                              //
+                                                      //
+                                                      //
+                                                      //
+
+                    frmVisu.Show(); //on l'affiche
                     frmVisu.TopMost = true; //on force la form client au premier plan
                     //this.afficheClients();  //on met à jour la datagrid
                     Donnees.ArrayFrmClientOpened.Add(leClient.IdClient);    //on ajoute à la liste des fenêtres ouverte l'id du client affiché
@@ -143,11 +156,28 @@ namespace WindowsFormsApplication1
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dr == DialogResult.OK)
             {
+                if (isFormOpen())
+                {
+                    
+                }
                 int iClient = this.grdClient.CurrentRow.Index;
                 Client leClient = Donnees.ArrayClient[iClient];
                 Donnees.ArrayFrmClientOpened.Remove(leClient.IdClient);
                 Donnees.ArrayClient.Remove(leClient);
                 afficheClients();
+            }
+        }
+
+        private void grdClient_SelectionChanged(object sender, EventArgs e)
+        {
+            if(this.grdClient.CurrentRow != null)
+            {
+                this.btnDetailClient.Enabled = true;
+                this.btnVoirContact.Enabled = true;
+            }else
+            {
+                this.btnDetailClient.Enabled = false;
+                this.btnVoirContact.Enabled = false;
             }
         }
     }

@@ -10,5 +10,6 @@ namespace WindowsFormsApplication1
     {
         public static List<Client> ArrayClient = new List<Client>();
         public static List<int> ArrayFrmClientOpened = new List<int>();
+        public static List<frmVisuClient> ArrayfrmVisu = new List<frmVisuClient>();
     }
 }
