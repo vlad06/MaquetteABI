@@ -80,6 +80,10 @@
             // 
             this.lblNumeroClient.Location = new System.Drawing.Point(314, 19);
             // 
+            // txtCommentaire
+            // 
+            this.txtCommentaire.Location = new System.Drawing.Point(94, 290);
+            // 
             // btnValider
             // 
             this.btnValider.Location = new System.Drawing.Point(359, 490);

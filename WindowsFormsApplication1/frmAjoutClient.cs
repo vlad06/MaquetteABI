@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
         {
             if (this.instancieClient())
             {
-                Client.NClient += 1;
+                Client.nClient += 1;
                 this.DialogResult = DialogResult.OK;
             }
         }

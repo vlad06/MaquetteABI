@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1
     public class Client
     {
 
-        public static int NClient;
+        public static int nClient;
 
         private int numeroClient;
         private string raisonSociale;
@@ -24,40 +24,41 @@ namespace WindowsFormsApplication1
         private decimal caClient;
         private int effectifClient;
         private string commentComm;
-        
 
-        public Client(int numeroClient, string raisonSociale, string typeClient, string activiteClient, string adresseClient, string telephoneClient, string faxClient, string emailClient, string natureClient, string domaineClient, decimal caClient, int effectifClient, string commentComm)
-        {
-            this.numeroClient = numeroClient;
-            this.raisonSociale = raisonSociale;
-            this.typeClient = typeClient;
-            this.activiteClient = activiteClient;
-            this.adresseClient = adresseClient;
-            this.telephoneClient = telephoneClient;
-            this.faxClient = faxClient;
-            this.emailClient = emailClient;
-            this.natureClient = natureClient;
-            this.domaineClient = domaineClient;
-            this.caClient = caClient;
-            this.effectifClient = effectifClient;
-            this.commentComm = commentComm;
-        }
-        public Client()
-        {
-           /* this.numeroClient = 0;
-            this.raisonSociale = "";
-            this.typeClient = "";
-            this.activiteClient = "";
-            this.adresseClient = "";
-            this.telephoneClient = "";
-            this.faxClient = "";
-            this.emailClient = "";
-            this.natureClient = "";
-            this.domaineClient = "";
-            this.caClient = 0;
-            this.effectifClient = 0;
-            this.commentComm = "";*/
-        }
+        /*
+                public Client(int numeroClient, string raisonSociale, string typeClient, string activiteClient, string adresseClient, string telephoneClient, string faxClient, string emailClient, string natureClient, string domaineClient, decimal caClient, int effectifClient, string commentComm)
+                {
+                    this.numeroClient = numeroClient;
+                    this.raisonSociale = raisonSociale;
+                    this.typeClient = typeClient;
+                    this.activiteClient = activiteClient;
+                    this.adresseClient = adresseClient;
+                    this.telephoneClient = telephoneClient;
+                    this.faxClient = faxClient;
+                    this.emailClient = emailClient;
+                    this.natureClient = natureClient;
+                    this.domaineClient = domaineClient;
+                    this.caClient = caClient;
+                    this.effectifClient = effectifClient;
+                    this.commentComm = commentComm;
+                }
+                public Client()
+                {
+                    this.numeroClient = 0;
+                    this.raisonSociale = "";
+                    this.typeClient = "";
+                    this.activiteClient = "";
+                    this.adresseClient = "";
+                    this.telephoneClient = "";
+                    this.faxClient = "";
+                    this.emailClient = "";
+                    this.natureClient = "";
+                    this.domaineClient = "";
+                    this.caClient = 0;
+                    this.effectifClient = 0;
+                    this.commentComm = "";
+                }*/
+
 
         public int NumeroClient
         {
@@ -141,6 +142,11 @@ namespace WindowsFormsApplication1
         public decimal RatioCaEffectif()
         {
             return (this.caClient / this.effectifClient);
+        }
+
+        public static int NClient
+        {
+            get { return nClient; }
         }
     }
 }

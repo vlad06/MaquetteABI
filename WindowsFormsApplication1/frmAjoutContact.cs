@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
         {
             if (this.instancieContact())
             {
-                Contact.NContact += 1;
+                Contact.nContact += 1;
                 this.DialogResult = DialogResult.OK;
             }
         }

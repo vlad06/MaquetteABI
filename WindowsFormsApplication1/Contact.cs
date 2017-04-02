@@ -8,7 +8,7 @@ namespace WindowsFormsApplication1
 {
     public class Contact
     {
-        public static int NContact;
+        public static int nContact;
 
         private int numeroContact;
         private string nomContact;
@@ -76,6 +76,10 @@ namespace WindowsFormsApplication1
             set { totalHeuresContact = value; }
         }
 
+        public static int NContact
+        {
+            get { return nContact; }
+        }
 
     }
 }

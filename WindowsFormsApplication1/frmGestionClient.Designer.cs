@@ -45,6 +45,11 @@
             this.btnDetailClient = new System.Windows.Forms.Button();
             this.btnAfficheListe = new System.Windows.Forms.Button();
             this.btnVoirContact = new System.Windows.Forms.Button();
+            this.btnConvert = new System.Windows.Forms.Button();
+            this.quitterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.feuilleExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitterToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.msGestionClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdClient)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +70,9 @@
             // 
             this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nouveauClientToolStripMenuItem,
-            this.quitterToolStripMenuItem});
+            this.quitterToolStripMenuItem,
+            this.quitterToolStripMenuItem1,
+            this.quitterToolStripMenuItem2});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
             this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fichierToolStripMenuItem.Text = "Fichier";
@@ -75,21 +82,23 @@
             this.nouveauClientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientToolStripMenuItem});
             this.nouveauClientToolStripMenuItem.Name = "nouveauClientToolStripMenuItem";
-            this.nouveauClientToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.nouveauClientToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.nouveauClientToolStripMenuItem.Text = "Nouveau";
             // 
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clientToolStripMenuItem.Text = "Client";
             this.clientToolStripMenuItem.Click += new System.EventHandler(this.clientToolStripMenuItem_Click);
             // 
             // quitterToolStripMenuItem
             // 
+            this.quitterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.feuilleExcelToolStripMenuItem});
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.quitterToolStripMenuItem.Text = "Quitter";
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.quitterToolStripMenuItem.Text = "Ouvrir";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
             // afficherToolStripMenuItem
@@ -103,7 +112,7 @@
             // listeClientsToolStripMenuItem
             // 
             this.listeClientsToolStripMenuItem.Name = "listeClientsToolStripMenuItem";
-            this.listeClientsToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.listeClientsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.listeClientsToolStripMenuItem.Text = "Liste clients";
             this.listeClientsToolStripMenuItem.Click += new System.EventHandler(this.listeClientsToolStripMenuItem_Click);
             // 
@@ -211,11 +220,43 @@
             this.btnVoirContact.UseVisualStyleBackColor = true;
             this.btnVoirContact.Click += new System.EventHandler(this.btnVoirContact_Click);
             // 
+            // btnConvert
+            // 
+            this.btnConvert.Location = new System.Drawing.Point(12, 163);
+            this.btnConvert.Name = "btnConvert";
+            this.btnConvert.Size = new System.Drawing.Size(151, 23);
+            this.btnConvert.TabIndex = 14;
+            this.btnConvert.Text = "ConvertToExcel";
+            this.btnConvert.UseVisualStyleBackColor = true;
+            // 
+            // quitterToolStripMenuItem1
+            // 
+            this.quitterToolStripMenuItem1.Name = "quitterToolStripMenuItem1";
+            this.quitterToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.quitterToolStripMenuItem1.Text = "Enregistrer sous";
+            // 
+            // feuilleExcelToolStripMenuItem
+            // 
+            this.feuilleExcelToolStripMenuItem.Name = "feuilleExcelToolStripMenuItem";
+            this.feuilleExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.feuilleExcelToolStripMenuItem.Text = "Feuille Excel";
+            // 
+            // quitterToolStripMenuItem2
+            // 
+            this.quitterToolStripMenuItem2.Name = "quitterToolStripMenuItem2";
+            this.quitterToolStripMenuItem2.Size = new System.Drawing.Size(157, 22);
+            this.quitterToolStripMenuItem2.Text = "Quitter";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
             // frmGestionClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1091, 597);
+            this.Controls.Add(this.btnConvert);
             this.Controls.Add(this.btnVoirContact);
             this.Controls.Add(this.btnSupprimerClient);
             this.Controls.Add(this.btnDetailClient);
@@ -257,6 +298,11 @@
         private System.Windows.Forms.Button btnAfficheListe;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.Button btnVoirContact;
+        private System.Windows.Forms.ToolStripMenuItem feuilleExcelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem2;
+        private System.Windows.Forms.Button btnConvert;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

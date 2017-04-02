@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace WindowsFormsApplication1
 {
@@ -67,7 +68,7 @@ namespace WindowsFormsApplication1
                 {
                     Client unClient = Donnees.ArrayClient[iClient];
                     Donnees.ArrayClient.Remove(unClient);
-                    Client.NClient--;
+                    Client.nClient--;
                     this.afficheClients();
                 }
             }
@@ -173,6 +174,12 @@ namespace WindowsFormsApplication1
         }
 
         private void btnVoirContact_Click(object sender, EventArgs e)
+        {
+            frmGestionContact frmc = new frmGestionContact();
+            frmc.Show();
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
         }
