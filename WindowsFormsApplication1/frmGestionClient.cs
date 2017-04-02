@@ -27,7 +27,6 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Raison sociale", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Nature", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Telephone", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("E-mail", typeof(System.String)));
             dt.Columns.Add(new DataColumn("CA Client", typeof(System.Decimal)));
             dt.Columns.Add(new DataColumn("Effectif", typeof(System.Int32)));
 
@@ -35,13 +34,12 @@ namespace WindowsFormsApplication1
             for(int i = 0; i < Donnees.ArrayClient.Count; i++)
             {
                 dr = dt.NewRow();
-                dr[0] = Donnees.ArrayClient[i].NumeroClient;
+                dr[0] = Donnees.ArrayClient[i].IdClient;
                 dr[1] = Donnees.ArrayClient[i].RaisonSociale;
-                dr[2] = Donnees.ArrayClient[i].NatureClient;
-                dr[3] = Donnees.ArrayClient[i].TelephoneClient;
-                dr[4] = Donnees.ArrayClient[i].EmailClient;
-                dr[5] = Donnees.ArrayClient[i].CaClient;
-                dr[6] = Donnees.ArrayClient[i].EffectifClient;
+                dr[2] = Donnees.ArrayClient[i].Nature;
+                dr[3] = Donnees.ArrayClient[i].Telephone;
+                dr[4] = Donnees.ArrayClient[i].Ca;
+                dr[5] = Donnees.ArrayClient[i].Effectif;
                 dt.Rows.Add(dr);
             }
             this.grdClient.DataSource = dt;
@@ -102,7 +100,6 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Raison sociale", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Nature", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Telephone", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("E-mail", typeof(System.String)));
             dt.Columns.Add(new DataColumn("CA Client", typeof(System.Decimal)));
             dt.Columns.Add(new DataColumn("Effectif", typeof(System.Int32)));
             this.grdClient.DataSource = dt;
@@ -143,17 +140,15 @@ namespace WindowsFormsApplication1
             for (int i = 1; i < 10; i++)
             {
                 Client Client1 = new Client();
-                Client1.NumeroClient = i;
+                Client1.IdClient = i;
                 Client1.RaisonSociale = "SA " + i;
-                Client1.NatureClient = "Principale";
-                Client1.TypeClient = "Privé";
-                Client1.TelephoneClient = "049332581" + i;
-                Client1.FaxClient = "049332580" + i;
-                Client1.EmailClient = "lol" + i + "@lol.com";
-                Client1.AdresseClient = i + " ,route de turin 06000 NICE";
-                Client1.DomaineClient = "Industrie";
-                Client1.CaClient = i * 10000;
-                Client1.EffectifClient = i * 2;
+                Client1.Nature = "Principale";
+                Client1.TypeSociete = "Privé";
+                Client1.Telephone = "049332581" + i;
+                Client1.Adresse = i + " ,route de turin 06000 NICE";
+                Client1.Activite = "Industrie";
+                Client1.Ca = i * 10000;
+                Client1.Effectif = i * 2;
                 Client1.CommentComm = i + ") Putain de bordel de merde...";
                 Donnees.ArrayClient.Add(Client1);
             }

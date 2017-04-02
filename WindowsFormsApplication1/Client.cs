@@ -9,21 +9,19 @@ namespace WindowsFormsApplication1
     public class Client
     {
 
-        public static int nClient;
+        public static int nClient;  //le nombre de client crée
 
-        private int numeroClient;
-        private string raisonSociale;
-        private string typeClient;
-        private string activiteClient;
-        private string adresseClient;
-        private string telephoneClient;
-        private string faxClient;
-        private string emailClient;
-        private string natureClient;
-        private string domaineClient;
-        private decimal caClient;
-        private int effectifClient;
-        private string commentComm;
+        private Int32 idClient;   //le numéro de client personnalisable par l'utilisateur
+        private String raisonSociale;   //raison sociale du client
+        private String typeSociete;  //public ou privé
+        private String activite;  //secteur d'activité du client (pour l'instant agro, industrie, ...)
+        private String adresse;   //adresse du client
+        private String telephone; //téléphone du client
+        private String nature;    // principale, secondaire ou ancienne
+        private Decimal ca;   //chiffre d'affaire du client
+        private Int32 effectif; //nombre de salariés du client
+        private String commentComm; //commentaire commercial concernant le projet
+        private List<Contact> arrayContact = new List<Contact>(); //liste de contact du client
 
         /*
                 public Client(int numeroClient, string raisonSociale, string typeClient, string activiteClient, string adresseClient, string telephoneClient, string faxClient, string emailClient, string natureClient, string domaineClient, decimal caClient, int effectifClient, string commentComm)
@@ -59,94 +57,80 @@ namespace WindowsFormsApplication1
                     this.commentComm = "";
                 }*/
 
-
-        public int NumeroClient
+        public static int NClient
         {
-            get  { return numeroClient; }
-            set { numeroClient = value; }
+            get { return nClient; }
+        }
+        public int IdClient
+        {
+            get { return idClient; }
+
+            set { idClient = value;}
         }
 
         public string RaisonSociale
         {
-            get {return raisonSociale; }
-            set { raisonSociale = value.Trim().ToUpper(); }
+            get { return raisonSociale; }
+            set { raisonSociale = value;}
         }
 
-        public string TypeClient
+        public string TypeSociete
         {
-            get {return typeClient; }
-            set { typeClient = value;}
+            get { return typeSociete;  }
+            set { typeSociete = value; }
         }
 
-        public string ActiviteClient
+        public string Activite
         {
-            get {return activiteClient;}
-            set{ activiteClient = value; }
+            get { return activite; }
+            set { activite = value; }
         }
 
-        public string AdresseClient
+        public string Adresse
         {
-            get { return adresseClient; }
-            set{ adresseClient = value; }
+            get{ return adresse;  }
+            set{  adresse = value; }
         }
 
-        public string TelephoneClient
+        public string Telephone
         {
-            get { return telephoneClient;}
-            set { telephoneClient = value; }
+            get { return telephone; }
+            set { telephone = value;  }
         }
 
-        public string FaxClient
+        public string Nature
         {
-            get { return faxClient; }
-            set { faxClient = value;}
+            get { return nature;  }
+            set { nature = value;}
         }
 
-        public string EmailClient
+        public decimal Ca
         {
-            get { return emailClient; }
-            set { emailClient = value; }
+            get { return ca; }
+            set {ca = value; }
         }
 
-        public string NatureClient
+        public int Effectif
         {
-            get { return natureClient; }
-            set { natureClient = value; }
-        }
-
-        public string DomaineClient
-        {
-            get{ return domaineClient; }
-
-            set { domaineClient = value; }
-        }
-
-        public decimal CaClient
-        {
-            get { return caClient; }
-            set { caClient = value; }
-        }
-
-        public int EffectifClient
-        {
-            get { return effectifClient; }
-            set { effectifClient = value; }
+            get { return effectif;}
+            set { effectif = value; }
         }
 
         public string CommentComm
         {
-            get { return commentComm;  }
-            set { commentComm = value; }
+            get {return commentComm;}
+            set { commentComm = value;}
+        }
+
+        public List<Contact> ArrayContact
+        {
+            get {  return arrayContact;  }
+            set { arrayContact = value; }
         }
 
         public decimal RatioCaEffectif()
         {
-            return (this.caClient / this.effectifClient);
-        }
-
-        public static int NClient
-        {
-            get { return nClient; }
+            return (this.Ca / this.Effectif);
         }
     }
 }

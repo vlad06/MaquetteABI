@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.grdContact = new System.Windows.Forms.DataGridView();
-            this.txtRechercher = new System.Windows.Forms.TextBox();
-            this.btnRechercher = new System.Windows.Forms.Button();
             this.btnAjouterContact = new System.Windows.Forms.Button();
             this.btnModifierContact = new System.Windows.Forms.Button();
             this.btnSupprimerContact = new System.Windows.Forms.Button();
@@ -57,22 +55,6 @@
             this.grdContact.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdContact.Size = new System.Drawing.Size(614, 252);
             this.grdContact.TabIndex = 0;
-            // 
-            // txtRechercher
-            // 
-            this.txtRechercher.Location = new System.Drawing.Point(2, 5);
-            this.txtRechercher.Name = "txtRechercher";
-            this.txtRechercher.Size = new System.Drawing.Size(208, 20);
-            this.txtRechercher.TabIndex = 1;
-            // 
-            // btnRechercher
-            // 
-            this.btnRechercher.Location = new System.Drawing.Point(219, 3);
-            this.btnRechercher.Name = "btnRechercher";
-            this.btnRechercher.Size = new System.Drawing.Size(72, 23);
-            this.btnRechercher.TabIndex = 2;
-            this.btnRechercher.Text = "Rechercher";
-            this.btnRechercher.UseVisualStyleBackColor = true;
             // 
             // btnAjouterContact
             // 
@@ -121,8 +103,6 @@
             this.Controls.Add(this.btnSupprimerContact);
             this.Controls.Add(this.btnModifierContact);
             this.Controls.Add(this.btnAjouterContact);
-            this.Controls.Add(this.btnRechercher);
-            this.Controls.Add(this.txtRechercher);
             this.Controls.Add(this.grdContact);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmGestionContact";
@@ -130,13 +110,10 @@
             this.Load += new System.EventHandler(this.frmGestionContact_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtRechercher;
-        private System.Windows.Forms.Button btnRechercher;
         private System.Windows.Forms.Button btnAjouterContact;
         private System.Windows.Forms.Button btnModifierContact;
         private System.Windows.Forms.Button btnSupprimerContact;

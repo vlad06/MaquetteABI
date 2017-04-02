@@ -27,30 +27,30 @@ namespace WindowsFormsApplication1
         private void afficheClient(Client unClient)
         {
             this.txtRaisonSociale.Text = unClient.RaisonSociale;
-            this.txtNumeroClient.Text = unClient.NumeroClient.ToString();
-            this.txtTelephoneClient.Text = unClient.TelephoneClient;
-            this.cbxNatureClient.Text = unClient.NatureClient;
-            this.txtFaxClient.Text = unClient.FaxClient;
-            this.cbxTypeClient.Text = unClient.TypeClient;
-            this.txtEmailClient.Text = unClient.EmailClient;
-            this.txtAdresseClient.Text = unClient.AdresseClient;
-            this.txtDomaine.Text = unClient.DomaineClient;
-            this.txtCAClient.Text = unClient.CaClient.ToString();
-            this.txtEffectifClient.Text = unClient.EffectifClient.ToString();
+            this.txtNumeroClient.Text = unClient.IdClient.ToString();
+            this.txtTelephoneClient.Text = unClient.Telephone;
+            this.cbxNatureClient.Text = unClient.Nature;
+            //this.txtFaxClient.Text = unClient.FaxClient;
+            this.cbxTypeClient.Text = unClient.TypeSociete;
+            //this.txtEmailClient.Text = unClient.EmailClient;
+            this.txtAdresseClient.Text = unClient.Adresse;
+            this.txtDomaine.Text = unClient.Activite;
+            this.txtCAClient.Text = unClient.Ca.ToString();
+            this.txtEffectifClient.Text = unClient.Effectif.ToString();
             this.txtCommentaire.Text = unClient.CommentComm;
         }
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            if (btnDeverouiller.Text == "Dévérouiller")
+            if (btnDeverouiller.Text == "Dévérrouiller")
             {
                 this.writeable();
-                btnDeverouiller.Text = "Vérouiller";
+                btnDeverouiller.Text = "Vérrouiller";
             }
             else
             {
                 this.readable();
-                btnDeverouiller.Text = "Dévérouiller";
+                btnDeverouiller.Text = "Dévérrouiller";
             }
         }
 
@@ -60,9 +60,9 @@ namespace WindowsFormsApplication1
             this.txtNumeroClient.Enabled = false;
             this.txtTelephoneClient.Enabled = false;
             this.cbxNatureClient.Enabled = false;
-            this.txtFaxClient.Enabled = false;
+            //this.txtFaxClient.Enabled = false;
             this.cbxTypeClient.Enabled = false;
-            this.txtEmailClient.Enabled = false;
+            //this.txtEmailClient.Enabled = false;
             this.txtAdresseClient.Enabled = false;
             this.txtDomaine.Enabled = false;
             this.txtCAClient.Enabled = false;
@@ -76,9 +76,9 @@ namespace WindowsFormsApplication1
             this.txtNumeroClient.Enabled = true;
             this.txtTelephoneClient.Enabled = true;
             this.cbxNatureClient.Enabled = true;
-            this.txtFaxClient.Enabled = true;
+            //this.txtFaxClient.Enabled = true;
             this.cbxTypeClient.Enabled = true;
-            this.txtEmailClient.Enabled = true;
+            //this.txtEmailClient.Enabled = true;
             this.txtAdresseClient.Enabled = true;
             this.txtDomaine.Enabled = true;
             this.txtCAClient.Enabled = true;
@@ -109,17 +109,15 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                this.leClient.NumeroClient = int.Parse(base.txtNumeroClient.Text.Trim());
+                this.leClient.IdClient = int.Parse(base.txtNumeroClient.Text.Trim());
                 this.leClient.RaisonSociale = base.txtRaisonSociale.Text;
-                this.leClient.NatureClient = base.cbxNatureClient.Text;
-                this.leClient.TypeClient = base.cbxTypeClient.Text;
-                this.leClient.TelephoneClient = base.txtTelephoneClient.Text;
-                this.leClient.FaxClient = base.txtFaxClient.Text;
-                this.leClient.EmailClient = base.txtEmailClient.Text;
-                this.leClient.AdresseClient = base.txtAdresseClient.Text;
-                this.leClient.DomaineClient = base.txtDomaine.Text;
-                this.leClient.CaClient = decimal.Parse(base.txtCAClient.Text.Trim());
-                this.leClient.EffectifClient = int.Parse(base.txtEffectifClient.Text.Trim());
+                this.leClient.Nature = base.cbxNatureClient.Text;
+                this.leClient.TypeSociete = base.cbxTypeClient.Text;
+                this.leClient.Telephone = base.txtTelephoneClient.Text;
+                this.leClient.Adresse= base.txtAdresseClient.Text;
+                this.leClient.Activite = base.txtDomaine.Text;
+                this.leClient.Ca = decimal.Parse(base.txtCAClient.Text.Trim());
+                this.leClient.Effectif = int.Parse(base.txtEffectifClient.Text.Trim());
                 this.leClient.CommentComm = base.txtCommentaire.Text;
                 return true;
             }
@@ -134,16 +132,16 @@ namespace WindowsFormsApplication1
         private void btnVoirContact_Click(object sender, EventArgs e)
         {
             frmGestionContact frmCont = new frmGestionContact();
-            if (frmCont.grdContact.CurrentRow != null)
-            {
+           // if (frmCont.grdContact.CurrentRow != null)
+            //{
                 int iContact;
                 iContact = frmCont.grdContact.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
-                Contact leContact = Donnees.ArrayContact[iContact];
+                Contact leContact = leClient.ArrayContact[iContact];
                 frmCont.Show();
-            } else
-            {
-                MessageBox.Show("Ce client n'a pas de contacts associés !", "Erreur !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //} else
+           // {
+             //   MessageBox.Show("Ce client n'a pas de contacts associés !", "Erreur !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           // }
         }
     }
 }

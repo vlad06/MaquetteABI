@@ -33,6 +33,9 @@
             this.nouveauClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.feuilleExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitterToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listeClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,9 +49,6 @@
             this.btnAfficheListe = new System.Windows.Forms.Button();
             this.btnVoirContact = new System.Windows.Forms.Button();
             this.btnConvert = new System.Windows.Forms.Button();
-            this.quitterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.feuilleExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quitterToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.msGestionClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdClient)).BeginInit();
@@ -88,7 +88,7 @@
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.clientToolStripMenuItem.Text = "Client";
             this.clientToolStripMenuItem.Click += new System.EventHandler(this.clientToolStripMenuItem_Click);
             // 
@@ -101,6 +101,24 @@
             this.quitterToolStripMenuItem.Text = "Ouvrir";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
+            // feuilleExcelToolStripMenuItem
+            // 
+            this.feuilleExcelToolStripMenuItem.Name = "feuilleExcelToolStripMenuItem";
+            this.feuilleExcelToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.feuilleExcelToolStripMenuItem.Text = "Feuille Excel";
+            // 
+            // quitterToolStripMenuItem1
+            // 
+            this.quitterToolStripMenuItem1.Name = "quitterToolStripMenuItem1";
+            this.quitterToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.quitterToolStripMenuItem1.Text = "Enregistrer sous";
+            // 
+            // quitterToolStripMenuItem2
+            // 
+            this.quitterToolStripMenuItem2.Name = "quitterToolStripMenuItem2";
+            this.quitterToolStripMenuItem2.Size = new System.Drawing.Size(157, 22);
+            this.quitterToolStripMenuItem2.Text = "Quitter";
+            // 
             // afficherToolStripMenuItem
             // 
             this.afficherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -112,7 +130,7 @@
             // listeClientsToolStripMenuItem
             // 
             this.listeClientsToolStripMenuItem.Name = "listeClientsToolStripMenuItem";
-            this.listeClientsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.listeClientsToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.listeClientsToolStripMenuItem.Text = "Liste clients";
             this.listeClientsToolStripMenuItem.Click += new System.EventHandler(this.listeClientsToolStripMenuItem_Click);
             // 
@@ -228,24 +246,6 @@
             this.btnConvert.TabIndex = 14;
             this.btnConvert.Text = "ConvertToExcel";
             this.btnConvert.UseVisualStyleBackColor = true;
-            // 
-            // quitterToolStripMenuItem1
-            // 
-            this.quitterToolStripMenuItem1.Name = "quitterToolStripMenuItem1";
-            this.quitterToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
-            this.quitterToolStripMenuItem1.Text = "Enregistrer sous";
-            // 
-            // feuilleExcelToolStripMenuItem
-            // 
-            this.feuilleExcelToolStripMenuItem.Name = "feuilleExcelToolStripMenuItem";
-            this.feuilleExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.feuilleExcelToolStripMenuItem.Text = "Feuille Excel";
-            // 
-            // quitterToolStripMenuItem2
-            // 
-            this.quitterToolStripMenuItem2.Name = "quitterToolStripMenuItem2";
-            this.quitterToolStripMenuItem2.Size = new System.Drawing.Size(157, 22);
-            this.quitterToolStripMenuItem2.Text = "Quitter";
             // 
             // saveFileDialog1
             // 

@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1
         public frmAjoutClient()
         {
             InitializeComponent();
+            btnSupprimerContact.Enabled = false;
+            btnAjoutContact.Enabled = true;
         }
 
         private void btnValider_Click(object sender, EventArgs e)
@@ -29,17 +31,17 @@ namespace WindowsFormsApplication1
             Client nouveauClient = new Client();
             try
             {
-                nouveauClient.NumeroClient = int.Parse(base.txtNumeroClient.Text.Trim());
+                nouveauClient.IdClient = int.Parse(base.txtNumeroClient.Text.Trim());
                 nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
-                nouveauClient.NatureClient = base.cbxNatureClient.Text;
-                nouveauClient.TypeClient = base.cbxTypeClient.Text;
-                nouveauClient.TelephoneClient = base.txtTelephoneClient.Text;
-                nouveauClient.FaxClient = base.txtFaxClient.Text;
-                nouveauClient.EmailClient = base.txtEmailClient.Text;
-                nouveauClient.AdresseClient = base.txtAdresseClient.Text;
-                nouveauClient.DomaineClient = base.txtDomaine.Text;
-                nouveauClient.CaClient = decimal.Parse(base.txtCAClient.Text.Trim());
-                nouveauClient.EffectifClient = int.Parse(base.txtEffectifClient.Text.Trim());
+                nouveauClient.Nature = base.cbxNatureClient.Text;
+                nouveauClient.TypeSociete = base.cbxTypeClient.Text;
+                nouveauClient.Telephone = base.txtTelephoneClient.Text;
+                //nouveauClient.FaxClient = base.txtFaxClient.Text;
+                //nouveauClient.EmailClient = base.txtEmailClient.Text;
+                nouveauClient.Adresse = base.txtAdresseClient.Text;
+                nouveauClient.Activite  = base.txtDomaine.Text;
+                nouveauClient.Ca = decimal.Parse(base.txtCAClient.Text.Trim());
+                nouveauClient.Effectif = int.Parse(base.txtEffectifClient.Text.Trim());
                 nouveauClient.CommentComm = base.txtCommentaire.Text;
                 Donnees.ArrayClient.Add(nouveauClient);
                 return true;

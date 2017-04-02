@@ -31,14 +31,13 @@ namespace WindowsFormsApplication1
             Contact nouveauContact = new Contact();
             try
             {
-                nouveauContact.NumeroContact = int.Parse(txtNumeroContact.Text.Trim());
+                nouveauContact.IdContact = int.Parse(txtNumeroContact.Text.Trim());
                 nouveauContact.NomContact = txtNomContact.Text;
                 nouveauContact.PrenomContact = txtPrenomContact.Text;
-                nouveauContact.TelephoneContact = txtTelephoneContact.Text;
-                nouveauContact.EmailContact = txtEmailContact.Text;
+                nouveauContact.TelContact = txtTelephoneContact.Text;
                 nouveauContact.FonctionContact = txtFonctionContact.Text;
-                nouveauContact.TotalHeuresContact = double.Parse(txtTotalHeures.Text.Trim());
-                Donnees.ArrayContact.Add(nouveauContact);
+                //nouveauContact.TotalHeuresContact = double.Parse(txtTotalHeures.Text.Trim());
+                //Donnees.ArrayContact.Add(nouveauContact);
                 return true;
             }
             catch (Exception ex)

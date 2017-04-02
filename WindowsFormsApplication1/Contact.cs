@@ -10,70 +10,25 @@ namespace WindowsFormsApplication1
     {
         public static int nContact;
 
-        private int numeroContact;
-        private string nomContact;
-        private string prenomContact;
-        private string telephoneContact;
-        private string emailContact;
-        private string fonctionContact;
-        private double totalHeuresContact;
-
-        public Contact(int numeroContact, string nomContact, string prenomContact, string telephoneContact, string emailContact, string fonctionContact, double totalHeuresContact)
-        {
-            this.NumeroContact = numeroContact;
-            this.NomContact = nomContact;
-            this.PrenomContact = prenomContact;
-            this.TelephoneContact = telephoneContact;
-            this.EmailContact = emailContact;
-            this.FonctionContact = fonctionContact;
-            this.TotalHeuresContact = totalHeuresContact;
-        }
+        private Int32 idContact;
+        private String nomContact;
+        private String prenomContact;
+        private String telContact;
+        private String fonctionContact;
+        //private double totalHeuresContact;
 
         public Contact()
         {
 
         }
 
-        public int NumeroContact
+        public Contact(int idContact, string nomContact, string prenomContact, string telContact, string fonctionContact)
         {
-            get { return numeroContact; }
-            set { numeroContact = value;}
-        }
-
-        public string NomContact
-        {
-            get{ return nomContact;}
-            set{nomContact = value.Trim().ToUpper();}
-        }
-
-        public string PrenomContact
-        {
-            get{ return prenomContact;}
-            set { prenomContact = value.Trim().ToLower();}
-        }
-
-        public string TelephoneContact
-        {
-            get { return telephoneContact; }
-            set { telephoneContact = value;}
-        }
-
-        public string EmailContact
-        {
-            get{ return emailContact;}
-            set { emailContact = value;}
-        }
-
-        public string FonctionContact
-        {
-            get{return fonctionContact;}
-            set { fonctionContact = value;}
-        }
-
-        public double TotalHeuresContact
-        {
-            get {return totalHeuresContact; }
-            set { totalHeuresContact = value; }
+            this.IdContact = idContact;
+            this.NomContact = nomContact;
+            this.PrenomContact = prenomContact;
+            this.TelContact = telContact;
+            this.FonctionContact = fonctionContact;
         }
 
         public static int NContact
@@ -81,5 +36,34 @@ namespace WindowsFormsApplication1
             get { return nContact; }
         }
 
+        public int IdContact
+        {
+            get{ return idContact; }
+            set  {  idContact = value; }
+        }
+
+        public string NomContact
+        {
+            get{  return nomContact; }
+            set { nomContact = value; }
+        }
+
+        public string PrenomContact
+        {
+            get { return prenomContact;   }
+            set { prenomContact = value;}
+        }
+
+        public string TelContact
+        {
+            get {  return telContact;}
+            set{  telContact = value;}
+        }
+
+        public string FonctionContact
+        {
+            get{ return fonctionContact; }
+            set {fonctionContact = value;}
+        }
     }
 }

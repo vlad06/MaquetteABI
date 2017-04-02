@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Total heure effectuées", typeof(System.Double)));
 
-            DataRow dr;
+            /*DataRow dr;
             for (int i = 0; i < Donnees.ArrayContact.Count; i++)
             {
                 dr = dt.NewRow();
@@ -41,7 +41,7 @@ namespace WindowsFormsApplication1
                 dr[6] = Donnees.ArrayContact[i].TotalHeuresContact;
                 dt.Rows.Add(dr);
             }
-            this.grdContact.DataSource = dt;
+            this.grdContact.DataSource = dt;*/
         }
 
         private void btnQuitter_Click(object sender, EventArgs e)
