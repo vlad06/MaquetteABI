@@ -13,17 +13,7 @@ namespace WindowsFormsApplication1
         public frmAjoutClient()
         {
             InitializeComponent();
-            btnSupprimerContact.Enabled = false;
-            btnAjoutContact.Enabled = true;
-        }
-
-        private void btnValider_Click(object sender, EventArgs e)
-        {
-            if (this.instancieClient())
-            {
-                Client.nClient += 1;
-                this.DialogResult = DialogResult.OK;
-            }
+            btnAjouterContact.Enabled = true;
         }
 
         private bool instancieClient()
@@ -31,18 +21,16 @@ namespace WindowsFormsApplication1
             Client nouveauClient = new Client();
             try
             {
-                nouveauClient.IdClient = int.Parse(base.txtNumeroClient.Text.Trim());
+                nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
                 nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
-                nouveauClient.Nature = base.cbxNatureClient.Text;
-                nouveauClient.TypeSociete = base.cbxTypeClient.Text;
-                nouveauClient.Telephone = base.txtTelephoneClient.Text;
-                //nouveauClient.FaxClient = base.txtFaxClient.Text;
-                //nouveauClient.EmailClient = base.txtEmailClient.Text;
-                nouveauClient.Adresse = base.txtAdresseClient.Text;
-                nouveauClient.Activite  = base.txtDomaine.Text;
-                nouveauClient.Ca = decimal.Parse(base.txtCAClient.Text.Trim());
-                nouveauClient.Effectif = int.Parse(base.txtEffectifClient.Text.Trim());
-                nouveauClient.CommentComm = base.txtCommentaire.Text;
+                nouveauClient.Nature = base.cbxNature.Text;
+                nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
+                nouveauClient.Telephone = base.txtTelephone.Text;
+                nouveauClient.Adresse = base.txtAdresse.Text;
+                nouveauClient.Activite  = base.txtActivite.Text;
+                nouveauClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
+                nouveauClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
+                nouveauClient.CommentComm = base.txtCommentComm.Text;
                 Donnees.ArrayClient.Add(nouveauClient);
                 return true;
             }
@@ -53,20 +41,6 @@ namespace WindowsFormsApplication1
                 return false;
             }
             
-        }
-
-        private void btnAnnuler_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-        }
-
-        private void btnAjouterContacts_Click(object sender, EventArgs e)
-        {
-            frmAjoutContact frmAddCont = new frmAjoutContact();
-            if (frmAddCont.ShowDialog() == DialogResult.OK)
-            {
-                frmGestionContact frmGestCont = new frmGestionContact();
-            }
         }
     }
 }

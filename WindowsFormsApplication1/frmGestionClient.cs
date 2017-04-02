@@ -16,8 +16,6 @@ namespace WindowsFormsApplication1
         public frmGestionClient()
         {
             InitializeComponent();
-            btnSupprimerClient.Enabled = false;
-
         }
 
         private void afficheClients()
@@ -45,41 +43,6 @@ namespace WindowsFormsApplication1
             this.grdClient.DataSource = dt;
         }
 
-        private void btnAjouterClient_Click(object sender, EventArgs e)
-        { 
-            frmAjoutClient frmAdd = new frmAjoutClient();
-            if (frmAdd.ShowDialog() == DialogResult.OK)
-            {
-                this.afficheClients();
-            }
-            this.afficheClients();
-        }
-
-        private void btnSupprimerClient_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("êtes-vous sûr de vouloir effacer ce client ?", "Attention!",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            int iClient = this.grdClient.CurrentRow.Index;
-            if(dr == DialogResult.Yes && this.grdClient.CurrentRow != null)
-            {
-                if(iClient >= 0)
-                {
-                    Client unClient = Donnees.ArrayClient[iClient];
-                    Donnees.ArrayClient.Remove(unClient);
-                    Client.nClient--;
-                    this.afficheClients();
-                }
-            }
-            if(dr == DialogResult.No)
-            {
-                
-            }
-            if (Client.NClient == 0)
-            {
-                this.btnSupprimerClient.Enabled = false;
-            }
-        }
-
         private void grdClient_DoubleClick(object sender, EventArgs e)
         {
             if (this.grdClient.CurrentRow != null)
@@ -105,35 +68,6 @@ namespace WindowsFormsApplication1
             this.grdClient.DataSource = dt;
         }
 
-        private void clientToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmAjoutClient frmAdd = new frmAjoutClient();
-            if (frmAdd.ShowDialog() == DialogResult.OK)
-            {
-                this.afficheClients();
-            }
-        }
-
-        private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void listeClientsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            creerClientTest();
-        }
-
-        private void grdClient_SelectionChanged(object sender, EventArgs e)
-        {
-            this.btnSupprimerClient.Enabled = true;
-
-        }
-
-        private void btnAfficheListe_Click(object sender, EventArgs e)
-        {
-            creerClientTest();
-        }
 
         private void creerClientTest()
         {
@@ -153,30 +87,6 @@ namespace WindowsFormsApplication1
                 Donnees.ArrayClient.Add(Client1);
             }
             this.afficheClients();
-        }
-
-        private void btnDetailClient_Click(object sender, EventArgs e)
-        {
-            if (this.grdClient.CurrentRow != null)
-            {
-                int iClient;
-                iClient = this.grdClient.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
-                Client leClient = Donnees.ArrayClient[iClient];
-                frmVisuClient frmDetail = new frmVisuClient(leClient);
-                frmDetail.Show();
-                this.afficheClients();
-            }
-        }
-
-        private void btnVoirContact_Click(object sender, EventArgs e)
-        {
-            frmGestionContact frmc = new frmGestionContact();
-            frmc.Show();
-        }
-
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
         }
     }
 }

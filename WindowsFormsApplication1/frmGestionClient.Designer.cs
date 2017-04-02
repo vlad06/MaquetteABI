@@ -90,7 +90,6 @@
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
             this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.clientToolStripMenuItem.Text = "Client";
-            this.clientToolStripMenuItem.Click += new System.EventHandler(this.clientToolStripMenuItem_Click);
             // 
             // quitterToolStripMenuItem
             // 
@@ -99,7 +98,6 @@
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
             this.quitterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.quitterToolStripMenuItem.Text = "Ouvrir";
-            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
             // feuilleExcelToolStripMenuItem
             // 
@@ -132,7 +130,6 @@
             this.listeClientsToolStripMenuItem.Name = "listeClientsToolStripMenuItem";
             this.listeClientsToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.listeClientsToolStripMenuItem.Text = "Liste clients";
-            this.listeClientsToolStripMenuItem.Click += new System.EventHandler(this.listeClientsToolStripMenuItem_Click);
             // 
             // aideToolStripMenuItem
             // 
@@ -160,7 +157,6 @@
             this.grdClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdClient.Size = new System.Drawing.Size(899, 531);
             this.grdClient.TabIndex = 6;
-            this.grdClient.SelectionChanged += new System.EventHandler(this.grdClient_SelectionChanged);
             this.grdClient.DoubleClick += new System.EventHandler(this.grdClient_DoubleClick);
             // 
             // txtRechercher
@@ -187,7 +183,6 @@
             this.btnSupprimerClient.TabIndex = 12;
             this.btnSupprimerClient.Text = "Supprimer un client";
             this.btnSupprimerClient.UseVisualStyleBackColor = true;
-            this.btnSupprimerClient.Click += new System.EventHandler(this.btnSupprimerClient_Click);
             // 
             // btnModifierClient
             // 
@@ -206,7 +201,6 @@
             this.btnAjouterClient.TabIndex = 10;
             this.btnAjouterClient.Text = "Ajouter un client";
             this.btnAjouterClient.UseVisualStyleBackColor = true;
-            this.btnAjouterClient.Click += new System.EventHandler(this.btnAjouterClient_Click);
             // 
             // btnDetailClient
             // 
@@ -216,7 +210,6 @@
             this.btnDetailClient.TabIndex = 1;
             this.btnDetailClient.Text = "Details client";
             this.btnDetailClient.UseVisualStyleBackColor = true;
-            this.btnDetailClient.Click += new System.EventHandler(this.btnDetailClient_Click);
             // 
             // btnAfficheListe
             // 
@@ -226,7 +219,6 @@
             this.btnAfficheListe.TabIndex = 0;
             this.btnAfficheListe.Text = "Afficher liste clients";
             this.btnAfficheListe.UseVisualStyleBackColor = true;
-            this.btnAfficheListe.Click += new System.EventHandler(this.btnAfficheListe_Click);
             // 
             // btnVoirContact
             // 
@@ -236,20 +228,15 @@
             this.btnVoirContact.TabIndex = 13;
             this.btnVoirContact.Text = "Voir les contacts";
             this.btnVoirContact.UseVisualStyleBackColor = true;
-            this.btnVoirContact.Click += new System.EventHandler(this.btnVoirContact_Click);
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(12, 163);
+            this.btnConvert.Location = new System.Drawing.Point(12, 390);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(151, 23);
             this.btnConvert.TabIndex = 14;
             this.btnConvert.Text = "ConvertToExcel";
             this.btnConvert.UseVisualStyleBackColor = true;
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
             // frmGestionClient
             // 

@@ -58,23 +58,11 @@
     <Compile Include="frmAjoutClient.Designer.cs">
       <DependentUpon>frmAjoutClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAjoutContact.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAjoutContact.Designer.cs">
-      <DependentUpon>frmAjoutContact.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmClient.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmClient.Designer.cs">
       <DependentUpon>frmClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmGestionContact.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmGestionContact.Designer.cs">
-      <DependentUpon>frmGestionContact.cs</DependentUpon>
     </Compile>
     <Compile Include="frmVisuClient.cs">
       <SubType>Form</SubType>
@@ -94,14 +82,8 @@
     <EmbeddedResource Include="frmAjoutClient.resx">
       <DependentUpon>frmAjoutClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAjoutContact.resx">
-      <DependentUpon>frmAjoutContact.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmClient.resx">
       <DependentUpon>frmClient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmGestionContact.resx">
-      <DependentUpon>frmGestionContact.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVisuClient.resx">
       <DependentUpon>frmVisuClient.cs</DependentUpon>

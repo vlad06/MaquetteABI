@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnValider = new System.Windows.Forms.Button();
-            this.btnAnnuler = new System.Windows.Forms.Button();
-            this.btnAjouterContacts = new System.Windows.Forms.Button();
-            this.btnAjoutContact = new System.Windows.Forms.Button();
+            this.btnAjouterContact = new System.Windows.Forms.Button();
+            this.btnValiderContact = new System.Windows.Forms.Button();
+            this.btnAnnulerClient = new System.Windows.Forms.Button();
+            this.btnValiderClient = new System.Windows.Forms.Button();
+            this.btnSupprimerContact = new System.Windows.Forms.Button();
             this.gbxAjoutContact = new System.Windows.Forms.GroupBox();
+            this.btnAnnuler = new System.Windows.Forms.Button();
+            this.txtTotalHeures = new System.Windows.Forms.TextBox();
+            this.lblTotalHeures = new System.Windows.Forms.Label();
             this.lblFonctionContact = new System.Windows.Forms.Label();
             this.lblIdContact = new System.Windows.Forms.Label();
             this.txtIdContact = new System.Windows.Forms.TextBox();
@@ -41,106 +45,100 @@
             this.txtNomContact = new System.Windows.Forms.TextBox();
             this.lblPrenomContact = new System.Windows.Forms.Label();
             this.txtPrenomContact = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.txtFonctionContact = new System.Windows.Forms.TextBox();
             this.lblTelephoneContact = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnQuitter = new System.Windows.Forms.Button();
-            this.btnSupprimerContact = new System.Windows.Forms.Button();
             this.grdContact = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gbxContact = new System.Windows.Forms.GroupBox();
             this.gbxAjoutContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).BeginInit();
             this.gbxContact.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtCommentaire
+            // txtEffectif
             // 
-            this.txtCommentaire.Size = new System.Drawing.Size(242, 123);
+            this.txtEffectif.Size = new System.Drawing.Size(158, 20);
             // 
-            // txtEffectifClient
+            // cbxNature
             // 
-            this.txtEffectifClient.Size = new System.Drawing.Size(158, 20);
+            this.cbxNature.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxNature.Size = new System.Drawing.Size(158, 21);
             // 
-            // cbxNatureClient
+            // txtActivite
             // 
-            this.cbxNatureClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxNatureClient.Size = new System.Drawing.Size(158, 21);
+            this.txtActivite.Size = new System.Drawing.Size(158, 20);
             // 
-            // txtDomaine
+            // txtCa
             // 
-            this.txtDomaine.Size = new System.Drawing.Size(158, 20);
+            this.txtCa.Size = new System.Drawing.Size(158, 20);
             // 
-            // txtCAClient
+            // cbxTypeSociete
             // 
-            this.txtCAClient.Size = new System.Drawing.Size(158, 20);
+            this.cbxTypeSociete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTypeSociete.Size = new System.Drawing.Size(158, 21);
             // 
-            // txtAdresseClient
+            // txtTelephone
             // 
-            this.txtAdresseClient.Size = new System.Drawing.Size(242, 57);
+            this.txtTelephone.Size = new System.Drawing.Size(158, 20);
             // 
-            // cbxTypeClient
+            // txtIdClient
             // 
-            this.cbxTypeClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxTypeClient.Size = new System.Drawing.Size(158, 21);
-            // 
-            // txtTelephoneClient
-            // 
-            this.txtTelephoneClient.Size = new System.Drawing.Size(158, 20);
-            // 
-            // txtNumeroClient
-            // 
-            this.txtNumeroClient.Size = new System.Drawing.Size(158, 20);
+            this.txtIdClient.Size = new System.Drawing.Size(158, 20);
             // 
             // txtRaisonSociale
             // 
             this.txtRaisonSociale.Size = new System.Drawing.Size(158, 20);
             // 
-            // btnValider
+            // btnAjouterContact
             // 
-            this.btnValider.Location = new System.Drawing.Point(359, 490);
-            this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(75, 23);
-            this.btnValider.TabIndex = 24;
-            this.btnValider.Text = "Valider";
-            this.btnValider.UseVisualStyleBackColor = true;
-            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            this.btnAjouterContact.Location = new System.Drawing.Point(270, 6);
+            this.btnAjouterContact.Name = "btnAjouterContact";
+            this.btnAjouterContact.Size = new System.Drawing.Size(78, 40);
+            this.btnAjouterContact.TabIndex = 47;
+            this.btnAjouterContact.Text = "Ajouter un contact >>";
+            this.btnAjouterContact.UseVisualStyleBackColor = true;
             // 
-            // btnAnnuler
+            // btnValiderContact
             // 
-            this.btnAnnuler.Location = new System.Drawing.Point(440, 490);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(75, 23);
-            this.btnAnnuler.TabIndex = 25;
-            this.btnAnnuler.Text = "Annuler";
-            this.btnAnnuler.UseVisualStyleBackColor = true;
-            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
+            this.btnValiderContact.Location = new System.Drawing.Point(333, 91);
+            this.btnValiderContact.Name = "btnValiderContact";
+            this.btnValiderContact.Size = new System.Drawing.Size(70, 23);
+            this.btnValiderContact.TabIndex = 33;
+            this.btnValiderContact.Text = "Valider";
+            this.btnValiderContact.UseVisualStyleBackColor = true;
             // 
-            // btnAjouterContacts
+            // btnAnnulerClient
             // 
-            this.btnAjouterContacts.Location = new System.Drawing.Point(317, 226);
-            this.btnAjouterContacts.Name = "btnAjouterContacts";
-            this.btnAjouterContacts.Size = new System.Drawing.Size(172, 46);
-            this.btnAjouterContacts.TabIndex = 23;
-            this.btnAjouterContacts.Text = "Ajouter contact(s)";
-            this.btnAjouterContacts.UseVisualStyleBackColor = true;
-            this.btnAjouterContacts.Click += new System.EventHandler(this.btnAjouterContacts_Click);
+            this.btnAnnulerClient.Location = new System.Drawing.Point(202, 408);
+            this.btnAnnulerClient.Name = "btnAnnulerClient";
+            this.btnAnnulerClient.Size = new System.Drawing.Size(70, 23);
+            this.btnAnnulerClient.TabIndex = 38;
+            this.btnAnnulerClient.Text = "Annuler";
+            this.btnAnnulerClient.UseVisualStyleBackColor = true;
             // 
-            // btnAjoutContact
+            // btnValiderClient
             // 
-            this.btnAjoutContact.Location = new System.Drawing.Point(280, 6);
-            this.btnAjoutContact.Name = "btnAjoutContact";
-            this.btnAjoutContact.Size = new System.Drawing.Size(68, 40);
-            this.btnAjoutContact.TabIndex = 47;
-            this.btnAjoutContact.Text = "Ajouter un contact >>";
-            this.btnAjoutContact.UseVisualStyleBackColor = true;
+            this.btnValiderClient.Location = new System.Drawing.Point(278, 408);
+            this.btnValiderClient.Name = "btnValiderClient";
+            this.btnValiderClient.Size = new System.Drawing.Size(70, 23);
+            this.btnValiderClient.TabIndex = 56;
+            this.btnValiderClient.Text = "Valider";
+            this.btnValiderClient.UseVisualStyleBackColor = true;
+            // 
+            // btnSupprimerContact
+            // 
+            this.btnSupprimerContact.Location = new System.Drawing.Point(270, 170);
+            this.btnSupprimerContact.Name = "btnSupprimerContact";
+            this.btnSupprimerContact.Size = new System.Drawing.Size(78, 40);
+            this.btnSupprimerContact.TabIndex = 57;
+            this.btnSupprimerContact.Text = "Supprimer un contact";
+            this.btnSupprimerContact.UseVisualStyleBackColor = true;
             // 
             // gbxAjoutContact
             // 
-            this.gbxAjoutContact.Controls.Add(this.textBox1);
-            this.gbxAjoutContact.Controls.Add(this.label1);
+            this.gbxAjoutContact.Controls.Add(this.btnAnnuler);
+            this.gbxAjoutContact.Controls.Add(this.txtTotalHeures);
+            this.gbxAjoutContact.Controls.Add(this.lblTotalHeures);
+            this.gbxAjoutContact.Controls.Add(this.btnValiderContact);
             this.gbxAjoutContact.Controls.Add(this.lblFonctionContact);
             this.gbxAjoutContact.Controls.Add(this.lblIdContact);
             this.gbxAjoutContact.Controls.Add(this.txtIdContact);
@@ -149,16 +147,39 @@
             this.gbxAjoutContact.Controls.Add(this.txtNomContact);
             this.gbxAjoutContact.Controls.Add(this.lblPrenomContact);
             this.gbxAjoutContact.Controls.Add(this.txtPrenomContact);
-            this.gbxAjoutContact.Controls.Add(this.button1);
             this.gbxAjoutContact.Controls.Add(this.txtFonctionContact);
             this.gbxAjoutContact.Controls.Add(this.lblTelephoneContact);
-            this.gbxAjoutContact.Controls.Add(this.button2);
             this.gbxAjoutContact.Location = new System.Drawing.Point(354, 6);
             this.gbxAjoutContact.Name = "gbxAjoutContact";
-            this.gbxAjoutContact.Size = new System.Drawing.Size(417, 122);
+            this.gbxAjoutContact.Size = new System.Drawing.Size(415, 120);
             this.gbxAjoutContact.TabIndex = 48;
             this.gbxAjoutContact.TabStop = false;
             this.gbxAjoutContact.Text = "Ajouter un contact :";
+            // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.Location = new System.Drawing.Point(244, 91);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(70, 23);
+            this.btnAnnuler.TabIndex = 38;
+            this.btnAnnuler.Text = "Annuler";
+            this.btnAnnuler.UseVisualStyleBackColor = true;
+            // 
+            // txtTotalHeures
+            // 
+            this.txtTotalHeures.Location = new System.Drawing.Point(283, 65);
+            this.txtTotalHeures.Name = "txtTotalHeures";
+            this.txtTotalHeures.Size = new System.Drawing.Size(120, 20);
+            this.txtTotalHeures.TabIndex = 37;
+            // 
+            // lblTotalHeures
+            // 
+            this.lblTotalHeures.AutoSize = true;
+            this.lblTotalHeures.Location = new System.Drawing.Point(213, 68);
+            this.lblTotalHeures.Name = "lblTotalHeures";
+            this.lblTotalHeures.Size = new System.Drawing.Size(74, 13);
+            this.lblTotalHeures.TabIndex = 36;
+            this.lblTotalHeures.Text = "Total Heures :";
             // 
             // lblFonctionContact
             // 
@@ -182,14 +203,14 @@
             // 
             this.txtIdContact.Location = new System.Drawing.Point(77, 13);
             this.txtIdContact.Name = "txtIdContact";
-            this.txtIdContact.Size = new System.Drawing.Size(118, 20);
+            this.txtIdContact.Size = new System.Drawing.Size(120, 20);
             this.txtIdContact.TabIndex = 26;
             // 
             // txtTelephoneContact
             // 
             this.txtTelephoneContact.Location = new System.Drawing.Point(283, 39);
             this.txtTelephoneContact.Name = "txtTelephoneContact";
-            this.txtTelephoneContact.Size = new System.Drawing.Size(118, 20);
+            this.txtTelephoneContact.Size = new System.Drawing.Size(120, 20);
             this.txtTelephoneContact.TabIndex = 30;
             // 
             // lblNomContact
@@ -205,7 +226,7 @@
             // 
             this.txtNomContact.Location = new System.Drawing.Point(77, 39);
             this.txtNomContact.Name = "txtNomContact";
-            this.txtNomContact.Size = new System.Drawing.Size(118, 20);
+            this.txtNomContact.Size = new System.Drawing.Size(120, 20);
             this.txtNomContact.TabIndex = 27;
             // 
             // lblPrenomContact
@@ -221,23 +242,14 @@
             // 
             this.txtPrenomContact.Location = new System.Drawing.Point(77, 65);
             this.txtPrenomContact.Name = "txtPrenomContact";
-            this.txtPrenomContact.Size = new System.Drawing.Size(118, 20);
+            this.txtPrenomContact.Size = new System.Drawing.Size(120, 20);
             this.txtPrenomContact.TabIndex = 28;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(82, 93);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(70, 23);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "Annuler";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // txtFonctionContact
             // 
             this.txtFonctionContact.Location = new System.Drawing.Point(283, 13);
             this.txtFonctionContact.Name = "txtFonctionContact";
-            this.txtFonctionContact.Size = new System.Drawing.Size(118, 20);
+            this.txtFonctionContact.Size = new System.Drawing.Size(120, 20);
             this.txtFonctionContact.TabIndex = 29;
             // 
             // lblTelephoneContact
@@ -248,33 +260,6 @@
             this.lblTelephoneContact.Size = new System.Drawing.Size(64, 13);
             this.lblTelephoneContact.TabIndex = 23;
             this.lblTelephoneContact.Text = "Téléphone :";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(6, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(70, 23);
-            this.button2.TabIndex = 33;
-            this.button2.Text = "Valider";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // btnQuitter
-            // 
-            this.btnQuitter.Location = new System.Drawing.Point(308, 235);
-            this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(103, 23);
-            this.btnQuitter.TabIndex = 54;
-            this.btnQuitter.Text = "Quitter";
-            this.btnQuitter.UseVisualStyleBackColor = true;
-            // 
-            // btnSupprimerContact
-            // 
-            this.btnSupprimerContact.Location = new System.Drawing.Point(9, 235);
-            this.btnSupprimerContact.Name = "btnSupprimerContact";
-            this.btnSupprimerContact.Size = new System.Drawing.Size(103, 23);
-            this.btnSupprimerContact.TabIndex = 53;
-            this.btnSupprimerContact.Text = "Supprimer contact";
-            this.btnSupprimerContact.UseVisualStyleBackColor = true;
             // 
             // grdContact
             // 
@@ -290,73 +275,61 @@
             this.grdContact.ReadOnly = true;
             this.grdContact.RowHeadersVisible = false;
             this.grdContact.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdContact.Size = new System.Drawing.Size(405, 210);
+            this.grdContact.Size = new System.Drawing.Size(405, 243);
             this.grdContact.TabIndex = 50;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(213, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "Total Heures :";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(283, 68);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(118, 20);
-            this.textBox1.TabIndex = 37;
             // 
             // gbxContact
             // 
             this.gbxContact.Controls.Add(this.grdContact);
-            this.gbxContact.Controls.Add(this.btnQuitter);
-            this.gbxContact.Controls.Add(this.btnSupprimerContact);
             this.gbxContact.Location = new System.Drawing.Point(354, 134);
             this.gbxContact.Name = "gbxContact";
-            this.gbxContact.Size = new System.Drawing.Size(417, 268);
+            this.gbxContact.Size = new System.Drawing.Size(415, 268);
             this.gbxContact.TabIndex = 55;
             this.gbxContact.TabStop = false;
-            this.gbxContact.Text = "Contacts :";
+            this.gbxContact.Text = "Liste contacts :";
             // 
             // frmAjoutClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(777, 406);
+            this.ClientSize = new System.Drawing.Size(774, 436);
+            this.Controls.Add(this.btnSupprimerContact);
+            this.Controls.Add(this.btnValiderClient);
+            this.Controls.Add(this.btnAnnulerClient);
             this.Controls.Add(this.gbxContact);
             this.Controls.Add(this.gbxAjoutContact);
-            this.Controls.Add(this.btnAjoutContact);
+            this.Controls.Add(this.btnAjouterContact);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAjoutClient";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Ajout Client";
-            this.Controls.SetChildIndex(this.lblNumeroClient, 0);
+            this.Controls.SetChildIndex(this.lblIdClient, 0);
             this.Controls.SetChildIndex(this.lblRaisonSociale, 0);
-            this.Controls.SetChildIndex(this.lblType, 0);
+            this.Controls.SetChildIndex(this.lblTypeSociete, 0);
             this.Controls.SetChildIndex(this.lblAdresse, 0);
             this.Controls.SetChildIndex(this.lblTelephone, 0);
             this.Controls.SetChildIndex(this.lblNature, 0);
-            this.Controls.SetChildIndex(this.lblCA, 0);
+            this.Controls.SetChildIndex(this.lblCa, 0);
             this.Controls.SetChildIndex(this.lblEffectif, 0);
             this.Controls.SetChildIndex(this.txtRaisonSociale, 0);
-            this.Controls.SetChildIndex(this.txtNumeroClient, 0);
-            this.Controls.SetChildIndex(this.txtTelephoneClient, 0);
-            this.Controls.SetChildIndex(this.cbxTypeClient, 0);
-            this.Controls.SetChildIndex(this.lblDomaine, 0);
-            this.Controls.SetChildIndex(this.txtAdresseClient, 0);
-            this.Controls.SetChildIndex(this.txtCAClient, 0);
-            this.Controls.SetChildIndex(this.txtDomaine, 0);
-            this.Controls.SetChildIndex(this.cbxNatureClient, 0);
-            this.Controls.SetChildIndex(this.txtEffectifClient, 0);
-            this.Controls.SetChildIndex(this.txtCommentaire, 0);
-            this.Controls.SetChildIndex(this.lblCommentaire, 0);
-            this.Controls.SetChildIndex(this.btnAjoutContact, 0);
+            this.Controls.SetChildIndex(this.txtIdClient, 0);
+            this.Controls.SetChildIndex(this.txtTelephone, 0);
+            this.Controls.SetChildIndex(this.cbxTypeSociete, 0);
+            this.Controls.SetChildIndex(this.lblActivite, 0);
+            this.Controls.SetChildIndex(this.txtAdresse, 0);
+            this.Controls.SetChildIndex(this.txtCa, 0);
+            this.Controls.SetChildIndex(this.txtActivite, 0);
+            this.Controls.SetChildIndex(this.cbxNature, 0);
+            this.Controls.SetChildIndex(this.txtEffectif, 0);
+            this.Controls.SetChildIndex(this.txtCommentComm, 0);
+            this.Controls.SetChildIndex(this.lblCommentComm, 0);
+            this.Controls.SetChildIndex(this.btnAjouterContact, 0);
             this.Controls.SetChildIndex(this.gbxAjoutContact, 0);
             this.Controls.SetChildIndex(this.gbxContact, 0);
+            this.Controls.SetChildIndex(this.btnAnnulerClient, 0);
+            this.Controls.SetChildIndex(this.btnValiderClient, 0);
+            this.Controls.SetChildIndex(this.btnSupprimerContact, 0);
             this.gbxAjoutContact.ResumeLayout(false);
             this.gbxAjoutContact.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).EndInit();
@@ -367,10 +340,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnAjouterContacts;
-        private System.Windows.Forms.Button btnValider;
-        private System.Windows.Forms.Button btnAnnuler;
-        private System.Windows.Forms.Button btnAjoutContact;
+        private System.Windows.Forms.Button btnAjouterContact;
         private System.Windows.Forms.GroupBox gbxAjoutContact;
         private System.Windows.Forms.Label lblIdContact;
         private System.Windows.Forms.TextBox txtIdContact;
@@ -379,16 +349,17 @@
         private System.Windows.Forms.TextBox txtPrenomContact;
         private System.Windows.Forms.TextBox txtNomContact;
         private System.Windows.Forms.TextBox txtFonctionContact;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnValiderContact;
         private System.Windows.Forms.Label lblTelephoneContact;
         private System.Windows.Forms.Label lblPrenomContact;
         private System.Windows.Forms.Label lblNomContact;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnQuitter;
-        private System.Windows.Forms.Button btnSupprimerContact;
+        private System.Windows.Forms.TextBox txtTotalHeures;
+        private System.Windows.Forms.Label lblTotalHeures;
         internal System.Windows.Forms.DataGridView grdContact;
         private System.Windows.Forms.GroupBox gbxContact;
+        private System.Windows.Forms.Button btnAnnulerClient;
+        private System.Windows.Forms.Button btnValiderClient;
+        private System.Windows.Forms.Button btnSupprimerContact;
+        private System.Windows.Forms.Button btnAnnuler;
     }
 }

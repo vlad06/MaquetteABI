@@ -18,72 +18,46 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void frmDetailClient_Load(object sender, EventArgs e)
-        {
-            this.afficheClient(this.leClient);
-            this.readable();
-        }
-
         private void afficheClient(Client unClient)
         {
             this.txtRaisonSociale.Text = unClient.RaisonSociale;
-            this.txtNumeroClient.Text = unClient.IdClient.ToString();
-            this.txtTelephoneClient.Text = unClient.Telephone;
-            this.cbxNatureClient.Text = unClient.Nature;
-            //this.txtFaxClient.Text = unClient.FaxClient;
-            this.cbxTypeClient.Text = unClient.TypeSociete;
-            //this.txtEmailClient.Text = unClient.EmailClient;
-            this.txtAdresseClient.Text = unClient.Adresse;
-            this.txtDomaine.Text = unClient.Activite;
-            this.txtCAClient.Text = unClient.Ca.ToString();
-            this.txtEffectifClient.Text = unClient.Effectif.ToString();
-            this.txtCommentaire.Text = unClient.CommentComm;
-        }
-
-        private void btnModifier_Click(object sender, EventArgs e)
-        {
-            if (btnDeverouiller.Text == "Dévérrouiller")
-            {
-                this.writeable();
-                btnDeverouiller.Text = "Vérrouiller";
-            }
-            else
-            {
-                this.readable();
-                btnDeverouiller.Text = "Dévérrouiller";
-            }
+            this.txtIdClient.Text = unClient.IdClient.ToString();
+            this.txtTelephone.Text = unClient.Telephone;
+            this.cbxNature.Text = unClient.Nature;
+            this.cbxTypeSociete.Text = unClient.TypeSociete;
+            this.txtAdresse.Text = unClient.Adresse;
+            this.txtActivite.Text = unClient.Activite;
+            this.txtCa.Text = unClient.Ca.ToString();
+            this.txtEffectif.Text = unClient.Effectif.ToString();
+            this.txtCommentComm.Text = unClient.CommentComm;
         }
 
         private void readable()
         {
             this.txtRaisonSociale.Enabled = false;
-            this.txtNumeroClient.Enabled = false;
-            this.txtTelephoneClient.Enabled = false;
-            this.cbxNatureClient.Enabled = false;
-            //this.txtFaxClient.Enabled = false;
-            this.cbxTypeClient.Enabled = false;
-            //this.txtEmailClient.Enabled = false;
-            this.txtAdresseClient.Enabled = false;
-            this.txtDomaine.Enabled = false;
-            this.txtCAClient.Enabled = false;
-            this.txtEffectifClient.Enabled = false;
-            this.txtCommentaire.Enabled = false;
+            this.txtIdClient.Enabled = false;
+            this.txtTelephone.Enabled = false;
+            this.cbxNature.Enabled = false;
+            this.cbxTypeSociete.Enabled = false;
+            this.txtAdresse.Enabled = false;
+            this.txtActivite.Enabled = false;
+            this.txtCa.Enabled = false;
+            this.txtEffectif.Enabled = false;
+            this.txtCommentComm.Enabled = false;
         }
 
         private void writeable()
         {
             this.txtRaisonSociale.Enabled = true;
-            this.txtNumeroClient.Enabled = true;
-            this.txtTelephoneClient.Enabled = true;
-            this.cbxNatureClient.Enabled = true;
-            //this.txtFaxClient.Enabled = true;
-            this.cbxTypeClient.Enabled = true;
-            //this.txtEmailClient.Enabled = true;
-            this.txtAdresseClient.Enabled = true;
-            this.txtDomaine.Enabled = true;
-            this.txtCAClient.Enabled = true;
-            this.txtEffectifClient.Enabled = true;
-            this.txtCommentaire.Enabled = true;
+            this.txtIdClient.Enabled = true;
+            this.txtTelephone.Enabled = true;
+            this.cbxNature.Enabled = true;
+            this.cbxTypeSociete.Enabled = true;
+            this.txtAdresse.Enabled = true;
+            this.txtActivite.Enabled = true;
+            this.txtCa.Enabled = true;
+            this.txtEffectif.Enabled = true;
+            this.txtCommentComm.Enabled = true;
         }
 
         private void btnValider_Click(object sender, EventArgs e)
@@ -109,16 +83,16 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                this.leClient.IdClient = int.Parse(base.txtNumeroClient.Text.Trim());
+                this.leClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
                 this.leClient.RaisonSociale = base.txtRaisonSociale.Text;
-                this.leClient.Nature = base.cbxNatureClient.Text;
-                this.leClient.TypeSociete = base.cbxTypeClient.Text;
-                this.leClient.Telephone = base.txtTelephoneClient.Text;
-                this.leClient.Adresse= base.txtAdresseClient.Text;
-                this.leClient.Activite = base.txtDomaine.Text;
-                this.leClient.Ca = decimal.Parse(base.txtCAClient.Text.Trim());
-                this.leClient.Effectif = int.Parse(base.txtEffectifClient.Text.Trim());
-                this.leClient.CommentComm = base.txtCommentaire.Text;
+                this.leClient.Nature = base.cbxNature.Text;
+                this.leClient.TypeSociete = base.cbxTypeSociete.Text;
+                this.leClient.Telephone = base.txtTelephone.Text;
+                this.leClient.Adresse= base.txtAdresse.Text;
+                this.leClient.Activite = base.txtActivite.Text;
+                this.leClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
+                this.leClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
+                this.leClient.CommentComm = base.txtCommentComm.Text;
                 return true;
             }
             catch (Exception ex)
@@ -127,21 +101,6 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
                 return false;
             }
-        }
-
-        private void btnVoirContact_Click(object sender, EventArgs e)
-        {
-            frmGestionContact frmCont = new frmGestionContact();
-           // if (frmCont.grdContact.CurrentRow != null)
-            //{
-                int iContact;
-                iContact = frmCont.grdContact.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
-                Contact leContact = leClient.ArrayContact[iContact];
-                frmCont.Show();
-            //} else
-           // {
-             //   MessageBox.Show("Ce client n'a pas de contacts associés !", "Erreur !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-           // }
         }
     }
 }
