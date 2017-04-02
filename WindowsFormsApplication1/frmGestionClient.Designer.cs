@@ -140,8 +140,9 @@
             // grdClient
             // 
             this.grdClient.AllowUserToAddRows = false;
+            this.grdClient.AllowUserToDeleteRows = false;
             this.grdClient.AllowUserToOrderColumns = true;
-            this.grdClient.AllowUserToResizeRows = false;
+            this.grdClient.AllowUserToResizeColumns = false;
             this.grdClient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -183,6 +184,7 @@
             this.btnSupprimerClient.TabIndex = 12;
             this.btnSupprimerClient.Text = "Supprimer un client";
             this.btnSupprimerClient.UseVisualStyleBackColor = true;
+            this.btnSupprimerClient.Click += new System.EventHandler(this.btnSupprimerClient_Click);
             // 
             // btnModifierClient
             // 

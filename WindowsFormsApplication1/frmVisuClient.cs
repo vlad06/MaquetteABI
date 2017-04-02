@@ -22,7 +22,10 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             this.Size = new Size(370, 475); //on cache les contacts
         }
-
+        /// <summary>
+        /// on remplit les champs du form de visualisation avec les propriétés de l'objet passé en paramètre
+        /// </summary>
+        /// <param name="unClient"></param>
         private void afficheClient(Client unClient)
         {
             this.txtRaisonSociale.Text = unClient.RaisonSociale;
@@ -36,7 +39,7 @@ namespace WindowsFormsApplication1
             this.txtEffectif.Text = unClient.Effectif.ToString();
             this.txtCommentComm.Text = unClient.CommentComm;
         }
-
+        /*
         private void readable()
         {
             this.txtRaisonSociale.Enabled = false;
@@ -61,20 +64,7 @@ namespace WindowsFormsApplication1
             this.txtCa.Enabled = true;
             this.txtEffectif.Enabled = true;
             this.txtCommentComm.Enabled = true;
-        }
-
-        private void btnValider_Click(object sender, EventArgs e)
-        {
-            if (this.modifie())
-            {
-                this.DialogResult = DialogResult.OK;//fermeture du formDetailClient par clic sur le bouton valider avec modifications possibles
-            }
-        }
-
-        private void btnQuitter_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        }*/
 
         private bool modifie()
         {
@@ -127,6 +117,19 @@ namespace WindowsFormsApplication1
         private void frmVisuClient_Load(object sender, EventArgs e)
         {
             this.afficheClient(this.leClient);
+        }
+
+        private void btnValiderClient_Click(object sender, EventArgs e)
+        {
+            if (this.modifie())
+            {
+
+            }
+        }
+
+        private void frmVisuClient_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Donnees.ArrayFrmClientOpened.Remove(leClient.IdClient);
         }
     }
 }

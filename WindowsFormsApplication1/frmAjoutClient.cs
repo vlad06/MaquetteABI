@@ -10,11 +10,9 @@ namespace WindowsFormsApplication1
 {
     public partial class frmAjoutClient : WindowsFormsApplication1.frmClient
     {
-        private frmGestionClient frmPrincipale;
-        public frmAjoutClient(frmGestionClient frm)
+        public frmAjoutClient()
         {
             InitializeComponent();
-            this.frmPrincipale = frm;
             btnSupprimerContact.Enabled = false;
             this.Size = new Size(370, 475);
         }

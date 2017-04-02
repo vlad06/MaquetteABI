@@ -13,7 +13,6 @@ namespace WindowsFormsApplication1
 {
     public partial class frmGestionClient : Form
     {
-        private frmGestionClient frmPrincipale;
         private frmAjoutClient frmAjout;
         public frmGestionClient()
         {
@@ -47,10 +46,7 @@ namespace WindowsFormsApplication1
             this.grdClient.DataSource = dt;
         }
 
-        private void grdClient_DoubleClick(object sender, EventArgs e)
-        {
-            afficheDetailClient();
-        }
+
 
         private void frmGestionClient_Load(object sender, EventArgs e)
         {
@@ -87,7 +83,7 @@ namespace WindowsFormsApplication1
 
         private void btnAjouterClient_Click(object sender, EventArgs e)
         {
-            this.frmAjout = new frmAjoutClient(this.frmPrincipale);
+            this.frmAjout = new frmAjoutClient();
             if (this.frmAjout.ShowDialog() == DialogResult.OK)
                 {
                     this.afficheClients();
@@ -98,23 +94,60 @@ namespace WindowsFormsApplication1
         {
             creerClientTest();
         }
-
-        private void btnDetailClient_Click(object sender, EventArgs e)
+        private void grdClient_DoubleClick(object sender, EventArgs e)
         {
             afficheDetailClient();
+        }
+        private void btnDetailClient_Click(object sender, EventArgs e)
+        {
+                afficheDetailClient();
         }
 
         private void afficheDetailClient()
         {
             if (this.grdClient.CurrentRow != null)
             {
-                int iClient;
-                iClient = this.grdClient.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
+                int iClient = this.grdClient.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
                 Client leClient = Donnees.ArrayClient[iClient];
-                frmVisuClient frmVisu = new frmVisuClient(leClient);
-                frmVisu.Show();
-                frmVisu.TopMost = true;
-                this.afficheClients();
+                if (!isFormOpen())  //si la form client n'est pas encore ouverte
+                {
+                    frmVisuClient frmVisu = new frmVisuClient(leClient); //on crée une instance de la form client
+                    frmVisu.Show(); //on l'ouvre
+                    frmVisu.TopMost = true; //on force la form client au premier plan
+                    //this.afficheClients();  //on met à jour la datagrid
+                    Donnees.ArrayFrmClientOpened.Add(leClient.IdClient);    //on ajoute à la liste des fenêtres ouverte l'id du client affiché
+                } else
+                {
+                    MessageBox.Show("Cette fenêtre client est déjà ouverte", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private bool isFormOpen()
+        {
+            int iClient = this.grdClient.CurrentRow.Index;
+            Client leClient = Donnees.ArrayClient[iClient];
+            for (int i = 0; i < Donnees.ArrayFrmClientOpened.Count; i++)
+            {
+                if (Donnees.ArrayFrmClientOpened[i] == leClient.IdClient)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void btnSupprimerClient_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Etes-vous sûr de vouloir supprimer le client sélectionné ?", "ATTENTION",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dr == DialogResult.OK)
+            {
+                int iClient = this.grdClient.CurrentRow.Index;
+                Client leClient = Donnees.ArrayClient[iClient];
+                Donnees.ArrayFrmClientOpened.Remove(leClient.IdClient);
+                Donnees.ArrayClient.Remove(leClient);
+                afficheClients();
             }
         }
     }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnQuitter = new System.Windows.Forms.Button();
             this.gbxListeContact = new System.Windows.Forms.GroupBox();
             this.grdContact = new System.Windows.Forms.DataGridView();
             this.gbxAjoutContact = new System.Windows.Forms.GroupBox();
@@ -50,6 +49,8 @@
             this.btnDeverrouiller = new System.Windows.Forms.Button();
             this.btnValiderClient = new System.Windows.Forms.Button();
             this.btnReinitialiser = new System.Windows.Forms.Button();
+            this.btnQuitter = new System.Windows.Forms.Button();
+            this.btnSupprimerContact = new System.Windows.Forms.Button();
             this.gbxListeContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).BeginInit();
             this.gbxAjoutContact.SuspendLayout();
@@ -88,16 +89,6 @@
             // cbxActivite
             // 
             this.cbxActivite.Size = new System.Drawing.Size(158, 21);
-            // 
-            // btnQuitter
-            // 
-            this.btnQuitter.Location = new System.Drawing.Point(422, 490);
-            this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(93, 23);
-            this.btnQuitter.TabIndex = 7;
-            this.btnQuitter.Text = "Quitter";
-            this.btnQuitter.UseVisualStyleBackColor = true;
-            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
             // 
             // gbxListeContact
             // 
@@ -284,16 +275,17 @@
             // 
             // btnValiderClient
             // 
-            this.btnValiderClient.Location = new System.Drawing.Point(245, 408);
+            this.btnValiderClient.Location = new System.Drawing.Point(153, 408);
             this.btnValiderClient.Name = "btnValiderClient";
             this.btnValiderClient.Size = new System.Drawing.Size(103, 23);
             this.btnValiderClient.TabIndex = 60;
             this.btnValiderClient.Text = "Valider";
             this.btnValiderClient.UseVisualStyleBackColor = true;
+            this.btnValiderClient.Click += new System.EventHandler(this.btnValiderClient_Click);
             // 
             // btnReinitialiser
             // 
-            this.btnReinitialiser.Location = new System.Drawing.Point(136, 408);
+            this.btnReinitialiser.Location = new System.Drawing.Point(44, 408);
             this.btnReinitialiser.Name = "btnReinitialiser";
             this.btnReinitialiser.Size = new System.Drawing.Size(103, 23);
             this.btnReinitialiser.TabIndex = 61;
@@ -301,19 +293,42 @@
             this.btnReinitialiser.UseVisualStyleBackColor = true;
             this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
             // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Location = new System.Drawing.Point(262, 408);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(86, 23);
+            this.btnQuitter.TabIndex = 62;
+            this.btnQuitter.Text = "Quitter";
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            // 
+            // btnSupprimerContact
+            // 
+            this.btnSupprimerContact.Location = new System.Drawing.Point(270, 170);
+            this.btnSupprimerContact.Name = "btnSupprimerContact";
+            this.btnSupprimerContact.Size = new System.Drawing.Size(78, 40);
+            this.btnSupprimerContact.TabIndex = 63;
+            this.btnSupprimerContact.Text = "Supprimer un contact";
+            this.btnSupprimerContact.UseVisualStyleBackColor = true;
+            // 
             // frmVisuClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(774, 436);
-            this.Controls.Add(this.btnReinitialiser);
+            this.Controls.Add(this.btnSupprimerContact);
+            this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.btnValiderClient);
+            this.Controls.Add(this.btnReinitialiser);
             this.Controls.Add(this.btnDeverrouiller);
             this.Controls.Add(this.btnAfficherContact);
             this.Controls.Add(this.gbxListeContact);
             this.Controls.Add(this.gbxAjoutContact);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmVisuClient";
             this.Text = "Detail Client";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmVisuClient_FormClosing);
             this.Load += new System.EventHandler(this.frmVisuClient_Load);
             this.Controls.SetChildIndex(this.cbxActivite, 0);
             this.Controls.SetChildIndex(this.lblIdClient, 0);
@@ -339,8 +354,10 @@
             this.Controls.SetChildIndex(this.gbxListeContact, 0);
             this.Controls.SetChildIndex(this.btnAfficherContact, 0);
             this.Controls.SetChildIndex(this.btnDeverrouiller, 0);
-            this.Controls.SetChildIndex(this.btnValiderClient, 0);
             this.Controls.SetChildIndex(this.btnReinitialiser, 0);
+            this.Controls.SetChildIndex(this.btnValiderClient, 0);
+            this.Controls.SetChildIndex(this.btnQuitter, 0);
+            this.Controls.SetChildIndex(this.btnSupprimerContact, 0);
             this.gbxListeContact.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).EndInit();
             this.gbxAjoutContact.ResumeLayout(false);
@@ -351,7 +368,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnQuitter;
         private System.Windows.Forms.GroupBox gbxListeContact;
         internal System.Windows.Forms.DataGridView grdContact;
         private System.Windows.Forms.GroupBox gbxAjoutContact;
@@ -373,5 +389,7 @@
         private System.Windows.Forms.Button btnReinitialiser;
         private System.Windows.Forms.Button btnValiderContact;
         private System.Windows.Forms.Button btnAnnulerContact;
+        private System.Windows.Forms.Button btnQuitter;
+        private System.Windows.Forms.Button btnSupprimerContact;
     }
 }

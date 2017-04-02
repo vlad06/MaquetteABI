@@ -305,7 +305,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAjoutClient";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Ajout Client";
             this.Controls.SetChildIndex(this.cbxActivite, 0);
             this.Controls.SetChildIndex(this.lblIdClient, 0);
