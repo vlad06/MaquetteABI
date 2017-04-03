@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1
     public class Client
     {
 
-        public static int nClient;  //le nombre de client crée
+        public static int nClient;  //le nombre de clients crées
 
         private Int32 idClient;   //le numéro de client personnalisable par l'utilisateur
         private String raisonSociale;   //raison sociale du client
@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
         private Decimal ca;   //chiffre d'affaire du client
         private Int32 effectif; //nombre de salariés du client
         private String commentComm; //commentaire commercial concernant le projet
-        private List<Contact> arrayContact = new List<Contact>(); //liste de contact du client
+        private List<Contact> listContact = new List<Contact>(); //liste de contact du client
 
         /*
                 public Client(int numeroClient, string raisonSociale, string typeClient, string activiteClient, string adresseClient, string telephoneClient, string faxClient, string emailClient, string natureClient, string domaineClient, decimal caClient, int effectifClient, string commentComm)
@@ -43,7 +43,8 @@ namespace WindowsFormsApplication1
                 public Client()
                 {
 
-                }*/
+                }
+        */
 
         public static int NClient
         {
@@ -110,10 +111,10 @@ namespace WindowsFormsApplication1
             set { commentComm = value;}
         }
 
-        public List<Contact> ArrayContact
+        public List<Contact> ListContact
         {
-            get {  return arrayContact;  }
-            set { arrayContact = value; }
+            get { return listContact; }
+            set {  listContact = value;}
         }
 
         public decimal RatioCaEffectif()

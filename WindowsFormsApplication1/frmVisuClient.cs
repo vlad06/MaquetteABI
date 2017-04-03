@@ -10,9 +10,8 @@ namespace WindowsFormsApplication1
 {
     public partial class frmVisuClient : WindowsFormsApplication1.frmClient
     {
-        private frmVisuClient frmVisu;
-        private Client leClient;    //leClient est un attribut de la classe visu et permettra de stocker 
-                                    //le client passé en paramètre au constructeur de la form
+        private Client leClient;    //leClient permet de stocker le client passé en paramètre au constructeur de la form
+        private Contact leContact;
         /// <summary>
         /// Ce constructeur reçoit un client passé en paramètre par la fenêtre appelante (frmGestionClient)
         /// </summary>
@@ -23,6 +22,12 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             this.Size = new Size(370, 475); //on cache les contacts
         }
+        /*public frmVisuClient()
+        {
+            InitializeComponent();
+            this.Size = new Size(370, 475);
+            this.btnAfficherContact.Enabled = false;
+        }*/
         /// <summary>
         /// on remplit les champs du form de visualisation avec les propriétés de l'objet passé en paramètre
         /// </summary>
@@ -40,7 +45,175 @@ namespace WindowsFormsApplication1
             this.txtEffectif.Text = unClient.Effectif.ToString();
             this.txtCommentComm.Text = unClient.CommentComm;
         }
-        /*
+        private void afficheContacts()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add(new DataColumn("ID Contact", typeof(System.Int32)));
+            dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Prénom", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
+
+            DataRow dr;
+            for (int i = 0; i < leClient.ListContact.Count; i++)
+            {
+                dr = dt.NewRow();
+                dr[0] = leClient.ListContact[i].IdContact;
+                dr[1] = leClient.ListContact[i].NomContact;
+                dr[2] = leClient.ListContact[i].PrenomContact;
+                dr[3] = leClient.ListContact[i].TelContact;
+                dr[4] = leClient.ListContact[i].FonctionContact;
+                //dr[5] = Donnees.listClient[i].TotalHeures;
+                dt.Rows.Add(dr);
+            }
+            this.grdContact.DataSource = dt;
+        }
+        private void afficheContact(Contact unContact)
+        {
+            this.txtIdContact.Text = unContact.IdContact.ToString();
+            this.txtNomContact.Text = unContact.NomContact;
+            this.txtPrenomContact.Text = unContact.PrenomContact;
+            this.txtTelephoneContact.Text = unContact.TelContact;
+            this.txtFonctionContact.Text = unContact.FonctionContact;
+        }
+       
+        private bool instancieContact()
+        {
+            Contact nouveauContact = new Contact();
+            try
+            {
+                nouveauContact.IdContact = int.Parse(txtIdContact.Text.Trim());
+                nouveauContact.NomContact = txtNomContact.Text;
+                nouveauContact.PrenomContact = txtPrenomContact.Text;
+                nouveauContact.TelContact = txtTelephoneContact.Text;
+                nouveauContact.FonctionContact = txtFonctionContact.Text;
+                leClient.ListContact.Add(nouveauContact);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                this.leClient = null;
+                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
+                return false;
+            }
+        }
+        private bool modifieClient()
+        {
+            try
+            {
+                this.leClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
+                this.leClient.RaisonSociale = base.txtRaisonSociale.Text;
+                this.leClient.Nature = base.cbxNature.Text;
+                this.leClient.TypeSociete = base.cbxTypeSociete.Text;
+                this.leClient.Telephone = base.txtTelephone.Text;
+                this.leClient.Adresse= base.txtAdresse.Text;
+                this.leClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
+                this.leClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
+                this.leClient.CommentComm = base.txtCommentComm.Text;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                this.leClient = null;
+                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
+                return false;
+            }
+        }
+        private bool modifieContact()
+        {
+            try
+            {
+                this.leContact.IdContact=int.Parse(txtIdContact.Text.Trim());
+                this.leContact.NomContact=txtNomContact.Text;
+                this.leContact.PrenomContact=txtPrenomContact.Text;
+                this.leContact.TelContact=txtTelephoneContact.Text;
+                this.leContact.FonctionContact=txtFonctionContact.Text;
+                //leClient.ListContact.Add(leContact);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                this.leContact = null;
+                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
+                return false;
+            }
+        }
+
+        private void btnAfficherContact_Click(object sender, EventArgs e)
+        {
+            if (btnAfficherContact.Text == "Afficher les contacts >>")
+            {
+                btnAfficherContact.Text = "Cacher les contacts";
+                this.Size = new Size(790, 475);
+                this.gbxAjoutContact.Enabled = true;
+                this.gbxListeContact.Enabled = true;
+                this.Show();
+                afficheContacts();
+                //afficheContact();
+            }
+            else
+            {
+                btnAfficherContact.Text = "Afficher les contacts >>";
+                this.Size = new Size(370, 475);
+                this.gbxAjoutContact.Enabled = false;
+                this.gbxListeContact.Enabled = false;
+                this.Show();
+            }
+        }
+
+        private void btnReinitialiser_Click(object sender, EventArgs e)
+        {
+            this.afficheClient(leClient);//on réinitialise
+        }
+
+        private void frmVisuClient_Load(object sender, EventArgs e)
+        {
+            this.afficheClient(this.leClient);
+            DataTable dt = new DataTable();
+            dt.Columns.Add(new DataColumn("ID Contact", typeof(System.Int32)));
+            dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Prénom", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
+            this.grdContact.DataSource = dt;
+        }
+
+        private void btnValiderClient_Click(object sender, EventArgs e)
+        {
+            if (this.modifieClient())
+            {
+                this.Close();
+            }
+        }
+
+        private void frmVisuClient_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Donnees.listFrmVisuClient.Remove(leClient.IdClient);
+        }
+
+        private void btnQuitter_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnValiderContact_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAjouterContact_Click(object sender, EventArgs e)
+        {
+            if (this.instancieContact())
+            {
+                Contact.nContact++;
+                afficheContacts();
+            }
+        }
+
+        private void grdContact_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
         private void readable()
         {
             this.txtRaisonSociale.Enabled = false;
@@ -65,72 +238,11 @@ namespace WindowsFormsApplication1
             this.txtCa.Enabled = true;
             this.txtEffectif.Enabled = true;
             this.txtCommentComm.Enabled = true;
-        }*/
-
-        private bool modifie()
-        {
-            try
-            {
-                this.leClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
-                this.leClient.RaisonSociale = base.txtRaisonSociale.Text;
-                this.leClient.Nature = base.cbxNature.Text;
-                this.leClient.TypeSociete = base.cbxTypeSociete.Text;
-                this.leClient.Telephone = base.txtTelephone.Text;
-                this.leClient.Adresse= base.txtAdresse.Text;
-                this.leClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
-                this.leClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
-                this.leClient.CommentComm = base.txtCommentComm.Text;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                this.leClient = null;
-                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
-                return false;
-            }
         }
 
-        private void btnAfficherContact_Click(object sender, EventArgs e)
+        private void grdContact_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (btnAfficherContact.Text == "Afficher les contacts >>")
-            {
-                btnAfficherContact.Text = "Cacher les contacts";
-                this.Size = new Size(790, 475);
-                this.gbxAjoutContact.Enabled = true;
-                this.gbxListeContact.Enabled = true;
-                this.Show();
-            }
-            else
-            {
-                btnAfficherContact.Text = "Afficher les contacts >>";
-                this.Size = new Size(370, 475);
-                this.gbxAjoutContact.Enabled = false;
-                this.gbxListeContact.Enabled = false;
-                this.Show();
-            }
-        }
 
-        private void btnReinitialiser_Click(object sender, EventArgs e)
-        {
-            this.afficheClient(leClient);//on réinitialise
-        }
-
-        private void frmVisuClient_Load(object sender, EventArgs e)
-        {
-            this.afficheClient(this.leClient);
-        }
-
-        private void btnValiderClient_Click(object sender, EventArgs e)
-        {
-            if (this.modifie())
-            {
-
-            }
-        }
-
-        private void frmVisuClient_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Donnees.ArrayFrmClientOpened.Remove(leClient.IdClient);
         }
     }
 }

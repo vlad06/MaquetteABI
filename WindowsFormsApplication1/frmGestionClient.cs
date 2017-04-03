@@ -32,15 +32,15 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Effectif", typeof(System.Int32)));
 
             DataRow dr;
-            for(int i = 0; i < Donnees.ArrayClient.Count; i++)
+            for(int i = 0; i < Donnees.listClient.Count; i++)
             {
                 dr = dt.NewRow();
-                dr[0] = Donnees.ArrayClient[i].IdClient;
-                dr[1] = Donnees.ArrayClient[i].RaisonSociale;
-                dr[2] = Donnees.ArrayClient[i].Nature;
-                dr[3] = Donnees.ArrayClient[i].Telephone;
-                dr[4] = Donnees.ArrayClient[i].Ca;
-                dr[5] = Donnees.ArrayClient[i].Effectif;
+                dr[0] = Donnees.listClient[i].IdClient;
+                dr[1] = Donnees.listClient[i].RaisonSociale;
+                dr[2] = Donnees.listClient[i].Nature;
+                dr[3] = Donnees.listClient[i].Telephone;
+                dr[4] = Donnees.listClient[i].Ca;
+                dr[5] = Donnees.listClient[i].Effectif;
                 dt.Rows.Add(dr);
             }
             this.grdClient.DataSource = dt;
@@ -76,7 +76,7 @@ namespace WindowsFormsApplication1
                 Client1.Ca = i * 10000;
                 Client1.Effectif = i * 2;
                 Client1.CommentComm = i + ") Putain de bordel de merde...";
-                Donnees.ArrayClient.Add(Client1);
+                Donnees.listClient.Add(Client1);
             }
             this.afficheClients();
         }
@@ -111,27 +111,16 @@ namespace WindowsFormsApplication1
             if (this.grdClient.CurrentRow != null)
             {
                 int iClient = this.grdClient.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
-                Client leClient = Donnees.ArrayClient[iClient];
+                Client leClient = Donnees.listClient[iClient];
                 if (!isFormOpen())  //si la form client n'est pas encore ouverte
                 {
                     frmVisuClient frmVisu = new frmVisuClient(leClient); //on crée une instance de la form client
-                    Donnees.ArrayfrmVisu.Add(frmVisu);//TODO, arriver à extraire la ref du form pour comparaison lors de la suppression d'une ligne
-                                                      //dans le datagrid afin de fermer la fenêtre correspondante à la ligne supprimée
-                                                      //
-                                                      //
-                                                      //
-                              //
-                                                      //
-                                                      //
-                                                      //
-
                     frmVisu.Show(); //on l'affiche
                     frmVisu.TopMost = true; //on force la form client au premier plan
-                    //this.afficheClients();  //on met à jour la datagrid
-                    Donnees.ArrayFrmClientOpened.Add(leClient.IdClient);    //on ajoute à la liste des fenêtres ouverte l'id du client affiché
+                    Donnees.listFrmVisuClient.Add(leClient.IdClient, frmVisu); //ajoute au dico le couple (idclient,frmvisu)
                 } else
                 {
-                    MessageBox.Show("Cette fenêtre client est déjà ouverte", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(new Form { TopMost = true },"Cette fenêtre client est déjà ouverte", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -139,32 +128,44 @@ namespace WindowsFormsApplication1
         private bool isFormOpen()
         {
             int iClient = this.grdClient.CurrentRow.Index;
-            Client leClient = Donnees.ArrayClient[iClient];
-            for (int i = 0; i < Donnees.ArrayFrmClientOpened.Count; i++)
+            Client leClient = Donnees.listClient[iClient];
+            if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))
             {
-                if (Donnees.ArrayFrmClientOpened[i] == leClient.IdClient)
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }
 
         private void btnSupprimerClient_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Etes-vous sûr de vouloir supprimer le client sélectionné ?", "ATTENTION",
+            DialogResult dr = MessageBox.Show(new Form { TopMost = true }, "Etes-vous sûr de vouloir supprimer le client sélectionné ?", "Attention",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            int iClient = this.grdClient.CurrentRow.Index;
+            Client leClient = Donnees.listClient[iClient];
             if (dr == DialogResult.OK)
             {
                 if (isFormOpen())
                 {
-                    
+                    dr=MessageBox.Show(new Form { TopMost = true }, "La suppression de ce client entrainera la fermeture de la fenêtre associée, supprimer quand même ?", "Attention",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (dr == DialogResult.OK)
+                    {
+                        if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))
+                        {
+                            frmVisuClient fvc = Donnees.listFrmVisuClient[leClient.IdClient];
+                            fvc.Close();
+                        }
+                        Donnees.listFrmVisuClient.Remove(leClient.IdClient);
+                        Donnees.listClient.Remove(leClient);
+                        afficheClients();
+                    }
                 }
-                int iClient = this.grdClient.CurrentRow.Index;
-                Client leClient = Donnees.ArrayClient[iClient];
-                Donnees.ArrayFrmClientOpened.Remove(leClient.IdClient);
-                Donnees.ArrayClient.Remove(leClient);
-                afficheClients();
+                else
+                {
+                    Donnees.listFrmVisuClient.Remove(leClient.IdClient);
+                    Donnees.listClient.Remove(leClient);
+                    afficheClients();
+                }
             }
         }
 

@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1
                 nouveauClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
                 nouveauClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
                 nouveauClient.CommentComm = base.txtCommentComm.Text;
-                Donnees.ArrayClient.Add(nouveauClient);
+                Donnees.listClient.Add(nouveauClient);
                 return true;
             }
             catch(Exception ex)
@@ -40,14 +40,13 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Erreur :\n" + ex.Message, "Ajout de client");
                 return false;
             }
-            
         }
 
-        private void btnAjouterContact_Click(object sender, EventArgs e)
+        private void btnVoirContact_Click(object sender, EventArgs e)
         {
-            if(btnAjouterContact.Text== "Ajouter un contact >>")
+            if(btnVoirContacts.Text== "Voir les contacts >>")
             {
-                btnAjouterContact.Text = "Cacher les contacts";
+                btnVoirContacts.Text = "Cacher les contacts";
                 this.Size = new Size(790, 475);
                 this.gbxAjoutContact.Enabled = true;
                 this.gbxListeContact.Enabled = true;
@@ -55,7 +54,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                btnAjouterContact.Text = "Ajouter un contact >>";
+                btnVoirContacts.Text = "Voir les contacts >>";
                 this.Size = new Size(370, 475);
                 this.gbxAjoutContact.Enabled = false;
                 this.gbxListeContact.Enabled = false;
@@ -75,6 +74,11 @@ namespace WindowsFormsApplication1
         private void btnAnnulerClient_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAjouterContact_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
