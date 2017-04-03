@@ -20,19 +20,7 @@ namespace WindowsFormsApplication1
         {
             foreach (Client cl in Donnees.listClient)
             {
-                if (idClient == cl.IdClient)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        private bool isRaisonSocialeUnique(String rs)
-        {
-            Client nouveauClient = new Client();
-            foreach (Client cl in Donnees.listClient)
-            {
-                if (rs == cl.RaisonSociale)
+                if (idClient == cl.IdClient && idClient != 0)
                 {
                     return false;
                 }
@@ -44,6 +32,7 @@ namespace WindowsFormsApplication1
             Client nouveauClient = new Client();
             try
             {
+                /*
                 if (!isIdUnique(int.Parse(base.txtIdClient.Text.Trim())))
                 {
                     MessageBox.Show(new Form { TopMost = true }, "l'ID du client doit être unique !!", "Attention", MessageBoxButtons.OK);
@@ -52,15 +41,9 @@ namespace WindowsFormsApplication1
                 {
                     nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
                 }
-                if (!isRaisonSocialeUnique(base.txtRaisonSociale.Text))
-                {
-                    MessageBox.Show(new Form { TopMost = true }, "La raison sociale du client doit être unique !!", "Attention", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
-                }
-
+                */
+                nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
+                nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
                 nouveauClient.Nature = base.cbxNature.Text;
                 nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
                 nouveauClient.Telephone = base.txtTelephone.Text;
@@ -101,7 +84,11 @@ namespace WindowsFormsApplication1
 
         private void btnValiderClient_Click(object sender, EventArgs e)
         {
-            if (this.instancieClient())
+            if (!isIdUnique(int.Parse(base.txtIdClient.Text.Trim())))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "l'ID du client doit être unique !!", "Attention", MessageBoxButtons.OK);
+            }
+            else if (this.instancieClient())
             {
                 Client.nClient++;
                 this.DialogResult = DialogResult.OK;

@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             this.btnDetailClient.Enabled = false;
             this.btnVoirContact.Enabled = false;
+            this.btnSupprimerClient.Enabled = false;
         }
 
         private void afficheClients()
@@ -55,7 +56,7 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Telephone", typeof(System.String)));
             dt.Columns.Add(new DataColumn("CA Client", typeof(System.Decimal)));
             dt.Columns.Add(new DataColumn("Effectif", typeof(System.Int32)));
-            this.grdClient.DataSource = dt;
+            this.grdClient.DataSource = dt.DefaultView;
         }
 
 
@@ -155,6 +156,7 @@ namespace WindowsFormsApplication1
                         }
                         Donnees.listFrmVisuClient.Remove(leClient.IdClient);
                         Donnees.listClient.Remove(leClient);
+                        Client.nClient--;
                         afficheClients();
                     }
                 }
@@ -164,6 +166,10 @@ namespace WindowsFormsApplication1
                     Donnees.listClient.Remove(leClient);
                     afficheClients();
                 }
+            }
+            if(Client.nClient == 0)
+            {
+                this.btnSupprimerClient.Enabled = false;
             }
         }
 

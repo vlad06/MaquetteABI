@@ -51,6 +51,7 @@
             this.btnValiderClient = new System.Windows.Forms.Button();
             this.btnReinitialiser = new System.Windows.Forms.Button();
             this.btnQuitter = new System.Windows.Forms.Button();
+            this.btnModifierContact = new System.Windows.Forms.Button();
             this.gbxListeContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).BeginInit();
             this.gbxAjoutContact.SuspendLayout();
@@ -93,9 +94,9 @@
             // gbxListeContact
             // 
             this.gbxListeContact.Controls.Add(this.grdContact);
-            this.gbxListeContact.Location = new System.Drawing.Point(354, 126);
+            this.gbxListeContact.Location = new System.Drawing.Point(354, 154);
             this.gbxListeContact.Name = "gbxListeContact";
-            this.gbxListeContact.Size = new System.Drawing.Size(415, 276);
+            this.gbxListeContact.Size = new System.Drawing.Size(415, 248);
             this.gbxListeContact.TabIndex = 57;
             this.gbxListeContact.TabStop = false;
             this.gbxListeContact.Text = "Liste Contacts :";
@@ -120,11 +121,12 @@
             // 
             // gbxAjoutContact
             // 
+            this.gbxAjoutContact.Controls.Add(this.btnModifierContact);
             this.gbxAjoutContact.Controls.Add(this.btnRaz);
             this.gbxAjoutContact.Controls.Add(this.btnSupprimerContact);
-            this.gbxAjoutContact.Controls.Add(this.btnAjouterContact);
             this.gbxAjoutContact.Controls.Add(this.textBox1);
             this.gbxAjoutContact.Controls.Add(this.label1);
+            this.gbxAjoutContact.Controls.Add(this.btnAjouterContact);
             this.gbxAjoutContact.Controls.Add(this.lblFonctionContact);
             this.gbxAjoutContact.Controls.Add(this.lblIdContact);
             this.gbxAjoutContact.Controls.Add(this.txtIdContact);
@@ -137,25 +139,25 @@
             this.gbxAjoutContact.Controls.Add(this.lblTelephoneContact);
             this.gbxAjoutContact.Location = new System.Drawing.Point(354, 6);
             this.gbxAjoutContact.Name = "gbxAjoutContact";
-            this.gbxAjoutContact.Size = new System.Drawing.Size(415, 120);
+            this.gbxAjoutContact.Size = new System.Drawing.Size(415, 148);
             this.gbxAjoutContact.TabIndex = 56;
             this.gbxAjoutContact.TabStop = false;
             this.gbxAjoutContact.Text = "Contact sélectionné :";
             // 
             // btnRaz
             // 
-            this.btnRaz.Location = new System.Drawing.Point(65, 91);
+            this.btnRaz.Location = new System.Drawing.Point(174, 91);
             this.btnRaz.Name = "btnRaz";
-            this.btnRaz.Size = new System.Drawing.Size(103, 23);
+            this.btnRaz.Size = new System.Drawing.Size(78, 39);
             this.btnRaz.TabIndex = 65;
             this.btnRaz.Text = "Remettre à zéro";
             this.btnRaz.Click += new System.EventHandler(this.btnRaz_Click);
             // 
             // btnSupprimerContact
             // 
-            this.btnSupprimerContact.Location = new System.Drawing.Point(283, 91);
+            this.btnSupprimerContact.Location = new System.Drawing.Point(325, 91);
             this.btnSupprimerContact.Name = "btnSupprimerContact";
-            this.btnSupprimerContact.Size = new System.Drawing.Size(119, 23);
+            this.btnSupprimerContact.Size = new System.Drawing.Size(78, 39);
             this.btnSupprimerContact.TabIndex = 63;
             this.btnSupprimerContact.Text = "Supprimer un contact";
             this.btnSupprimerContact.UseVisualStyleBackColor = true;
@@ -163,9 +165,9 @@
             // 
             // btnAjouterContact
             // 
-            this.btnAjouterContact.Location = new System.Drawing.Point(174, 91);
+            this.btnAjouterContact.Location = new System.Drawing.Point(6, 91);
             this.btnAjouterContact.Name = "btnAjouterContact";
-            this.btnAjouterContact.Size = new System.Drawing.Size(103, 23);
+            this.btnAjouterContact.Size = new System.Drawing.Size(78, 39);
             this.btnAjouterContact.TabIndex = 64;
             this.btnAjouterContact.Text = "Ajouter un contact";
             this.btnAjouterContact.Click += new System.EventHandler(this.btnAjouterContact_Click);
@@ -317,6 +319,15 @@
             this.btnQuitter.UseVisualStyleBackColor = true;
             this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
             // 
+            // btnModifierContact
+            // 
+            this.btnModifierContact.Location = new System.Drawing.Point(90, 91);
+            this.btnModifierContact.Name = "btnModifierContact";
+            this.btnModifierContact.Size = new System.Drawing.Size(78, 39);
+            this.btnModifierContact.TabIndex = 66;
+            this.btnModifierContact.Text = "Modifier un contact";
+            this.btnModifierContact.Click += new System.EventHandler(this.btnModifierContact_Click);
+            // 
             // frmVisuClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,5 +406,6 @@
         private System.Windows.Forms.Button btnSupprimerContact;
         private System.Windows.Forms.Button btnAjouterContact;
         private System.Windows.Forms.Button btnRaz;
+        private System.Windows.Forms.Button btnModifierContact;
     }
 }

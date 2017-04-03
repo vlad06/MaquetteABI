@@ -162,7 +162,7 @@ namespace WindowsFormsApplication1
             catch(Exception ex)
             {
                 this.leContact = null;
-                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
+                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de contact");
                 return false;
             }
         }
@@ -202,7 +202,7 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Prénom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
-            this.grdContact.DataSource = dt;
+            this.grdContact.DataSource = dt.DefaultView;
         }
 
         private void btnValiderClient_Click(object sender, EventArgs e)
@@ -228,28 +228,7 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void btnAjouterContact_Click(object sender, EventArgs e)
-        {
-            if (!isIdUnique(int.Parse(txtIdContact.Text.Trim())))
-            {
-                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
-            }
-            if (this.instancieContact())
-            {
-                Contact.nContact++;
-                majGrdContacts();
-            }
-        }
-
-      /*  private void grdContact_SelectionChanged(object sender, EventArgs e)
-        {
-            if(grdContact.CurrentRow != null)
-            {
-                int iContact = grdContact.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
-                Contact unContact = leClient.ListContact[iContact];//TODO PB
-                afficheContact(unContact);
-            }
-        }
+      /*
         private void readable()
         {
             this.txtRaisonSociale.Enabled = false;
@@ -308,6 +287,30 @@ namespace WindowsFormsApplication1
             int iContact = grdContact.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
             Contact unContact = leClient.ListContact[iContact];
             afficheContact(unContact);
+        }
+
+        private void btnModifierContact_Click(object sender, EventArgs e)
+        {
+            if (!isIdUnique(int.Parse(txtIdContact.Text.Trim())))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
+            }
+            else if (this.modifieContact())
+            {
+                majGrdContacts();
+            }
+        }
+        private void btnAjouterContact_Click(object sender, EventArgs e)
+        {
+            if (!isIdUnique(int.Parse(txtIdContact.Text.Trim())))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
+            }
+            else if (this.instancieContact())
+            {
+                Contact.nContact++;
+                majGrdContacts();
+            }
         }
     }
 }
