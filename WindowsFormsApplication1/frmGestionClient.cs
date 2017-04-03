@@ -46,8 +46,6 @@ namespace WindowsFormsApplication1
             this.grdClient.DataSource = dt;
         }
 
-
-
         private void frmGestionClient_Load(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();

@@ -31,10 +31,9 @@
             this.gbxListeContact = new System.Windows.Forms.GroupBox();
             this.grdContact = new System.Windows.Forms.DataGridView();
             this.gbxAjoutContact = new System.Windows.Forms.GroupBox();
+            this.btnRaz = new System.Windows.Forms.Button();
             this.btnSupprimerContact = new System.Windows.Forms.Button();
             this.btnAjouterContact = new System.Windows.Forms.Button();
-            this.btnAnnulerContact = new System.Windows.Forms.Button();
-            this.btnValiderContact = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblFonctionContact = new System.Windows.Forms.Label();
@@ -117,15 +116,13 @@
             this.grdContact.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdContact.Size = new System.Drawing.Size(405, 251);
             this.grdContact.TabIndex = 50;
-            this.grdContact.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdContact_CellContentClick);
-            this.grdContact.SelectionChanged += new System.EventHandler(this.grdContact_SelectionChanged);
+            this.grdContact.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdContact_CellClick);
             // 
             // gbxAjoutContact
             // 
+            this.gbxAjoutContact.Controls.Add(this.btnRaz);
             this.gbxAjoutContact.Controls.Add(this.btnSupprimerContact);
             this.gbxAjoutContact.Controls.Add(this.btnAjouterContact);
-            this.gbxAjoutContact.Controls.Add(this.btnAnnulerContact);
-            this.gbxAjoutContact.Controls.Add(this.btnValiderContact);
             this.gbxAjoutContact.Controls.Add(this.textBox1);
             this.gbxAjoutContact.Controls.Add(this.label1);
             this.gbxAjoutContact.Controls.Add(this.lblFonctionContact);
@@ -145,6 +142,15 @@
             this.gbxAjoutContact.TabStop = false;
             this.gbxAjoutContact.Text = "Contact sélectionné :";
             // 
+            // btnRaz
+            // 
+            this.btnRaz.Location = new System.Drawing.Point(65, 91);
+            this.btnRaz.Name = "btnRaz";
+            this.btnRaz.Size = new System.Drawing.Size(103, 23);
+            this.btnRaz.TabIndex = 65;
+            this.btnRaz.Text = "Remettre à zéro";
+            this.btnRaz.Click += new System.EventHandler(this.btnRaz_Click);
+            // 
             // btnSupprimerContact
             // 
             this.btnSupprimerContact.Location = new System.Drawing.Point(283, 91);
@@ -153,6 +159,7 @@
             this.btnSupprimerContact.TabIndex = 63;
             this.btnSupprimerContact.Text = "Supprimer un contact";
             this.btnSupprimerContact.UseVisualStyleBackColor = true;
+            this.btnSupprimerContact.Click += new System.EventHandler(this.btnSupprimerContact_Click);
             // 
             // btnAjouterContact
             // 
@@ -162,25 +169,6 @@
             this.btnAjouterContact.TabIndex = 64;
             this.btnAjouterContact.Text = "Ajouter un contact";
             this.btnAjouterContact.Click += new System.EventHandler(this.btnAjouterContact_Click);
-            // 
-            // btnAnnulerContact
-            // 
-            this.btnAnnulerContact.Location = new System.Drawing.Point(6, 91);
-            this.btnAnnulerContact.Name = "btnAnnulerContact";
-            this.btnAnnulerContact.Size = new System.Drawing.Size(70, 23);
-            this.btnAnnulerContact.TabIndex = 39;
-            this.btnAnnulerContact.Text = "Annuler";
-            this.btnAnnulerContact.UseVisualStyleBackColor = true;
-            // 
-            // btnValiderContact
-            // 
-            this.btnValiderContact.Location = new System.Drawing.Point(82, 91);
-            this.btnValiderContact.Name = "btnValiderContact";
-            this.btnValiderContact.Size = new System.Drawing.Size(70, 23);
-            this.btnValiderContact.TabIndex = 38;
-            this.btnValiderContact.Text = "Valider";
-            this.btnValiderContact.UseVisualStyleBackColor = true;
-            this.btnValiderContact.Click += new System.EventHandler(this.btnValiderContact_Click);
             // 
             // textBox1
             // 
@@ -403,10 +391,9 @@
         private System.Windows.Forms.Button btnDeverrouiller;
         private System.Windows.Forms.Button btnValiderClient;
         private System.Windows.Forms.Button btnReinitialiser;
-        private System.Windows.Forms.Button btnValiderContact;
-        private System.Windows.Forms.Button btnAnnulerContact;
         private System.Windows.Forms.Button btnQuitter;
         private System.Windows.Forms.Button btnSupprimerContact;
         private System.Windows.Forms.Button btnAjouterContact;
+        private System.Windows.Forms.Button btnRaz;
     }
 }

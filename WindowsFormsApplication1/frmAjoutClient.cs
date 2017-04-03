@@ -13,17 +13,54 @@ namespace WindowsFormsApplication1
         public frmAjoutClient()
         {
             InitializeComponent();
-            btnSupprimerContact.Enabled = false;
-            this.Size = new Size(370, 475);
+            //this.Size = new Size(370, 475);
         }
 
+        private bool isIdUnique(int idClient)
+        {
+            foreach (Client cl in Donnees.listClient)
+            {
+                if (idClient == cl.IdClient)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool isRaisonSocialeUnique(String rs)
+        {
+            Client nouveauClient = new Client();
+            foreach (Client cl in Donnees.listClient)
+            {
+                if (rs == cl.RaisonSociale)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private bool instancieClient()
         {
             Client nouveauClient = new Client();
             try
             {
-                nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
-                nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
+                if (!isIdUnique(int.Parse(base.txtIdClient.Text.Trim())))
+                {
+                    MessageBox.Show(new Form { TopMost = true }, "l'ID du client doit être unique !!", "Attention", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
+                }
+                if (!isRaisonSocialeUnique(base.txtRaisonSociale.Text))
+                {
+                    MessageBox.Show(new Form { TopMost = true }, "La raison sociale du client doit être unique !!", "Attention", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
+                }
+
                 nouveauClient.Nature = base.cbxNature.Text;
                 nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
                 nouveauClient.Telephone = base.txtTelephone.Text;
@@ -42,7 +79,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void btnVoirContact_Click(object sender, EventArgs e)
+       /* private void btnVoirContact_Click(object sender, EventArgs e)
         {
             if(btnVoirContacts.Text== "Voir les contacts >>")
             {
@@ -60,7 +97,7 @@ namespace WindowsFormsApplication1
                 this.gbxListeContact.Enabled = false;
                 this.Show();
             }
-        }
+        }*/
 
         private void btnValiderClient_Click(object sender, EventArgs e)
         {

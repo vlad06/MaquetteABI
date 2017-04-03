@@ -45,7 +45,7 @@ namespace WindowsFormsApplication1
             this.txtEffectif.Text = unClient.Effectif.ToString();
             this.txtCommentComm.Text = unClient.CommentComm;
         }
-        private void afficheContacts()
+        private void majGrdContacts()
         {
             DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("ID Contact", typeof(System.Int32)));
@@ -76,12 +76,41 @@ namespace WindowsFormsApplication1
             this.txtTelephoneContact.Text = unContact.TelContact;
             this.txtFonctionContact.Text = unContact.FonctionContact;
         }
-       
+
+        private void afficheContact()
+        {
+            this.txtIdContact.Text = "";
+            this.txtNomContact.Text = "";
+            this.txtPrenomContact.Text = "";
+            this.txtTelephoneContact.Text = "";
+            this.txtFonctionContact.Text = "";
+
+        }
+        private bool isIdUnique(int idContact)
+        {
+            foreach (Contact cl in leClient.ListContact)
+            {
+                if (idContact == cl.IdContact)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private bool instancieContact()
         {
             Contact nouveauContact = new Contact();
             try
             {
+                /*if (!isIdUnique(int.Parse(txtIdContact.Text.Trim())))
+                {
+                    MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    nouveauContact.IdContact = int.Parse(txtIdContact.Text.Trim());
+                }*/
                 nouveauContact.IdContact = int.Parse(txtIdContact.Text.Trim());
                 nouveauContact.NomContact = txtNomContact.Text;
                 nouveauContact.PrenomContact = txtPrenomContact.Text;
@@ -93,7 +122,7 @@ namespace WindowsFormsApplication1
             catch (Exception ex)
             {
                 this.leClient = null;
-                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
+                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de contact");
                 return false;
             }
         }
@@ -128,7 +157,6 @@ namespace WindowsFormsApplication1
                 this.leContact.PrenomContact=txtPrenomContact.Text;
                 this.leContact.TelContact=txtTelephoneContact.Text;
                 this.leContact.FonctionContact=txtFonctionContact.Text;
-                //leClient.ListContact.Add(leContact);
                 return true;
             }
             catch(Exception ex)
@@ -148,8 +176,7 @@ namespace WindowsFormsApplication1
                 this.gbxAjoutContact.Enabled = true;
                 this.gbxListeContact.Enabled = true;
                 this.Show();
-                afficheContacts();
-                //afficheContact();
+                majGrdContacts();
             }
             else
             {
@@ -203,16 +230,25 @@ namespace WindowsFormsApplication1
 
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
+            if (!isIdUnique(int.Parse(txtIdContact.Text.Trim())))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
+            }
             if (this.instancieContact())
             {
                 Contact.nContact++;
-                afficheContacts();
+                majGrdContacts();
             }
         }
 
-        private void grdContact_SelectionChanged(object sender, EventArgs e)
+      /*  private void grdContact_SelectionChanged(object sender, EventArgs e)
         {
-
+            if(grdContact.CurrentRow != null)
+            {
+                int iContact = grdContact.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
+                Contact unContact = leClient.ListContact[iContact];//TODO PB
+                afficheContact(unContact);
+            }
         }
         private void readable()
         {
@@ -239,10 +275,39 @@ namespace WindowsFormsApplication1
             this.txtEffectif.Enabled = true;
             this.txtCommentComm.Enabled = true;
         }
+        */
 
-        private void grdContact_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnSupprimerContact_Click(object sender, EventArgs e)
         {
+            if (grdContact.CurrentRow != null)
+            {
+                DialogResult dr = MessageBox.Show(new Form { TopMost = true }, "Etes-vous sûr de vouloir supprimer le contact sélectionné ?", "Attention",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if(dr == DialogResult.OK)
+                {
+                    int iContact = this.grdContact.CurrentRow.Index;
+                    Contact unContact = leClient.ListContact[iContact];
+                    leClient.ListContact.Remove(unContact);
+                    majGrdContacts();
+                }
+            }
+        }
 
+        private void btnRaz_Click(object sender, EventArgs e)
+        {
+            this.txtIdContact.Text = "";
+            this.txtNomContact.Text = "";
+            this.txtPrenomContact.Text = "";
+            this.txtTelephoneContact.Text = "";
+            this.txtFonctionContact.Text = "";
+
+        }
+
+        private void grdContact_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int iContact = grdContact.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
+            Contact unContact = leClient.ListContact[iContact];
+            afficheContact(unContact);
         }
     }
 }
