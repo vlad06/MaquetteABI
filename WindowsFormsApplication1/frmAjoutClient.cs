@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1
             //this.Size = new Size(370, 475);
         }
 
+        /*
         private bool isIdClientUnique(int idClient)
         {
             foreach (Client cl in Donnees.listClient)
@@ -27,12 +28,14 @@ namespace WindowsFormsApplication1
             }
             return true;
         }
+        */
+
         private bool instancieClient()
         {
             Client nouveauClient = new Client();
             try
             {
-                nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
+                //nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
                 nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
                 nouveauClient.Nature = base.cbxNature.Text;
                 nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
@@ -64,7 +67,9 @@ namespace WindowsFormsApplication1
             }
             else if (this.instancieClient())
             {
-                Client.nClient++;
+                
+                //Client.nClient++;
+                Client.idClient++;
                 this.DialogResult = DialogResult.OK;
             }
         }

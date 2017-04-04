@@ -48,9 +48,9 @@
             this.btnConvert = new System.Windows.Forms.Button();
             this.lblRecherche = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnSupprimerClient = new System.Windows.Forms.Button();
             this.btnAjouterClient = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.msGestionClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdClient)).BeginInit();
             this.SuspendLayout();
@@ -207,6 +207,7 @@
             this.btnConvert.Size = new System.Drawing.Size(78, 52);
             this.btnConvert.TabIndex = 14;
             this.btnConvert.Text = "Convert to  Excel";
+            this.toolTip1.SetToolTip(this.btnConvert, "Convertit la liste de\r\nclients en feuille excel");
             this.btnConvert.UseVisualStyleBackColor = true;
             // 
             // lblRecherche
@@ -226,6 +227,10 @@
             this.button1.TabIndex = 16;
             this.button1.Text = "Import from  Excel";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
             // btnSupprimerClient
             // 
@@ -250,10 +255,6 @@
             this.toolTip1.SetToolTip(this.btnAjouterClient, "Ajouter un client");
             this.btnAjouterClient.UseVisualStyleBackColor = true;
             this.btnAjouterClient.Click += new System.EventHandler(this.btnAjouterClient_Click);
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
             // frmGestionClient
             // 

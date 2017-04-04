@@ -10,7 +10,7 @@ namespace WindowsFormsApplication1
     {
         public static int nContact;
 
-        private Int32 idContact;
+        private Int32 idContact=0;
         private String nomContact;
         private String prenomContact;
         private String telContact;

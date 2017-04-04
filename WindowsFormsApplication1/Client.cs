@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
 
         public static int nClient;  //le nombre de clients crées
 
-        private Int32 idClient;   //le numéro de client personnalisable par l'utilisateur
+        public static Int32 idClient;   //le numéro de client personnalisable par l'utilisateur
         private String raisonSociale;   //raison sociale du client
         private String typeSociete;  //public ou privé
         private String activite;  //secteur d'activité du client (pour l'instant agro, industrie, ...)
@@ -45,17 +45,6 @@ namespace WindowsFormsApplication1
 
                 }
         */
-
-        public static int NClient
-        {
-            get { return nClient; }
-        }
-        public int IdClient
-        {
-            get { return idClient; }
-
-            set { idClient = value;}
-        }
 
         public string RaisonSociale
         {

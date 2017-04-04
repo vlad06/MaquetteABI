@@ -22,12 +22,6 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             this.Size = new Size(370, 475); //on cache les contacts
         }
-        /*public frmVisuClient()    //constructeur en attente de test en vue de remplacer le form ajoutClient
-        {
-            InitializeComponent();
-            this.Size = new Size(370, 475);
-            this.btnAfficherContact.Enabled = false;
-        }*/
         /// <summary>
         /// on remplit les champs du form de visualisation avec les propriétés de l'objet passé en paramètre
         /// </summary>
@@ -45,6 +39,9 @@ namespace WindowsFormsApplication1
             this.txtEffectif.Text = unClient.Effectif.ToString();
             this.txtCommentComm.Text = unClient.CommentComm;
         }
+        /// <summary>
+        /// réecrit la datagrid grdContact avec la liste de contact contenue dans la classe client 
+        /// </summary>
         private void majGrdContacts()
         {
             DataTable dt = new DataTable();
@@ -53,7 +50,6 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Prénom", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
-
             DataRow dr;
             for (int i = 0; i < leClient.ListContact.Count; i++)
             {
@@ -68,6 +64,10 @@ namespace WindowsFormsApplication1
             }
             this.grdContact.DataSource = dt.DefaultView;
         }
+        /// <summary>
+        /// remplit les champs du grdContact avec les valeurs du contact passé en paramètre
+        /// </summary>
+        /// <param name="unContact"></param>
         private void afficheContact(Contact unContact)
         {
             this.txtIdContact.Text = unContact.IdContact.ToString();
@@ -76,16 +76,11 @@ namespace WindowsFormsApplication1
             this.txtTelephoneContact.Text = unContact.TelContact;
             this.txtFonctionContact.Text = unContact.FonctionContact;
         }
-
-        private void afficheContact()
-        {
-            this.txtIdContact.Text = "";
-            this.txtNomContact.Text = "";
-            this.txtPrenomContact.Text = "";
-            this.txtTelephoneContact.Text = "";
-            this.txtFonctionContact.Text = "";
-
-        }
+        /// <summary>
+        /// vérifie si l'id du contact n'existe pas déjà dans la liste de contacts associée au client leClient
+        /// </summary>
+        /// <param name="idContact"></param>
+        /// <returns></returns>
         private bool isIdContactUnique(int idContact)
         {
             foreach (Contact cl in leClient.ListContact)
@@ -97,6 +92,11 @@ namespace WindowsFormsApplication1
             }
             return true;
         }
+        /// <summary>
+        /// vérifie si l'id du client n'existe pas déjà dans la liste de clients
+        /// </summary>
+        /// <param name="idClient"></param>
+        /// <returns></returns>
         private bool isIdClientUnique(int idClient)
         {
             foreach (Client cl in Donnees.listClient)
@@ -108,20 +108,14 @@ namespace WindowsFormsApplication1
             }
             return true;
         }
-
+        /// <summary>
+        /// tente d'instancier un contact, renvoie true si c'est possible et false sinon
+        /// </summary>
+        /// <returns></returns>
         private bool instancieContact()
         {
-            //Contact nouveauContact = new Contact();
             try
             {
-                /*
-                nouveauContact.IdContact = int.Parse(txtIdContact.Text.Trim());
-                nouveauContact.NomContact = txtNomContact.Text;
-                nouveauContact.PrenomContact = txtPrenomContact.Text;
-                nouveauContact.TelContact = txtTelephoneContact.Text;
-                nouveauContact.FonctionContact = txtFonctionContact.Text;
-                leClient.ListContact.Add(nouveauContact);
-                */
                 leContact = new Contact();
                 leContact.IdContact = int.Parse(txtIdContact.Text.Trim());
                 leContact.NomContact = txtNomContact.Text;
@@ -138,12 +132,15 @@ namespace WindowsFormsApplication1
                 return false;
             }
         }
-
+        /// <summary>
+        /// tente de modifier un client, renvoie true si c'est possible et false sinon
+        /// </summary>
+        /// <returns></returns>
         private bool modifieClient()
         {
             try
             {
-                this.leClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
+                //this.leClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
                 this.leClient.RaisonSociale = base.txtRaisonSociale.Text;
                 this.leClient.Nature = base.cbxNature.Text;
                 this.leClient.TypeSociete = base.cbxTypeSociete.Text;
@@ -160,12 +157,15 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
                 return false;
             }
-        }
+        }/// <summary>
+        /// tente de modifier un contact, renvoie true si c'est possible et false sinon
+        /// </summary>
+        /// <returns></returns>
         private bool modifieContact()
         {
             try
             {
-                this.leContact.IdContact=int.Parse(txtIdContact.Text.Trim());
+                //this.leContact.IdContact=int.Parse(txtIdContact.Text.Trim());
                 this.leContact.NomContact=txtNomContact.Text;
                 this.leContact.PrenomContact=txtPrenomContact.Text;
                 this.leContact.TelContact=txtTelephoneContact.Text;
