@@ -14,12 +14,13 @@ namespace WindowsFormsApplication1
     public partial class frmGestionClient : Form
     {
         private frmAjoutClient frmAjout;
+        private frmVisuClient frmVisu;
         public frmGestionClient()
         {
             InitializeComponent();
             this.btnDetailClient.Enabled = false;
             this.btnVoirContact.Enabled = false;
-            this.btnSupprimerClient.Enabled = false;
+            //this.btnSupprimerClient.Enabled = false;
         }
 
         private void afficheClients()
@@ -28,7 +29,7 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("ID Client", typeof(System.Int32)));
             dt.Columns.Add(new DataColumn("Raison sociale", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Nature", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Telephone", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
             dt.Columns.Add(new DataColumn("CA Client", typeof(System.Decimal)));
             dt.Columns.Add(new DataColumn("Effectif", typeof(System.Int32)));
 
@@ -44,7 +45,7 @@ namespace WindowsFormsApplication1
                 dr[5] = Donnees.listClient[i].Effectif;
                 dt.Rows.Add(dr);
             }
-            this.grdClient.DataSource = dt;
+            this.grdClient.DataSource = dt.DefaultView;
         }
 
         private void frmGestionClient_Load(object sender, EventArgs e)
@@ -53,7 +54,7 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("ID Client", typeof(System.Int32)));
             dt.Columns.Add(new DataColumn("Raison sociale", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Nature", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Telephone", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
             dt.Columns.Add(new DataColumn("CA Client", typeof(System.Decimal)));
             dt.Columns.Add(new DataColumn("Effectif", typeof(System.Int32)));
             this.grdClient.DataSource = dt.DefaultView;
@@ -98,11 +99,11 @@ namespace WindowsFormsApplication1
         }
         private void grdClient_DoubleClick(object sender, EventArgs e)
         {
-            afficheDetailClient();
+            this.afficheDetailClient();
         }
         private void btnDetailClient_Click(object sender, EventArgs e)
         {
-            afficheDetailClient();
+            this.afficheDetailClient();
         }
 
         private void afficheDetailClient()
@@ -113,15 +114,23 @@ namespace WindowsFormsApplication1
                 Client leClient = Donnees.listClient[iClient];
                 if (!isFormOpen())  //si la form client n'est pas encore ouverte
                 {
-                    frmVisuClient frmVisu = new frmVisuClient(leClient); //on crée une instance de la form client
-                    frmVisu.Show(); //on l'affiche
-                    frmVisu.TopMost = true; //on force la form client au premier plan
+                    this.frmVisu = new frmVisuClient(leClient); //on crée une instance de la form client
+                    this.frmVisu.Show(); //on l'affiche
+                    this.frmVisu.TopMost = true; //on force la form client au premier plan
+                    this.frmVisu.FormClosing += new FormClosingEventHandler(this.fermeVisu);
                     Donnees.listFrmVisuClient.Add(leClient.IdClient, frmVisu); //ajoute au dico le couple (idclient,frmvisu)
+                    
+                    //this.afficheClients();
+                    //this.grdClient.Refresh();
                 } else
                 {
                     MessageBox.Show(new Form { TopMost = true },"Cette fenêtre client est déjà ouverte", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+        public void fermeVisu(object sender, FormClosingEventArgs e)
+        {
+            this.afficheClients();
         }
 
         private bool isFormOpen()
@@ -183,6 +192,30 @@ namespace WindowsFormsApplication1
             {
                 this.btnDetailClient.Enabled = false;
                 this.btnVoirContact.Enabled = false;
+            }
+        }
+
+        private void btnModifierClient_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRechercher_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ((DataView)(this.grdClient.DataSource)).RowFilter = string.Format("CONVERT([ID Client],System.String) like '%{0}%'",this.txtRechercher.Text);
+                /*((DataView)(this.grdClient.DataSource)).RowFilter = string.Format("[Raison sociale] like '%{0}%'",this.txtRechercher.Text);
+                ((DataView)(this.grdClient.DataSource)).RowFilter = string.Format("Nature like '%{0}%'",this.txtRechercher.Text);
+                
+                ((DataView)(this.grdClient.DataSource)).RowFilter = "Téléphone like'%" + this.txtRechercher.Text + "%'";
+                ((DataView)(this.grdClient.DataSource)).RowFilter = "CONVERT([CA Client],System.String) like'%" + this.txtRechercher.Text + "%'";
+                ((DataView)(this.grdClient.DataSource)).RowFilter = "Convert(Effectif,System.String) like'%" + this.txtRechercher.Text + "%'";
+                */
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :\n" + ex.Message, "Recherche ID Client");
             }
         }
     }

@@ -31,11 +31,12 @@
             this.gbxListeContact = new System.Windows.Forms.GroupBox();
             this.grdContact = new System.Windows.Forms.DataGridView();
             this.gbxAjoutContact = new System.Windows.Forms.GroupBox();
+            this.btnModifierContact = new System.Windows.Forms.Button();
             this.btnRaz = new System.Windows.Forms.Button();
             this.btnSupprimerContact = new System.Windows.Forms.Button();
-            this.btnAjouterContact = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAjouterContact = new System.Windows.Forms.Button();
             this.lblFonctionContact = new System.Windows.Forms.Label();
             this.lblIdContact = new System.Windows.Forms.Label();
             this.txtIdContact = new System.Windows.Forms.TextBox();
@@ -51,7 +52,6 @@
             this.btnValiderClient = new System.Windows.Forms.Button();
             this.btnReinitialiser = new System.Windows.Forms.Button();
             this.btnQuitter = new System.Windows.Forms.Button();
-            this.btnModifierContact = new System.Windows.Forms.Button();
             this.gbxListeContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).BeginInit();
             this.gbxAjoutContact.SuspendLayout();
@@ -144,6 +144,15 @@
             this.gbxAjoutContact.TabStop = false;
             this.gbxAjoutContact.Text = "Contact sélectionné :";
             // 
+            // btnModifierContact
+            // 
+            this.btnModifierContact.Location = new System.Drawing.Point(90, 91);
+            this.btnModifierContact.Name = "btnModifierContact";
+            this.btnModifierContact.Size = new System.Drawing.Size(78, 39);
+            this.btnModifierContact.TabIndex = 66;
+            this.btnModifierContact.Text = "Modifier un contact";
+            this.btnModifierContact.Click += new System.EventHandler(this.btnModifierContact_Click);
+            // 
             // btnRaz
             // 
             this.btnRaz.Location = new System.Drawing.Point(174, 91);
@@ -163,15 +172,6 @@
             this.btnSupprimerContact.UseVisualStyleBackColor = true;
             this.btnSupprimerContact.Click += new System.EventHandler(this.btnSupprimerContact_Click);
             // 
-            // btnAjouterContact
-            // 
-            this.btnAjouterContact.Location = new System.Drawing.Point(6, 91);
-            this.btnAjouterContact.Name = "btnAjouterContact";
-            this.btnAjouterContact.Size = new System.Drawing.Size(78, 39);
-            this.btnAjouterContact.TabIndex = 64;
-            this.btnAjouterContact.Text = "Ajouter un contact";
-            this.btnAjouterContact.Click += new System.EventHandler(this.btnAjouterContact_Click);
-            // 
             // textBox1
             // 
             this.textBox1.Enabled = false;
@@ -189,6 +189,15 @@
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 36;
             this.label1.Text = "Total Heures :";
+            // 
+            // btnAjouterContact
+            // 
+            this.btnAjouterContact.Location = new System.Drawing.Point(6, 91);
+            this.btnAjouterContact.Name = "btnAjouterContact";
+            this.btnAjouterContact.Size = new System.Drawing.Size(78, 39);
+            this.btnAjouterContact.TabIndex = 64;
+            this.btnAjouterContact.Text = "Ajouter un contact";
+            this.btnAjouterContact.Click += new System.EventHandler(this.btnAjouterContact_Click);
             // 
             // lblFonctionContact
             // 
@@ -288,6 +297,7 @@
             this.btnDeverrouiller.TabIndex = 59;
             this.btnDeverrouiller.Text = "Dévérrouiller";
             this.btnDeverrouiller.UseVisualStyleBackColor = true;
+            this.btnDeverrouiller.Click += new System.EventHandler(this.btnDeverrouiller_Click);
             // 
             // btnValiderClient
             // 
@@ -318,15 +328,6 @@
             this.btnQuitter.Text = "Quitter";
             this.btnQuitter.UseVisualStyleBackColor = true;
             this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
-            // 
-            // btnModifierContact
-            // 
-            this.btnModifierContact.Location = new System.Drawing.Point(90, 91);
-            this.btnModifierContact.Name = "btnModifierContact";
-            this.btnModifierContact.Size = new System.Drawing.Size(78, 39);
-            this.btnModifierContact.TabIndex = 66;
-            this.btnModifierContact.Text = "Modifier un contact";
-            this.btnModifierContact.Click += new System.EventHandler(this.btnModifierContact_Click);
             // 
             // frmVisuClient
             // 

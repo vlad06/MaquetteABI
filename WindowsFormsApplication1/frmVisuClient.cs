@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
     public partial class frmVisuClient : WindowsFormsApplication1.frmClient
     {
         private Client leClient;    //leClient permet de stocker le client passé en paramètre au constructeur de la form
-        private Contact leContact;
+        private Contact leContact;  //leContact permet d'avoir un contact global sur lequel on pourra travailler
         /// <summary>
         /// Ce constructeur reçoit un client passé en paramètre par la fenêtre appelante (frmGestionClient)
         /// </summary>
@@ -22,7 +22,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             this.Size = new Size(370, 475); //on cache les contacts
         }
-        /*public frmVisuClient()
+        /*public frmVisuClient()    //constructeur en attente de test en vue de remplacer le form ajoutClient
         {
             InitializeComponent();
             this.Size = new Size(370, 475);
@@ -66,7 +66,7 @@ namespace WindowsFormsApplication1
                 //dr[5] = Donnees.listClient[i].TotalHeures;
                 dt.Rows.Add(dr);
             }
-            this.grdContact.DataSource = dt;
+            this.grdContact.DataSource = dt.DefaultView;
         }
         private void afficheContact(Contact unContact)
         {
@@ -86,11 +86,22 @@ namespace WindowsFormsApplication1
             this.txtFonctionContact.Text = "";
 
         }
-        private bool isIdUnique(int idContact)
+        private bool isIdContactUnique(int idContact)
         {
             foreach (Contact cl in leClient.ListContact)
             {
                 if (idContact == cl.IdContact)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool isIdClientUnique(int idClient)
+        {
+            foreach (Client cl in Donnees.listClient)
+            {
+                if (idClient == cl.IdClient && idClient != 0)
                 {
                     return false;
                 }
@@ -103,14 +114,6 @@ namespace WindowsFormsApplication1
             Contact nouveauContact = new Contact();
             try
             {
-                /*if (!isIdUnique(int.Parse(txtIdContact.Text.Trim())))
-                {
-                    MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    nouveauContact.IdContact = int.Parse(txtIdContact.Text.Trim());
-                }*/
                 nouveauContact.IdContact = int.Parse(txtIdContact.Text.Trim());
                 nouveauContact.NomContact = txtNomContact.Text;
                 nouveauContact.PrenomContact = txtPrenomContact.Text;
@@ -126,6 +129,7 @@ namespace WindowsFormsApplication1
                 return false;
             }
         }
+
         private bool modifieClient()
         {
             try
@@ -173,8 +177,8 @@ namespace WindowsFormsApplication1
             {
                 btnAfficherContact.Text = "Cacher les contacts";
                 this.Size = new Size(790, 475);
-                this.gbxAjoutContact.Enabled = true;
-                this.gbxListeContact.Enabled = true;
+                //this.gbxAjoutContact.Enabled = true;
+                //this.gbxListeContact.Enabled = true;
                 this.Show();
                 majGrdContacts();
             }
@@ -182,8 +186,8 @@ namespace WindowsFormsApplication1
             {
                 btnAfficherContact.Text = "Afficher les contacts >>";
                 this.Size = new Size(370, 475);
-                this.gbxAjoutContact.Enabled = false;
-                this.gbxListeContact.Enabled = false;
+                //this.gbxAjoutContact.Enabled = false;
+                //this.gbxListeContact.Enabled = false;
                 this.Show();
             }
         }
@@ -196,6 +200,7 @@ namespace WindowsFormsApplication1
         private void frmVisuClient_Load(object sender, EventArgs e)
         {
             this.afficheClient(this.leClient);
+            this.readable();
             DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("ID Contact", typeof(System.Int32)));
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
@@ -209,6 +214,7 @@ namespace WindowsFormsApplication1
         {
             if (this.modifieClient())
             {
+                
                 this.Close();
             }
         }
@@ -228,33 +234,42 @@ namespace WindowsFormsApplication1
 
         }
 
-      /*
+      
         private void readable()
         {
-            this.txtRaisonSociale.Enabled = false;
             this.txtIdClient.Enabled = false;
-            this.txtTelephone.Enabled = false;
+            this.txtRaisonSociale.Enabled = false;
             this.cbxNature.Enabled = false;
             this.cbxTypeSociete.Enabled = false;
-            this.txtAdresse.Enabled = false;
+            this.cbxActivite.Enabled = false;
             this.txtCa.Enabled = false;
             this.txtEffectif.Enabled = false;
+            this.txtTelephone.Enabled = false;
+            this.txtAdresse.Enabled = false;
             this.txtCommentComm.Enabled = false;
+            this.gbxAjoutContact.Enabled = false;
+            this.gbxListeContact.Enabled = false;
+            this.grdContact.Enabled = false;
+
         }
 
         private void writeable()
         {
-            this.txtRaisonSociale.Enabled = true;
             this.txtIdClient.Enabled = true;
-            this.txtTelephone.Enabled = true;
+            this.txtRaisonSociale.Enabled = true;
             this.cbxNature.Enabled = true;
             this.cbxTypeSociete.Enabled = true;
-            this.txtAdresse.Enabled = true;
+            this.cbxActivite.Enabled = true;
             this.txtCa.Enabled = true;
             this.txtEffectif.Enabled = true;
+            this.txtTelephone.Enabled = true;
+            this.txtAdresse.Enabled = true;
             this.txtCommentComm.Enabled = true;
+            this.gbxAjoutContact.Enabled = true;
+            this.gbxListeContact.Enabled = true;
+            this.grdContact.Enabled = true;
         }
-        */
+        
 
         private void btnSupprimerContact_Click(object sender, EventArgs e)
         {
@@ -291,7 +306,11 @@ namespace WindowsFormsApplication1
 
         private void btnModifierContact_Click(object sender, EventArgs e)
         {
-            if (!isIdUnique(int.Parse(txtIdContact.Text.Trim())))
+            if (txtIdContact.Text == "")
+            {
+                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
+            }
+            else if (!isIdContactUnique(int.Parse(txtIdContact.Text.Trim())))
             {
                 MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
             }
@@ -302,7 +321,11 @@ namespace WindowsFormsApplication1
         }
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
-            if (!isIdUnique(int.Parse(txtIdContact.Text.Trim())))
+            if(txtIdContact.Text == "")
+            {
+                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
+            }
+            else if (!isIdContactUnique(int.Parse(txtIdContact.Text.Trim())))
             {
                 MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
             }
@@ -310,6 +333,22 @@ namespace WindowsFormsApplication1
             {
                 Contact.nContact++;
                 majGrdContacts();
+            }
+        }
+
+        private void btnDeverrouiller_Click(object sender, EventArgs e)
+        {
+            if (btnDeverrouiller.Text == "Dévérrouiller")
+            {
+                btnDeverrouiller.Text = "Vérrouiller";
+                this.writeable();
+                this.Show();
+            }
+            else
+            {
+                btnDeverrouiller.Text = "Dévérrouiller";
+                this.readable();
+                this.Show();
             }
         }
     }

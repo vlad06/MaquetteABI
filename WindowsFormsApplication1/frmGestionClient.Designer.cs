@@ -167,6 +167,7 @@
             this.txtRechercher.Name = "txtRechercher";
             this.txtRechercher.Size = new System.Drawing.Size(182, 20);
             this.txtRechercher.TabIndex = 7;
+            this.txtRechercher.TextChanged += new System.EventHandler(this.txtRechercher_TextChanged);
             // 
             // btnRechercher
             // 
@@ -195,6 +196,7 @@
             this.btnModifierClient.TabIndex = 11;
             this.btnModifierClient.Text = "Modifier un client";
             this.btnModifierClient.UseVisualStyleBackColor = true;
+            this.btnModifierClient.Click += new System.EventHandler(this.btnModifierClient_Click);
             // 
             // btnAjouterClient
             // 

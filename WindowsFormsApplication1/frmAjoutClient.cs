@@ -32,16 +32,6 @@ namespace WindowsFormsApplication1
             Client nouveauClient = new Client();
             try
             {
-                /*
-                if (!isIdUnique(int.Parse(base.txtIdClient.Text.Trim())))
-                {
-                    MessageBox.Show(new Form { TopMost = true }, "l'ID du client doit être unique !!", "Attention", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
-                }
-                */
                 nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
                 nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
                 nouveauClient.Nature = base.cbxNature.Text;
@@ -61,26 +51,6 @@ namespace WindowsFormsApplication1
                 return false;
             }
         }
-
-       /* private void btnVoirContact_Click(object sender, EventArgs e)
-        {
-            if(btnVoirContacts.Text== "Voir les contacts >>")
-            {
-                btnVoirContacts.Text = "Cacher les contacts";
-                this.Size = new Size(790, 475);
-                this.gbxAjoutContact.Enabled = true;
-                this.gbxListeContact.Enabled = true;
-                this.Show();
-            }
-            else
-            {
-                btnVoirContacts.Text = "Voir les contacts >>";
-                this.Size = new Size(370, 475);
-                this.gbxAjoutContact.Enabled = false;
-                this.gbxListeContact.Enabled = false;
-                this.Show();
-            }
-        }*/
 
         private void btnValiderClient_Click(object sender, EventArgs e)
         {
