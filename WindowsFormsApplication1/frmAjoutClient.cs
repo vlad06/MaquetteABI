@@ -13,29 +13,16 @@ namespace WindowsFormsApplication1
         public frmAjoutClient()
         {
             InitializeComponent();
-            //this.Size = new Size(370, 475);
+            this.txtIdClient.Text = Client.nClient.ToString();
+            this.txtIdClient.Enabled = false;
         }
-
-        /*
-        private bool isIdClientUnique(int idClient)
-        {
-            foreach (Client cl in Donnees.listClient)
-            {
-                if (idClient == cl.IdClient && idClient != 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        */
 
         private bool instancieClient()
         {
             Client nouveauClient = new Client();
             try
             {
-                //nouveauClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
+                nouveauClient.IdClient = Client.nClient;//int.Parse(base.txtIdClient.Text.Trim());
                 nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
                 nouveauClient.Nature = base.cbxNature.Text;
                 nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
@@ -61,15 +48,8 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show(new Form { TopMost = true }, "l'ID du client ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
             }
-            else if (!isIdClientUnique(int.Parse(base.txtIdClient.Text.Trim())))
-            {
-                MessageBox.Show(new Form { TopMost = true }, "l'ID du client doit être unique !!", "Attention", MessageBoxButtons.OK);
-            }
             else if (this.instancieClient())
             {
-                
-                //Client.nClient++;
-                Client.idClient++;
                 this.DialogResult = DialogResult.OK;
             }
         }
@@ -77,11 +57,6 @@ namespace WindowsFormsApplication1
         private void btnAnnulerClient_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnAjouterContact_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

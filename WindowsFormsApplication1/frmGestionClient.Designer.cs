@@ -47,7 +47,7 @@
             this.btnAfficheListe = new System.Windows.Forms.Button();
             this.btnConvert = new System.Windows.Forms.Button();
             this.lblRecherche = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnSupprimerClient = new System.Windows.Forms.Button();
             this.btnAjouterClient = new System.Windows.Forms.Button();
@@ -172,11 +172,11 @@
             // 
             // btnModifierClient
             // 
-            this.btnModifierClient.Location = new System.Drawing.Point(59, 349);
+            this.btnModifierClient.Location = new System.Drawing.Point(32, 243);
             this.btnModifierClient.Name = "btnModifierClient";
-            this.btnModifierClient.Size = new System.Drawing.Size(76, 52);
+            this.btnModifierClient.Size = new System.Drawing.Size(121, 52);
             this.btnModifierClient.TabIndex = 11;
-            this.btnModifierClient.Text = "Modifier un client";
+            this.btnModifierClient.Text = "Passer les clients au premier plan";
             this.btnModifierClient.UseVisualStyleBackColor = true;
             this.btnModifierClient.Click += new System.EventHandler(this.btnModifierClient_Click);
             // 
@@ -192,21 +192,21 @@
             // 
             // btnAfficheListe
             // 
-            this.btnAfficheListe.Location = new System.Drawing.Point(12, 185);
+            this.btnAfficheListe.Location = new System.Drawing.Point(12, 170);
             this.btnAfficheListe.Name = "btnAfficheListe";
             this.btnAfficheListe.Size = new System.Drawing.Size(163, 23);
             this.btnAfficheListe.TabIndex = 0;
-            this.btnAfficheListe.Text = "Afficher liste clients";
+            this.btnAfficheListe.Text = "Afficher liste clients test";
             this.btnAfficheListe.UseVisualStyleBackColor = true;
             this.btnAfficheListe.Click += new System.EventHandler(this.btnAfficheListe_Click);
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(99, 416);
+            this.btnConvert.Location = new System.Drawing.Point(12, 541);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(78, 52);
             this.btnConvert.TabIndex = 14;
-            this.btnConvert.Text = "Convert to  Excel";
+            this.btnConvert.Text = "Export to  Excel";
             this.toolTip1.SetToolTip(this.btnConvert, "Convertit la liste de\r\nclients en feuille excel");
             this.btnConvert.UseVisualStyleBackColor = true;
             // 
@@ -219,18 +219,15 @@
             this.lblRecherche.TabIndex = 15;
             this.lblRecherche.Text = "Rechercher : ";
             // 
-            // button1
+            // btnImport
             // 
-            this.button1.Location = new System.Drawing.Point(15, 416);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 52);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Import from  Excel";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            this.btnImport.Location = new System.Drawing.Point(100, 541);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(78, 52);
+            this.btnImport.TabIndex = 16;
+            this.btnImport.Text = "Import from  Excel";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnSupprimerClient
             // 
@@ -261,7 +258,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1091, 597);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.lblRecherche);
             this.Controls.Add(this.btnConvert);
             this.Controls.Add(this.btnSupprimerClient);
@@ -275,6 +272,7 @@
             this.MainMenuStrip = this.msGestionClient;
             this.Name = "frmGestionClient";
             this.Text = "gestionClient";
+            this.Activated += new System.EventHandler(this.frmGestionClient_Activated);
             this.Load += new System.EventHandler(this.frmGestionClient_Load);
             this.msGestionClient.ResumeLayout(false);
             this.msGestionClient.PerformLayout();
@@ -306,7 +304,7 @@
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem2;
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.Label lblRecherche;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ToolTip toolTip1;
     }
 }

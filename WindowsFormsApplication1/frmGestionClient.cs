@@ -18,8 +18,6 @@ namespace WindowsFormsApplication1
         public frmGestionClient()
         {
             InitializeComponent();
-            this.btnDetailClient.Enabled = false;
-            //this.btnSupprimerClient.Enabled = false;
         }
 
         private void afficheClients()
@@ -65,7 +63,7 @@ namespace WindowsFormsApplication1
             for (int i = 1; i < 5; i++)
             {
                 Client Client1 = new Client();
-                Client1.IdClient = i;
+                Client1.IdClient = Client.nClient;
                 Client1.RaisonSociale = "SA " + i;
                 Client1.Nature = "Principale";
                 Client1.TypeSociete = "Privé";
@@ -76,6 +74,7 @@ namespace WindowsFormsApplication1
                 Client1.Effectif = i * 2;
                 Client1.CommentComm = i + ") Putain de bordel de merde...";
                 Donnees.listClient.Add(Client1);
+                Client.nClient++;
             }
             this.afficheClients();
         }
@@ -84,9 +83,10 @@ namespace WindowsFormsApplication1
         {
             this.frmAjout = new frmAjoutClient();
             if (this.frmAjout.ShowDialog() == DialogResult.OK)
-                {
-                    this.afficheClients();
-                }
+            {
+                this.afficheClients();
+                Client.nClient++;
+            }
         }
 
         private void btnAfficheListe_Click(object sender, EventArgs e)
@@ -121,7 +121,9 @@ namespace WindowsFormsApplication1
                 }
                 else
                 {
-                    MessageBox.Show(new Form { TopMost = true },"Cette fenêtre client est déjà ouverte", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Donnees.listFrmVisuClient.TryGetValue(leClient.IdClient, out frmVisu);
+                    frmVisu.TopMost = true;
+                    //MessageBox.Show(new Form { TopMost = true },"Cette fenêtre client est déjà ouverte", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -164,7 +166,7 @@ namespace WindowsFormsApplication1
                             }
                             Donnees.listFrmVisuClient.Remove(leClient.IdClient);
                             Donnees.listClient.Remove(leClient);
-                            Client.nClient--;
+                            //Client.nClient--;
                             afficheClients();
                         }
                     }
@@ -176,7 +178,6 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-
         }
 
         private void grdClient_SelectionChanged(object sender, EventArgs e)
@@ -192,7 +193,7 @@ namespace WindowsFormsApplication1
 
         private void btnModifierClient_Click(object sender, EventArgs e)
         {
-            
+            this.TopMost = false;
         }
 
         private void txtRechercher_TextChanged(object sender, EventArgs e)
@@ -215,9 +216,51 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        private void btnImport_Click(object sender, EventArgs e)
         {
+            /*
+            try
+            {
+                OleDbConnection MyConnection;
+                DataSet DtSet;
+                OleDbDataAdapter MyCommand;
+                MyConnection = new OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:/Users/ADI/Desktop/testABI.xls';Extended Properties=Excel 8.0;");
+                MyCommand = new OleDbDataAdapter("select * from [Sheet1$]", MyConnection);
+                //MyCommand.TableMappings.Add("Table", "TestTable");
+                DtSet = new DataSet();
+                MyCommand.Fill(DtSet);
+                grdClient.DataSource = DtSet.Tables[0];
+                MyConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            */
+            try
+            {
+                OleDbConnection conn = new OleDbConnection();
+                conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\ADI\Desktop\testABI.xls" +
+                    @";Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1;ImportMixedTypes=Text;TypeGuessRows=0""";
+                OleDbCommand command = new OleDbCommand
+                    (
+                        "SELECT ID Client, Raison Sociale, Nature, Téléphone, Chiffre d'affaire, Effectif" +
+                        "FROM [Sheet1$]", conn
+                    );
+                DataSet dsClients = new DataSet();
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                adapter.Fill(dsClients);
+                grdClient.DataSource = dsClients.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
+        private void frmGestionClient_Activated(object sender, EventArgs e)
+        {
+            this.TopMost = true;
         }
     }
 }

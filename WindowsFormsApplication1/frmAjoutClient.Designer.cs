@@ -56,6 +56,7 @@
             // 
             // txtIdClient
             // 
+            this.txtIdClient.ReadOnly = true;
             this.txtIdClient.Size = new System.Drawing.Size(158, 20);
             // 
             // txtRaisonSociale
@@ -68,9 +69,9 @@
             // 
             // btnAnnulerClient
             // 
-            this.btnAnnulerClient.Location = new System.Drawing.Point(179, 408);
+            this.btnAnnulerClient.Location = new System.Drawing.Point(270, 46);
             this.btnAnnulerClient.Name = "btnAnnulerClient";
-            this.btnAnnulerClient.Size = new System.Drawing.Size(70, 23);
+            this.btnAnnulerClient.Size = new System.Drawing.Size(78, 34);
             this.btnAnnulerClient.TabIndex = 47;
             this.btnAnnulerClient.Text = "Annuler";
             this.btnAnnulerClient.UseVisualStyleBackColor = true;
@@ -78,9 +79,9 @@
             // 
             // btnAjouterClient
             // 
-            this.btnAjouterClient.Location = new System.Drawing.Point(255, 408);
+            this.btnAjouterClient.Location = new System.Drawing.Point(270, 6);
             this.btnAjouterClient.Name = "btnAjouterClient";
-            this.btnAjouterClient.Size = new System.Drawing.Size(93, 23);
+            this.btnAjouterClient.Size = new System.Drawing.Size(78, 34);
             this.btnAjouterClient.TabIndex = 48;
             this.btnAjouterClient.Text = "Ajouter un client";
             this.btnAjouterClient.UseVisualStyleBackColor = true;
@@ -89,7 +90,7 @@
             // frmAjoutClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(357, 436);
+            this.ClientSize = new System.Drawing.Size(354, 406);
             this.Controls.Add(this.btnAjouterClient);
             this.Controls.Add(this.btnAnnulerClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

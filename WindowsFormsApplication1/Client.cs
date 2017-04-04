@@ -9,9 +9,9 @@ namespace WindowsFormsApplication1
     public class Client
     {
 
-        public static int nClient;  //le nombre de clients crées
+        public static int nClient=1;  //le nombre de clients crées
 
-        public static Int32 idClient;   //le numéro de client personnalisable par l'utilisateur
+        private Int32 idClient;   //le numéro de client incrémenté pour chaque nouveau client crée
         private String raisonSociale;   //raison sociale du client
         private String typeSociete;  //public ou privé
         private String activite;  //secteur d'activité du client (pour l'instant agro, industrie, ...)
@@ -23,29 +23,29 @@ namespace WindowsFormsApplication1
         private String commentComm; //commentaire commercial concernant le projet
         private List<Contact> listContact = new List<Contact>(); //liste de contact du client
 
-        /*
-                public Client(int numeroClient, string raisonSociale, string typeClient, string activiteClient, string adresseClient, string telephoneClient, string faxClient, string emailClient, string natureClient, string domaineClient, decimal caClient, int effectifClient, string commentComm)
-                {
-                    this.numeroClient = numeroClient;
-                    this.raisonSociale = raisonSociale;
-                    this.typeClient = typeClient;
-                    this.activiteClient = activiteClient;
-                    this.adresseClient = adresseClient;
-                    this.telephoneClient = telephoneClient;
-                    this.faxClient = faxClient;
-                    this.emailClient = emailClient;
-                    this.natureClient = natureClient;
-                    this.domaineClient = domaineClient;
-                    this.caClient = caClient;
-                    this.effectifClient = effectifClient;
-                    this.commentComm = commentComm;
-                }
-                public Client()
-                {
+        public Client(int idClient, string raisonSociale, string typeSociete, string activite, string adresse,
+            string telephone, string nature, decimal ca, int effectif, string commentComm)
+        {
+            this.IdClient = idClient;
+            this.RaisonSociale = raisonSociale;
+            this.TypeSociete = typeSociete;
+            this.Activite = activite;
+            this.Adresse = adresse;
+            this.Telephone = telephone;
+            this.Nature = nature;
+            this.Ca = ca;
+            this.Effectif = effectif;
+            this.CommentComm = commentComm;
+        }
+        public Client()
+        {
 
-                }
-        */
-
+        }
+        public int IdClient
+        {
+            get { return idClient; }
+            set { idClient = value; }
+        }
         public string RaisonSociale
         {
             get { return raisonSociale; }

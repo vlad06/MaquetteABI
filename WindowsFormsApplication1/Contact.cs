@@ -8,9 +8,9 @@ namespace WindowsFormsApplication1
 {
     public class Contact
     {
-        public static int nContact;
+        public static int nContact=1;
 
-        private Int32 idContact=0;
+        private Int32 idContact;
         private String nomContact;
         private String prenomContact;
         private String telContact;
@@ -29,11 +29,6 @@ namespace WindowsFormsApplication1
             this.PrenomContact = prenomContact;
             this.TelContact = telContact;
             this.FonctionContact = fonctionContact;
-        }
-
-        public static int NContact
-        {
-            get { return nContact; }
         }
 
         public int IdContact

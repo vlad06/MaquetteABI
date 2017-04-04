@@ -21,6 +21,9 @@ namespace WindowsFormsApplication1
             this.leClient = unClient; //on assigne le client passé en paramètre à notre attribut déclaré plus haut
             InitializeComponent();
             this.Size = new Size(370, 475); //on cache les contacts
+            this.txtIdClient.Enabled = false;
+            this.txtIdContact.Enabled = false;
+            this.txtIdContact.Text = Contact.nContact.ToString();
         }
         /// <summary>
         /// on remplit les champs du form de visualisation avec les propriétés de l'objet passé en paramètre
@@ -77,38 +80,6 @@ namespace WindowsFormsApplication1
             this.txtFonctionContact.Text = unContact.FonctionContact;
         }
         /// <summary>
-        /// vérifie si l'id du contact n'existe pas déjà dans la liste de contacts associée au client leClient
-        /// </summary>
-        /// <param name="idContact"></param>
-        /// <returns></returns>
-        private bool isIdContactUnique(int idContact)
-        {
-            foreach (Contact cl in leClient.ListContact)
-            {
-                if (idContact == cl.IdContact)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        /// <summary>
-        /// vérifie si l'id du client n'existe pas déjà dans la liste de clients
-        /// </summary>
-        /// <param name="idClient"></param>
-        /// <returns></returns>
-        private bool isIdClientUnique(int idClient)
-        {
-            foreach (Client cl in Donnees.listClient)
-            {
-                if (idClient == cl.IdClient)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        /// <summary>
         /// tente d'instancier un contact, renvoie true si c'est possible et false sinon
         /// </summary>
         /// <returns></returns>
@@ -117,7 +88,7 @@ namespace WindowsFormsApplication1
             try
             {
                 leContact = new Contact();
-                leContact.IdContact = int.Parse(txtIdContact.Text.Trim());
+                leContact.IdContact = Contact.nContact;// int.Parse(txtIdContact.Text.Trim());
                 leContact.NomContact = txtNomContact.Text;
                 leContact.PrenomContact = txtPrenomContact.Text;
                 leContact.TelContact = txtTelephoneContact.Text;
@@ -221,13 +192,8 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show(new Form { TopMost = true }, "l'ID du client ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
             }
-            else if (!isIdClientUnique(int.Parse(txtIdClient.Text.Trim())))
-            {
-                MessageBox.Show(new Form { TopMost = true }, "l'ID du client doit être unique !!", "Attention", MessageBoxButtons.OK);
-            }
             else if (this.modifieClient())
             {
-                
                 this.Close();
             }
         }
@@ -250,7 +216,7 @@ namespace WindowsFormsApplication1
       
         private void readable()
         {
-            this.txtIdClient.Enabled = false;
+            //this.txtIdClient.Enabled = false;
             this.txtRaisonSociale.Enabled = false;
             this.cbxNature.Enabled = false;
             this.cbxTypeSociete.Enabled = false;
@@ -268,7 +234,7 @@ namespace WindowsFormsApplication1
 
         private void writeable()
         {
-            this.txtIdClient.Enabled = true;
+            //this.txtIdClient.Enabled = true;
             this.txtRaisonSociale.Enabled = true;
             this.cbxNature.Enabled = true;
             this.cbxTypeSociete.Enabled = true;
@@ -323,10 +289,6 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show(new Form { TopMost = true }, "l'ID du contact ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
             }
-            else if (!isIdContactUnique(int.Parse(txtIdContact.Text.Trim())))
-            {
-                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
-            }
             else if (this.modifieContact())
             {
                 majGrdContacts();
@@ -338,14 +300,11 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show(new Form { TopMost = true }, "l'ID du contact ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
             }
-            else if (!isIdContactUnique(int.Parse(txtIdContact.Text.Trim())))
-            {
-                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact doit être unique !!", "Attention", MessageBoxButtons.OK);
-            }
             else if (this.instancieContact())
             {
-                Contact.nContact++;
                 majGrdContacts();
+                Contact.nContact++;
+                this.txtIdContact.Text = Contact.nContact.ToString();
             }
         }
 
@@ -363,6 +322,11 @@ namespace WindowsFormsApplication1
                 this.readable();
                 this.Show();
             }
+        }
+
+        private void frmVisuClient_Activated(object sender, EventArgs e)
+        {
+            this.txtIdContact.Text = Contact.nContact.ToString();
         }
     }
 }
