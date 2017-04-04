@@ -19,7 +19,6 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             this.btnDetailClient.Enabled = false;
-            this.btnVoirContact.Enabled = false;
             //this.btnSupprimerClient.Enabled = false;
         }
 
@@ -119,10 +118,8 @@ namespace WindowsFormsApplication1
                     this.frmVisu.TopMost = true; //on force la form client au premier plan
                     this.frmVisu.FormClosing += new FormClosingEventHandler(this.fermeVisu);
                     Donnees.listFrmVisuClient.Add(leClient.IdClient, frmVisu); //ajoute au dico le couple (idclient,frmvisu)
-                    
-                    //this.afficheClients();
-                    //this.grdClient.Refresh();
-                } else
+                }
+                else
                 {
                     MessageBox.Show(new Form { TopMost = true },"Cette fenêtre client est déjà ouverte", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -146,40 +143,40 @@ namespace WindowsFormsApplication1
 
         private void btnSupprimerClient_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show(new Form { TopMost = true }, "Etes-vous sûr de vouloir supprimer le client sélectionné ?", "Attention",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            int iClient = this.grdClient.CurrentRow.Index;
-            Client leClient = Donnees.listClient[iClient];
-            if (dr == DialogResult.OK)
+            if (this.grdClient.CurrentRow != null)
             {
-                if (isFormOpen())
+                DialogResult dr = MessageBox.Show(new Form { TopMost = true }, "Etes-vous sûr de vouloir supprimer le client sélectionné ?", "Attention",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                int iClient = this.grdClient.CurrentRow.Index;
+                Client leClient = Donnees.listClient[iClient];
+                if (dr == DialogResult.OK)
                 {
-                    dr=MessageBox.Show(new Form { TopMost = true }, "La suppression de ce client entrainera la fermeture de la fenêtre associée, supprimer quand même ?", "Attention",
-                        MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    if (dr == DialogResult.OK)
+                    if (isFormOpen())
                     {
-                        if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))
+                        dr = MessageBox.Show(new Form { TopMost = true }, "La suppression de ce client entrainera la fermeture de la fenêtre associée, supprimer quand même ?", "Attention",
+                            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                        if (dr == DialogResult.OK)
                         {
-                            frmVisuClient fvc = Donnees.listFrmVisuClient[leClient.IdClient];
-                            fvc.Close();
+                            if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))
+                            {
+                                frmVisuClient fvc = Donnees.listFrmVisuClient[leClient.IdClient];
+                                fvc.Close();
+                            }
+                            Donnees.listFrmVisuClient.Remove(leClient.IdClient);
+                            Donnees.listClient.Remove(leClient);
+                            Client.nClient--;
+                            afficheClients();
                         }
+                    }
+                    else
+                    {
                         Donnees.listFrmVisuClient.Remove(leClient.IdClient);
                         Donnees.listClient.Remove(leClient);
-                        Client.nClient--;
                         afficheClients();
                     }
                 }
-                else
-                {
-                    Donnees.listFrmVisuClient.Remove(leClient.IdClient);
-                    Donnees.listClient.Remove(leClient);
-                    afficheClients();
-                }
             }
-            if(Client.nClient == 0)
-            {
-                this.btnSupprimerClient.Enabled = false;
-            }
+
         }
 
         private void grdClient_SelectionChanged(object sender, EventArgs e)
@@ -187,36 +184,40 @@ namespace WindowsFormsApplication1
             if(this.grdClient.CurrentRow != null)
             {
                 this.btnDetailClient.Enabled = true;
-                this.btnVoirContact.Enabled = true;
             }else
             {
                 this.btnDetailClient.Enabled = false;
-                this.btnVoirContact.Enabled = false;
             }
         }
 
         private void btnModifierClient_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void txtRechercher_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                ((DataView)(this.grdClient.DataSource)).RowFilter = string.Format("CONVERT([ID Client],System.String) like '%{0}%'",this.txtRechercher.Text);
-                /*((DataView)(this.grdClient.DataSource)).RowFilter = string.Format("[Raison sociale] like '%{0}%'",this.txtRechercher.Text);
-                ((DataView)(this.grdClient.DataSource)).RowFilter = string.Format("Nature like '%{0}%'",this.txtRechercher.Text);
-                
-                ((DataView)(this.grdClient.DataSource)).RowFilter = "Téléphone like'%" + this.txtRechercher.Text + "%'";
-                ((DataView)(this.grdClient.DataSource)).RowFilter = "CONVERT([CA Client],System.String) like'%" + this.txtRechercher.Text + "%'";
-                ((DataView)(this.grdClient.DataSource)).RowFilter = "Convert(Effectif,System.String) like'%" + this.txtRechercher.Text + "%'";
-                */
+                string rechercheID = string.Format("CONVERT([ID Client],System.String) like '%{0}%'", this.txtRechercher.Text);
+                string rechercheRs = string.Format("OR [Raison sociale] like '%{0}%'", this.txtRechercher.Text);
+                string rechercheNature = string.Format("OR Nature like '%{0}%'", this.txtRechercher.Text);
+                string rechercheTel = string.Format("OR Téléphone like '%{0}%'", this.txtRechercher.Text);
+                string rechercheCa = string.Format("OR CONVERT([CA Client],System.String) like '%{0}%'", this.txtRechercher.Text);
+                string rechercheEffectif = string.Format("OR CONVERT(Effectif,System.String) like '%{0}%'", this.txtRechercher.Text);
+
+                ((DataView)(this.grdClient.DataSource)).RowFilter = rechercheID+rechercheRs+rechercheNature+rechercheTel+rechercheCa+rechercheEffectif;
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur :\n" + ex.Message, "Recherche ID Client");
             }
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
         }
     }
 }

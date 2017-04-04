@@ -101,7 +101,7 @@ namespace WindowsFormsApplication1
         {
             foreach (Client cl in Donnees.listClient)
             {
-                if (idClient == cl.IdClient && idClient != 0)
+                if (idClient == cl.IdClient)
                 {
                     return false;
                 }
@@ -111,15 +111,24 @@ namespace WindowsFormsApplication1
 
         private bool instancieContact()
         {
-            Contact nouveauContact = new Contact();
+            //Contact nouveauContact = new Contact();
             try
             {
+                /*
                 nouveauContact.IdContact = int.Parse(txtIdContact.Text.Trim());
                 nouveauContact.NomContact = txtNomContact.Text;
                 nouveauContact.PrenomContact = txtPrenomContact.Text;
                 nouveauContact.TelContact = txtTelephoneContact.Text;
                 nouveauContact.FonctionContact = txtFonctionContact.Text;
                 leClient.ListContact.Add(nouveauContact);
+                */
+                leContact = new Contact();
+                leContact.IdContact = int.Parse(txtIdContact.Text.Trim());
+                leContact.NomContact = txtNomContact.Text;
+                leContact.PrenomContact = txtPrenomContact.Text;
+                leContact.TelContact = txtTelephoneContact.Text;
+                leContact.FonctionContact = txtFonctionContact.Text;
+                leClient.ListContact.Add(leContact);
                 return true;
             }
             catch (Exception ex)
@@ -177,8 +186,6 @@ namespace WindowsFormsApplication1
             {
                 btnAfficherContact.Text = "Cacher les contacts";
                 this.Size = new Size(790, 475);
-                //this.gbxAjoutContact.Enabled = true;
-                //this.gbxListeContact.Enabled = true;
                 this.Show();
                 majGrdContacts();
             }
@@ -186,8 +193,6 @@ namespace WindowsFormsApplication1
             {
                 btnAfficherContact.Text = "Afficher les contacts >>";
                 this.Size = new Size(370, 475);
-                //this.gbxAjoutContact.Enabled = false;
-                //this.gbxListeContact.Enabled = false;
                 this.Show();
             }
         }
@@ -212,7 +217,15 @@ namespace WindowsFormsApplication1
 
         private void btnValiderClient_Click(object sender, EventArgs e)
         {
-            if (this.modifieClient())
+            if (txtIdClient.Text == "")
+            {
+                MessageBox.Show(new Form { TopMost = true }, "l'ID du client ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
+            }
+            else if (!isIdClientUnique(int.Parse(txtIdClient.Text.Trim())))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "l'ID du client doit être unique !!", "Attention", MessageBoxButtons.OK);
+            }
+            else if (this.modifieClient())
             {
                 
                 this.Close();

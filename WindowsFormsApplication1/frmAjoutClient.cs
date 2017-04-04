@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
             //this.Size = new Size(370, 475);
         }
 
-        private bool isIdUnique(int idClient)
+        private bool isIdClientUnique(int idClient)
         {
             foreach (Client cl in Donnees.listClient)
             {
@@ -54,7 +54,11 @@ namespace WindowsFormsApplication1
 
         private void btnValiderClient_Click(object sender, EventArgs e)
         {
-            if (!isIdUnique(int.Parse(base.txtIdClient.Text.Trim())))
+            if(this.txtIdClient.Text == "")
+            {
+                MessageBox.Show(new Form { TopMost = true }, "l'ID du client ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
+            }
+            else if (!isIdClientUnique(int.Parse(base.txtIdClient.Text.Trim())))
             {
                 MessageBox.Show(new Form { TopMost = true }, "l'ID du client doit être unique !!", "Attention", MessageBoxButtons.OK);
             }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.msGestionClient = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nouveauClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,15 +42,15 @@
             this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdClient = new System.Windows.Forms.DataGridView();
             this.txtRechercher = new System.Windows.Forms.TextBox();
-            this.btnRechercher = new System.Windows.Forms.Button();
-            this.btnSupprimerClient = new System.Windows.Forms.Button();
             this.btnModifierClient = new System.Windows.Forms.Button();
-            this.btnAjouterClient = new System.Windows.Forms.Button();
             this.btnDetailClient = new System.Windows.Forms.Button();
             this.btnAfficheListe = new System.Windows.Forms.Button();
-            this.btnVoirContact = new System.Windows.Forms.Button();
             this.btnConvert = new System.Windows.Forms.Button();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.lblRecherche = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnSupprimerClient = new System.Windows.Forms.Button();
+            this.btnAjouterClient = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.msGestionClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdClient)).BeginInit();
             this.SuspendLayout();
@@ -148,7 +149,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdClient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdClient.Location = new System.Drawing.Point(184, 62);
+            this.grdClient.Location = new System.Drawing.Point(184, 43);
             this.grdClient.MultiSelect = false;
             this.grdClient.Name = "grdClient";
             this.grdClient.ReadOnly = true;
@@ -156,63 +157,34 @@
             this.grdClient.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.grdClient.RowHeadersVisible = false;
             this.grdClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdClient.Size = new System.Drawing.Size(899, 531);
+            this.grdClient.Size = new System.Drawing.Size(899, 550);
             this.grdClient.TabIndex = 6;
             this.grdClient.SelectionChanged += new System.EventHandler(this.grdClient_SelectionChanged);
             this.grdClient.DoubleClick += new System.EventHandler(this.grdClient_DoubleClick);
             // 
             // txtRechercher
             // 
-            this.txtRechercher.Location = new System.Drawing.Point(184, 35);
+            this.txtRechercher.Location = new System.Drawing.Point(15, 43);
             this.txtRechercher.Name = "txtRechercher";
-            this.txtRechercher.Size = new System.Drawing.Size(182, 20);
+            this.txtRechercher.Size = new System.Drawing.Size(160, 20);
             this.txtRechercher.TabIndex = 7;
             this.txtRechercher.TextChanged += new System.EventHandler(this.txtRechercher_TextChanged);
             // 
-            // btnRechercher
-            // 
-            this.btnRechercher.Location = new System.Drawing.Point(372, 33);
-            this.btnRechercher.Name = "btnRechercher";
-            this.btnRechercher.Size = new System.Drawing.Size(107, 23);
-            this.btnRechercher.TabIndex = 4;
-            this.btnRechercher.Text = "Rechercher";
-            this.btnRechercher.UseVisualStyleBackColor = true;
-            // 
-            // btnSupprimerClient
-            // 
-            this.btnSupprimerClient.Location = new System.Drawing.Point(972, 33);
-            this.btnSupprimerClient.Name = "btnSupprimerClient";
-            this.btnSupprimerClient.Size = new System.Drawing.Size(111, 23);
-            this.btnSupprimerClient.TabIndex = 12;
-            this.btnSupprimerClient.Text = "Supprimer un client";
-            this.btnSupprimerClient.UseVisualStyleBackColor = true;
-            this.btnSupprimerClient.Click += new System.EventHandler(this.btnSupprimerClient_Click);
-            // 
             // btnModifierClient
             // 
-            this.btnModifierClient.Location = new System.Drawing.Point(858, 33);
+            this.btnModifierClient.Location = new System.Drawing.Point(59, 349);
             this.btnModifierClient.Name = "btnModifierClient";
-            this.btnModifierClient.Size = new System.Drawing.Size(108, 23);
+            this.btnModifierClient.Size = new System.Drawing.Size(76, 52);
             this.btnModifierClient.TabIndex = 11;
             this.btnModifierClient.Text = "Modifier un client";
             this.btnModifierClient.UseVisualStyleBackColor = true;
             this.btnModifierClient.Click += new System.EventHandler(this.btnModifierClient_Click);
             // 
-            // btnAjouterClient
-            // 
-            this.btnAjouterClient.Location = new System.Drawing.Point(734, 33);
-            this.btnAjouterClient.Name = "btnAjouterClient";
-            this.btnAjouterClient.Size = new System.Drawing.Size(118, 23);
-            this.btnAjouterClient.TabIndex = 10;
-            this.btnAjouterClient.Text = "Ajouter un client";
-            this.btnAjouterClient.UseVisualStyleBackColor = true;
-            this.btnAjouterClient.Click += new System.EventHandler(this.btnAjouterClient_Click);
-            // 
             // btnDetailClient
             // 
-            this.btnDetailClient.Location = new System.Drawing.Point(12, 105);
+            this.btnDetailClient.Location = new System.Drawing.Point(12, 214);
             this.btnDetailClient.Name = "btnDetailClient";
-            this.btnDetailClient.Size = new System.Drawing.Size(151, 23);
+            this.btnDetailClient.Size = new System.Drawing.Size(163, 23);
             this.btnDetailClient.TabIndex = 1;
             this.btnDetailClient.Text = "Details client";
             this.btnDetailClient.UseVisualStyleBackColor = true;
@@ -220,45 +192,82 @@
             // 
             // btnAfficheListe
             // 
-            this.btnAfficheListe.Location = new System.Drawing.Point(12, 76);
+            this.btnAfficheListe.Location = new System.Drawing.Point(12, 185);
             this.btnAfficheListe.Name = "btnAfficheListe";
-            this.btnAfficheListe.Size = new System.Drawing.Size(151, 23);
+            this.btnAfficheListe.Size = new System.Drawing.Size(163, 23);
             this.btnAfficheListe.TabIndex = 0;
             this.btnAfficheListe.Text = "Afficher liste clients";
             this.btnAfficheListe.UseVisualStyleBackColor = true;
             this.btnAfficheListe.Click += new System.EventHandler(this.btnAfficheListe_Click);
             // 
-            // btnVoirContact
-            // 
-            this.btnVoirContact.Location = new System.Drawing.Point(12, 134);
-            this.btnVoirContact.Name = "btnVoirContact";
-            this.btnVoirContact.Size = new System.Drawing.Size(151, 23);
-            this.btnVoirContact.TabIndex = 13;
-            this.btnVoirContact.Text = "Voir les contacts";
-            this.btnVoirContact.UseVisualStyleBackColor = true;
-            // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(12, 390);
+            this.btnConvert.Location = new System.Drawing.Point(99, 416);
             this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(151, 23);
+            this.btnConvert.Size = new System.Drawing.Size(78, 52);
             this.btnConvert.TabIndex = 14;
-            this.btnConvert.Text = "ConvertToExcel";
+            this.btnConvert.Text = "Convert to  Excel";
             this.btnConvert.UseVisualStyleBackColor = true;
+            // 
+            // lblRecherche
+            // 
+            this.lblRecherche.AutoSize = true;
+            this.lblRecherche.Location = new System.Drawing.Point(12, 27);
+            this.lblRecherche.Name = "lblRecherche";
+            this.lblRecherche.Size = new System.Drawing.Size(72, 13);
+            this.lblRecherche.TabIndex = 15;
+            this.lblRecherche.Text = "Rechercher : ";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 416);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(78, 52);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Import from  Excel";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnSupprimerClient
+            // 
+            this.btnSupprimerClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSupprimerClient.Image = global::WindowsFormsApplication1.Properties.Resources.boutonSupprimer;
+            this.btnSupprimerClient.Location = new System.Drawing.Point(15, 69);
+            this.btnSupprimerClient.Name = "btnSupprimerClient";
+            this.btnSupprimerClient.Size = new System.Drawing.Size(61, 61);
+            this.btnSupprimerClient.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.btnSupprimerClient, "Supprimer un client");
+            this.btnSupprimerClient.UseVisualStyleBackColor = true;
+            this.btnSupprimerClient.Click += new System.EventHandler(this.btnSupprimerClient_Click);
+            // 
+            // btnAjouterClient
+            // 
+            this.btnAjouterClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAjouterClient.Image = global::WindowsFormsApplication1.Properties.Resources.BoutonAjouter;
+            this.btnAjouterClient.Location = new System.Drawing.Point(114, 69);
+            this.btnAjouterClient.Name = "btnAjouterClient";
+            this.btnAjouterClient.Size = new System.Drawing.Size(61, 61);
+            this.btnAjouterClient.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.btnAjouterClient, "Ajouter un client");
+            this.btnAjouterClient.UseVisualStyleBackColor = true;
+            this.btnAjouterClient.Click += new System.EventHandler(this.btnAjouterClient_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
             // frmGestionClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1091, 597);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblRecherche);
             this.Controls.Add(this.btnConvert);
-            this.Controls.Add(this.btnVoirContact);
             this.Controls.Add(this.btnSupprimerClient);
             this.Controls.Add(this.btnDetailClient);
             this.Controls.Add(this.btnModifierClient);
             this.Controls.Add(this.btnAfficheListe);
             this.Controls.Add(this.btnAjouterClient);
-            this.Controls.Add(this.btnRechercher);
             this.Controls.Add(this.txtRechercher);
             this.Controls.Add(this.grdClient);
             this.Controls.Add(this.msGestionClient);
@@ -285,19 +294,19 @@
         private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listeClientsToolStripMenuItem;
         private System.Windows.Forms.TextBox txtRechercher;
-        private System.Windows.Forms.Button btnRechercher;
         private System.Windows.Forms.Button btnSupprimerClient;
         private System.Windows.Forms.Button btnModifierClient;
         private System.Windows.Forms.Button btnAjouterClient;
         private System.Windows.Forms.Button btnDetailClient;
         private System.Windows.Forms.Button btnAfficheListe;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
-        private System.Windows.Forms.Button btnVoirContact;
         private System.Windows.Forms.ToolStripMenuItem feuilleExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem2;
         private System.Windows.Forms.Button btnConvert;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label lblRecherche;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
