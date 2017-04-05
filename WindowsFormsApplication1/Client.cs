@@ -48,7 +48,7 @@ namespace WindowsFormsApplication1
         }
         public string RaisonSociale
         {
-            get { return raisonSociale; }
+            get { return raisonSociale.ToUpper(); }
             set { raisonSociale = value;}
         }
 

@@ -68,6 +68,7 @@
             // 
             // cbxActivite
             // 
+            this.cbxActivite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxActivite.Size = new System.Drawing.Size(158, 21);
             // 
             // btnAnnulerClient
@@ -92,12 +93,13 @@
             // 
             // errorProvider1
             // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             // 
             // frmAjoutClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(354, 406);
+            this.ClientSize = new System.Drawing.Size(375, 406);
             this.Controls.Add(this.btnAjouterClient);
             this.Controls.Add(this.btnAnnulerClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

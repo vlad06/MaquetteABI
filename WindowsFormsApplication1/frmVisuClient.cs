@@ -20,10 +20,10 @@ namespace WindowsFormsApplication1
         {
             this.leClient = unClient; //on assigne le client passé en paramètre à notre attribut déclaré plus haut
             InitializeComponent();
-            this.Size = new Size(370, 475); //on cache les contacts
-            this.txtIdClient.Enabled = false;
+            this.Size = new Size(370, 450); //on cache les contacts
+            this.txtIdClient.Enabled = false;   //les Id clients et contacs sont inaccessibles à l'utilisateur
             this.txtIdContact.Enabled = false;
-            this.txtIdContact.Text = Contact.nContact.ToString();
+            this.txtIdContact.Text = Contact.nContact.ToString();   //on attribue automatiquement un id pour le futur contact qui serait crée
         }
         /// <summary>
         /// on remplit les champs du form de visualisation avec les propriétés de l'objet passé en paramètre
@@ -62,7 +62,7 @@ namespace WindowsFormsApplication1
                 dr[2] = leClient.ListContact[i].PrenomContact;
                 dr[3] = leClient.ListContact[i].TelContact;
                 dr[4] = leClient.ListContact[i].FonctionContact;
-                //dr[5] = Donnees.listClient[i].TotalHeures;
+                //dr[5] = Donnees.listClient[i].TotalHeures;    //en prévision d'une utilisation future
                 dt.Rows.Add(dr);
             }
             this.grdContact.DataSource = dt.DefaultView;
@@ -85,10 +85,10 @@ namespace WindowsFormsApplication1
         /// <returns></returns>
         private bool instancieContact()
         {
-            try
+            try    //pour parer aux éventuels problèmes
             {
                 leContact = new Contact();
-                leContact.IdContact = Contact.nContact;// int.Parse(txtIdContact.Text.Trim());
+                leContact.IdContact = Contact.nContact;
                 leContact.NomContact = txtNomContact.Text;
                 leContact.PrenomContact = txtPrenomContact.Text;
                 leContact.TelContact = txtTelephoneContact.Text;
@@ -111,7 +111,7 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                this.leClient.RaisonSociale = base.txtRaisonSociale.Text;
+                this.leClient.RaisonSociale = base.txtRaisonSociale.Text.ToUpper();
                 this.leClient.Nature = base.cbxNature.Text;
                 this.leClient.TypeSociete = base.cbxTypeSociete.Text;
                 this.leClient.Telephone = base.txtTelephone.Text;
@@ -135,8 +135,8 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                this.leContact.NomContact=txtNomContact.Text;
-                this.leContact.PrenomContact=txtPrenomContact.Text;
+                this.leContact.NomContact=txtNomContact.Text.ToUpper();
+                this.leContact.PrenomContact=txtPrenomContact.Text.ToLower();
                 this.leContact.TelContact=txtTelephoneContact.Text;
                 this.leContact.FonctionContact=txtFonctionContact.Text;
                 return true;
@@ -154,14 +154,14 @@ namespace WindowsFormsApplication1
             if (btnAfficherContact.Text == "Afficher les contacts >>")
             {
                 btnAfficherContact.Text = "Cacher les contacts";
-                this.Size = new Size(790, 475);
+                this.Size = new Size(820, 450);
                 this.Show();
                 majGrdContacts();
             }
             else
             {
                 btnAfficherContact.Text = "Afficher les contacts >>";
-                this.Size = new Size(370, 475);
+                this.Size = new Size(370, 450);
                 this.Show();
             }
         }
@@ -186,10 +186,130 @@ namespace WindowsFormsApplication1
 
         private void btnValiderClient_Click(object sender, EventArgs e)
         {
-            if (this.modifieClient())
+            if (isFieldsClientValid())
             {
-                this.Close();
+                if (this.modifieClient())
+                {
+                    //MessageBox.Show(new Form { TopMost = true }, "Modification du client acceptée !", "Client modifié", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
+        }
+        private Boolean isFieldsClientValid()
+        {
+            bool valid = true;
+            if (!Outils.isRaisonSocialeValid(this.txtRaisonSociale.Text.Trim()))
+            {
+                errorProvider2.SetError(this.txtRaisonSociale, "Raison Sociale invalide !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.txtRaisonSociale, String.Empty);
+            }
+            if (this.cbxNature.Text == "")
+            {
+                errorProvider2.SetError(this.cbxNature, "Nature société requise !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.cbxNature, String.Empty);
+            }
+            if (this.cbxTypeSociete.Text == "")
+            {
+                errorProvider2.SetError(this.cbxTypeSociete, "Type société requis !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.cbxTypeSociete, String.Empty);
+            }
+            if (this.cbxActivite.Text == "")
+            {
+                errorProvider2.SetError(this.cbxActivite, "Activité requise !");
+            }
+            else
+            {
+                errorProvider2.SetError(this.cbxActivite, String.Empty);
+            }
+            if (!Outils.isCaValid(this.txtCa.Text.Trim()))
+            {
+                errorProvider2.SetError(this.txtCa, "Chiffre d'affaire invalide !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.txtCa, String.Empty);
+            }
+            if (!(Outils.isEffectifValid(this.txtEffectif.Text.Trim())))
+            {
+                errorProvider2.SetError(this.txtEffectif, "Effectif invalide !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.txtEffectif, String.Empty);
+            }
+            if (!(Outils.isTelephoneValid(this.txtTelephone.Text.Trim())))
+            {
+                errorProvider2.SetError(this.txtTelephone, "Téléphone invalide !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.txtTelephone, String.Empty);
+            }
+            if (this.txtAdresse.Text.Trim() == "")
+            {
+                errorProvider2.SetError(this.txtAdresse, "Adresse requise !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.txtAdresse, String.Empty);
+            }
+            return valid;
+        }
+        private Boolean isFieldsContactValid()
+        {
+            bool valid = true;
+            if (!Outils.isNomValid(this.txtNomContact.Text.Trim()))
+            {
+                errorProvider2.SetError(this.txtNomContact, "Nom contact invalide !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.txtNomContact, String.Empty);
+            }
+            if (!Outils.isPrenomValid(this.txtPrenomContact.Text.Trim()))
+            {
+                errorProvider2.SetError(this.txtPrenomContact, "Prénom contact invalide !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.txtPrenomContact, String.Empty);
+            }
+            if (!Outils.isFonctionValid(this.txtFonctionContact.Text.Trim()))
+            {
+                errorProvider2.SetError(this.txtFonctionContact, "Fonction contact invalide !");
+                valid = false;
+            }
+            else
+            {
+                errorProvider2.SetError(this.txtFonctionContact, String.Empty);
+            }
+            if (!Outils.isTelephoneValid(this.txtTelephoneContact.Text.Trim()))
+            {
+                errorProvider2.SetError(this.txtTelephoneContact, "Téléphone contact invalide !");
+            }
+            else
+            {
+                errorProvider2.SetError(this.txtTelephoneContact, String.Empty);
+            }
+            return valid;
         }
 
         private void frmVisuClient_FormClosing(object sender, FormClosingEventArgs e)
@@ -201,13 +321,9 @@ namespace WindowsFormsApplication1
         {
             this.Close();
         }
-
-        private void btnValiderContact_Click(object sender, EventArgs e)
-        {
-
-        }
-
-      
+        /// <summary>
+        /// passe les contrôles de la form en disabled pour éviter les mauvaises manipulations
+        /// </summary>
         private void readable()
         {
             this.txtRaisonSociale.Enabled = false;
@@ -222,9 +338,10 @@ namespace WindowsFormsApplication1
             this.gbxAjoutContact.Enabled = false;
             this.gbxListeContact.Enabled = false;
             this.grdContact.Enabled = false;
-
         }
-
+        /// <summary>
+        /// passe les contrôles en enabled pour permettre de faire des modifications
+        /// </summary>
         private void writeable()
         {
             this.txtRaisonSociale.Enabled = true;
@@ -241,13 +358,17 @@ namespace WindowsFormsApplication1
             this.grdContact.Enabled = true;
         }
         
-
+        /// <summary>
+        /// permet de supprimer un contact de la liste de contacts
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimerContact_Click(object sender, EventArgs e)
         {
             if (grdContact.CurrentRow != null)
             {
                 DialogResult dr = MessageBox.Show(new Form { TopMost = true }, "Etes-vous sûr de vouloir supprimer le contact sélectionné ?", "Attention",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if(dr == DialogResult.OK)
                 {
                     int iContact = this.grdContact.CurrentRow.Index;
@@ -257,7 +378,11 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-
+        /// <summary>
+        /// vide tous les champs des contrôles liés aux contacts
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRaz_Click(object sender, EventArgs e)
         {
             this.txtIdContact.Text = "";
@@ -267,28 +392,48 @@ namespace WindowsFormsApplication1
             this.txtFonctionContact.Text = "";
 
         }
-
+        /// <summary>
+        /// raffraichit les champs des contrôles liés aux contacts avec les valeurs associés dans le contact selectionné dans la datagridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void grdContact_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int iContact = grdContact.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
             Contact unContact = leClient.ListContact[iContact];
             afficheContact(unContact);
         }
-
+        /// <summary>
+        /// modifie un contact et met à jour la grid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifierContact_Click(object sender, EventArgs e)
         {
-            if (this.modifieContact())
+            if (isFieldsContactValid())
             {
-                majGrdContacts();
+                if (this.modifieContact())
+                {
+                    majGrdContacts();
+                }
             }
         }
+        /// <summary>
+        /// ajoute un contact, met à jour la grid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
-            if (this.instancieContact())
+            if (isFieldsContactValid())
             {
-                majGrdContacts();
-                Contact.nContact++;
-                this.txtIdContact.Text = Contact.nContact.ToString();
+                if (this.instancieContact())
+                {
+                    Donnees.listContact.Add(Contact.nContact, leContact);
+                    majGrdContacts();
+                    Contact.nContact++;
+                    this.txtIdContact.Text = Contact.nContact.ToString();
+                }
             }
         }
 

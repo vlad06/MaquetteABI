@@ -40,13 +40,13 @@ namespace WindowsFormsApplication1
 
         public string NomContact
         {
-            get{  return nomContact; }
+            get{  return nomContact.ToUpper(); }
             set { nomContact = value; }
         }
 
         public string PrenomContact
         {
-            get { return prenomContact;   }
+            get { return prenomContact.ToLower();   }
             set { prenomContact = value;}
         }
 

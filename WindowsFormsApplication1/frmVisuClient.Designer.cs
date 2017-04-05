@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbxListeContact = new System.Windows.Forms.GroupBox();
             this.grdContact = new System.Windows.Forms.DataGridView();
             this.gbxAjoutContact = new System.Windows.Forms.GroupBox();
@@ -52,9 +53,11 @@
             this.btnUnlock = new System.Windows.Forms.Button();
             this.btnValiderClient = new System.Windows.Forms.Button();
             this.btnReinitialiser = new System.Windows.Forms.Button();
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbxListeContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).BeginInit();
             this.gbxAjoutContact.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEffectif
@@ -90,14 +93,15 @@
             // 
             // cbxActivite
             // 
+            this.cbxActivite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxActivite.Size = new System.Drawing.Size(158, 21);
             // 
             // gbxListeContact
             // 
             this.gbxListeContact.Controls.Add(this.grdContact);
-            this.gbxListeContact.Location = new System.Drawing.Point(354, 147);
+            this.gbxListeContact.Location = new System.Drawing.Point(363, 147);
             this.gbxListeContact.Name = "gbxListeContact";
-            this.gbxListeContact.Size = new System.Drawing.Size(415, 255);
+            this.gbxListeContact.Size = new System.Drawing.Size(437, 262);
             this.gbxListeContact.TabIndex = 57;
             this.gbxListeContact.TabStop = false;
             this.gbxListeContact.Text = "Liste Contacts :";
@@ -116,7 +120,7 @@
             this.grdContact.ReadOnly = true;
             this.grdContact.RowHeadersVisible = false;
             this.grdContact.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdContact.Size = new System.Drawing.Size(405, 251);
+            this.grdContact.Size = new System.Drawing.Size(422, 236);
             this.grdContact.TabIndex = 50;
             this.grdContact.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdContact_CellClick);
             // 
@@ -139,16 +143,16 @@
             this.gbxAjoutContact.Controls.Add(this.txtPrenomContact);
             this.gbxAjoutContact.Controls.Add(this.txtFonctionContact);
             this.gbxAjoutContact.Controls.Add(this.lblTelephoneContact);
-            this.gbxAjoutContact.Location = new System.Drawing.Point(354, 6);
+            this.gbxAjoutContact.Location = new System.Drawing.Point(363, 6);
             this.gbxAjoutContact.Name = "gbxAjoutContact";
-            this.gbxAjoutContact.Size = new System.Drawing.Size(415, 135);
+            this.gbxAjoutContact.Size = new System.Drawing.Size(437, 135);
             this.gbxAjoutContact.TabIndex = 56;
             this.gbxAjoutContact.TabStop = false;
             this.gbxAjoutContact.Text = "Contact sélectionné :";
             // 
             // btnQuitter
             // 
-            this.btnQuitter.Location = new System.Drawing.Point(333, 91);
+            this.btnQuitter.Location = new System.Drawing.Point(343, 91);
             this.btnQuitter.Name = "btnQuitter";
             this.btnQuitter.Size = new System.Drawing.Size(70, 34);
             this.btnQuitter.TabIndex = 62;
@@ -167,16 +171,16 @@
             // 
             // btnRaz
             // 
-            this.btnRaz.Location = new System.Drawing.Point(158, 91);
+            this.btnRaz.Location = new System.Drawing.Point(175, 91);
             this.btnRaz.Name = "btnRaz";
-            this.btnRaz.Size = new System.Drawing.Size(70, 34);
+            this.btnRaz.Size = new System.Drawing.Size(76, 34);
             this.btnRaz.TabIndex = 65;
             this.btnRaz.Text = "Remettre à zéro contact";
             this.btnRaz.Click += new System.EventHandler(this.btnRaz_Click);
             // 
             // btnSupprimerContact
             // 
-            this.btnSupprimerContact.Location = new System.Drawing.Point(257, 91);
+            this.btnSupprimerContact.Location = new System.Drawing.Point(267, 91);
             this.btnSupprimerContact.Name = "btnSupprimerContact";
             this.btnSupprimerContact.Size = new System.Drawing.Size(70, 34);
             this.btnSupprimerContact.TabIndex = 63;
@@ -187,7 +191,7 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(283, 65);
+            this.textBox1.Location = new System.Drawing.Point(293, 65);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(120, 20);
@@ -196,7 +200,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(203, 68);
+            this.label1.Location = new System.Drawing.Point(213, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 36;
@@ -214,7 +218,7 @@
             // lblFonctionContact
             // 
             this.lblFonctionContact.AutoSize = true;
-            this.lblFonctionContact.Location = new System.Drawing.Point(203, 16);
+            this.lblFonctionContact.Location = new System.Drawing.Point(213, 16);
             this.lblFonctionContact.Name = "lblFonctionContact";
             this.lblFonctionContact.Size = new System.Drawing.Size(54, 13);
             this.lblFonctionContact.TabIndex = 35;
@@ -238,7 +242,7 @@
             // 
             // txtTelephoneContact
             // 
-            this.txtTelephoneContact.Location = new System.Drawing.Point(283, 39);
+            this.txtTelephoneContact.Location = new System.Drawing.Point(293, 40);
             this.txtTelephoneContact.Name = "txtTelephoneContact";
             this.txtTelephoneContact.Size = new System.Drawing.Size(120, 20);
             this.txtTelephoneContact.TabIndex = 30;
@@ -277,7 +281,7 @@
             // 
             // txtFonctionContact
             // 
-            this.txtFonctionContact.Location = new System.Drawing.Point(283, 13);
+            this.txtFonctionContact.Location = new System.Drawing.Point(293, 13);
             this.txtFonctionContact.Name = "txtFonctionContact";
             this.txtFonctionContact.Size = new System.Drawing.Size(120, 20);
             this.txtFonctionContact.TabIndex = 29;
@@ -285,7 +289,7 @@
             // lblTelephoneContact
             // 
             this.lblTelephoneContact.AutoSize = true;
-            this.lblTelephoneContact.Location = new System.Drawing.Point(203, 42);
+            this.lblTelephoneContact.Location = new System.Drawing.Point(213, 42);
             this.lblTelephoneContact.Name = "lblTelephoneContact";
             this.lblTelephoneContact.Size = new System.Drawing.Size(64, 13);
             this.lblTelephoneContact.TabIndex = 23;
@@ -293,7 +297,7 @@
             // 
             // btnAfficherContact
             // 
-            this.btnAfficherContact.Location = new System.Drawing.Point(280, 6);
+            this.btnAfficherContact.Location = new System.Drawing.Point(280, 5);
             this.btnAfficherContact.Name = "btnAfficherContact";
             this.btnAfficherContact.Size = new System.Drawing.Size(68, 34);
             this.btnAfficherContact.TabIndex = 58;
@@ -331,10 +335,15 @@
             this.btnReinitialiser.UseVisualStyleBackColor = true;
             this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
             // 
+            // errorProvider2
+            // 
+            this.errorProvider2.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider2.ContainerControl = this;
+            // 
             // frmVisuClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(774, 406);
+            this.ClientSize = new System.Drawing.Size(804, 411);
             this.Controls.Add(this.btnValiderClient);
             this.Controls.Add(this.btnReinitialiser);
             this.Controls.Add(this.btnUnlock);
@@ -379,6 +388,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).EndInit();
             this.gbxAjoutContact.ResumeLayout(false);
             this.gbxAjoutContact.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,5 +419,6 @@
         private System.Windows.Forms.Button btnAjouterContact;
         private System.Windows.Forms.Button btnRaz;
         private System.Windows.Forms.Button btnModifierContact;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
     }
 }

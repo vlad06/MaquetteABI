@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1
                 for (int i = 0; i < s.Length; i++)
                 {
                     c = s[i];
-                    if (!(char.IsLetter(c)))
+                    if (!(char.IsLetter(c)) && !(c=='-') && !(c==' ') && !(c=='_')) //on assimile -, ,_ à des lettres car elles pourraient composer une raison sociale
                     {
                         code = false;
                     }
@@ -28,7 +28,6 @@ namespace WindowsFormsApplication1
                 code = false;
             }
             return code;
-
         }
         public static bool isAnInteger(string s)
         {
@@ -54,9 +53,83 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                code = false;   //on à un problème lorsque la longueur de la string est <= 0 ou >= 10
+                code = false;   //on à un problème si la longueur de la string est <= 0 ou >= 10
             }
             return code;
+        }
+        public static bool isDecimalOrDouble(string s)
+        {
+            char c;
+            bool code = true;   //code de retour, vrai par défaut
+
+            if (s.Length > 0) //si la longueur de la string est strictement comprise en 0 et 10 (de 1 à 9 caractères)
+            {
+                //on vérifie tous les caractères un à un pour s'assurer que ce sont des chiffres ou un .
+                for (int i = 0; i < s.Length; i++)
+                {
+                    c = s[i];
+                    if (!(char.IsDigit(c)) && !(c == '.') && !(c == ',')) //si le char n'est pas un chiffre ou un séparateur de type . ou ,
+                    {
+                        code = false;   //alors on à un problème
+                    }
+                }
+            }
+            else
+            {
+                code = false;   //on à un problème si la longueur de la string est <= 0
+            }
+            return code;
+        }
+        public static bool isANumber(string s)
+        {
+            char c;
+            bool code = true;   //code de retour, vrai par défaut
+
+            if (s.Length > 0) //si la longueur de la string est strictement comprise en 0 et 10 (de 1 à 9 caractères)
+            {
+                //on vérifie tous les caractères un à un pour s'assurer que ce sont des chiffres ou un .
+                for (int i = 0; i < s.Length; i++)
+                {
+                    c = s[i];
+                    if (!(char.IsDigit(c))) //si le char n'est pas un chiffre
+                    {
+                        code = false;   //alors on à un problème
+                    }
+                }
+            }
+            else
+            {
+                code = false;   //on à un problème si la longueur de la string est <= 0
+            }
+            return code;
+        }
+        public static bool isRaisonSocialeValid(string s)
+        {
+            return isMadeFromLetters(s);
+        }
+        public static bool isEffectifValid(string s)
+        {
+            return isAnInteger(s);
+        }
+        public static bool isCaValid(string s)
+        {
+            return isDecimalOrDouble(s);
+        }
+        public static bool isTelephoneValid(string s)
+        {
+            return isANumber(s);
+        }
+        public static bool isNomValid(string s)
+        {
+            return isMadeFromLetters(s);
+        }
+        public static bool isPrenomValid(string s)
+        {
+            return isMadeFromLetters(s);
+        }
+        public static bool isFonctionValid(string s)
+        {
+            return isMadeFromLetters(s);
         }
     }
 }
