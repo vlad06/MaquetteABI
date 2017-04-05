@@ -8,6 +8,11 @@ namespace WindowsFormsApplication1
 {
     class Outils
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static bool isMadeFromLetters(string s)
         {
             char c;
@@ -17,7 +22,7 @@ namespace WindowsFormsApplication1
                 for (int i = 0; i < s.Length; i++)
                 {
                     c = s[i];
-                    if (!(char.IsLetter(c)) && !(c=='-') && !(c==' ') && !(c=='_')) //on assimile -, ,_ à des lettres car elles pourraient composer une raison sociale
+                    if (!(char.IsLetter(c)) && !(c=='-') && !(c==' ') && !(c=='_')) //on assimile -, ,_ à des lettres car elles pourraient composer une raison sociale, un prénom ou un nom
                     {
                         code = false;
                     }

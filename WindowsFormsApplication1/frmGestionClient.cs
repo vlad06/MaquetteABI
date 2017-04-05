@@ -59,7 +59,7 @@ namespace WindowsFormsApplication1
             this.grdClient.DataSource = dt.DefaultView;
         }
 
-
+       /*
         private void creerClientTest()
         {
             for (int i = 1; i < 5; i++)
@@ -80,6 +80,7 @@ namespace WindowsFormsApplication1
             }
             this.afficheClients();
         }
+        */
 
         private void btnAjouterClient_Click(object sender, EventArgs e)
         {
@@ -95,7 +96,8 @@ namespace WindowsFormsApplication1
         {
             if(this.grdClient.CurrentRow == null)
             {
-                creerClientTest();
+                this.afficheClients();
+                //creerClientTest();
             }
         }
         private void grdClient_DoubleClick(object sender, EventArgs e)
@@ -168,7 +170,6 @@ namespace WindowsFormsApplication1
                             }
                             Donnees.listFrmVisuClient.Remove(leClient.IdClient);
                             Donnees.listClient.Remove(leClient);
-                            //Client.nClient--;
                             afficheClients();
                         }
                     }

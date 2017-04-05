@@ -22,7 +22,19 @@ namespace WindowsFormsApplication1
         private Int32 effectif; //nombre de salariés du client
         private String commentComm; //commentaire commercial concernant le projet
         private List<Contact> listContact = new List<Contact>(); //liste de contact du client
-
+        /// <summary>
+        /// Constructeur de clients
+        /// </summary>
+        /// <param name="idClient"></param>
+        /// <param name="raisonSociale"></param>
+        /// <param name="typeSociete"></param>
+        /// <param name="activite"></param>
+        /// <param name="adresse"></param>
+        /// <param name="telephone"></param>
+        /// <param name="nature"></param>
+        /// <param name="ca"></param>
+        /// <param name="effectif"></param>
+        /// <param name="commentComm"></param>
         public Client(int idClient, string raisonSociale, string typeSociete, string activite, string adresse,
             string telephone, string nature, decimal ca, int effectif, string commentComm)
         {
@@ -37,10 +49,16 @@ namespace WindowsFormsApplication1
             this.Effectif = effectif;
             this.CommentComm = commentComm;
         }
+        /// <summary>
+        /// constructeur de clients vide
+        /// </summary>
         public Client()
         {
 
         }
+        //********************************************************
+        //**************LES GETTERS ET SETTERS********************
+        //********************************************************
         public int IdClient
         {
             get { return idClient; }
@@ -106,6 +124,10 @@ namespace WindowsFormsApplication1
             set {  listContact = value;}
         }
 
+        /// <summary>
+        /// méthode permettant de tester le ratio chiffre d'affaire / effectif pour savoir s'il est > 1M
+        /// </summary>
+        /// <returns></returns>
         public decimal RatioCaEffectif()
         {
             return (this.Ca / this.Effectif);

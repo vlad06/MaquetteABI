@@ -44,13 +44,14 @@
             this.txtRechercher = new System.Windows.Forms.TextBox();
             this.btnModifierClient = new System.Windows.Forms.Button();
             this.btnDetailClient = new System.Windows.Forms.Button();
-            this.btnAfficheListe = new System.Windows.Forms.Button();
+            this.btnAfficherListe = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.lblRecherche = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnSupprimerClient = new System.Windows.Forms.Button();
             this.btnAjouterClient = new System.Windows.Forms.Button();
+            this.btnViderListe = new System.Windows.Forms.Button();
             this.msGestionClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdClient)).BeginInit();
             this.SuspendLayout();
@@ -190,15 +191,15 @@
             this.btnDetailClient.UseVisualStyleBackColor = true;
             this.btnDetailClient.Click += new System.EventHandler(this.btnDetailClient_Click);
             // 
-            // btnAfficheListe
+            // btnAfficherListe
             // 
-            this.btnAfficheListe.Location = new System.Drawing.Point(12, 170);
-            this.btnAfficheListe.Name = "btnAfficheListe";
-            this.btnAfficheListe.Size = new System.Drawing.Size(163, 23);
-            this.btnAfficheListe.TabIndex = 0;
-            this.btnAfficheListe.Text = "Afficher liste clients test";
-            this.btnAfficheListe.UseVisualStyleBackColor = true;
-            this.btnAfficheListe.Click += new System.EventHandler(this.btnAfficheListe_Click);
+            this.btnAfficherListe.Location = new System.Drawing.Point(12, 148);
+            this.btnAfficherListe.Name = "btnAfficherListe";
+            this.btnAfficherListe.Size = new System.Drawing.Size(163, 23);
+            this.btnAfficherListe.TabIndex = 0;
+            this.btnAfficherListe.Text = "Afficher liste clients";
+            this.btnAfficherListe.UseVisualStyleBackColor = true;
+            this.btnAfficherListe.Click += new System.EventHandler(this.btnAfficheListe_Click);
             // 
             // btnExport
             // 
@@ -253,18 +254,28 @@
             this.btnAjouterClient.UseVisualStyleBackColor = true;
             this.btnAjouterClient.Click += new System.EventHandler(this.btnAjouterClient_Click);
             // 
+            // btnViderListe
+            // 
+            this.btnViderListe.Location = new System.Drawing.Point(12, 177);
+            this.btnViderListe.Name = "btnViderListe";
+            this.btnViderListe.Size = new System.Drawing.Size(163, 23);
+            this.btnViderListe.TabIndex = 17;
+            this.btnViderListe.Text = "Vider liste clients";
+            this.btnViderListe.UseVisualStyleBackColor = true;
+            // 
             // frmGestionClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1091, 597);
+            this.Controls.Add(this.btnViderListe);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.lblRecherche);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnSupprimerClient);
             this.Controls.Add(this.btnDetailClient);
             this.Controls.Add(this.btnModifierClient);
-            this.Controls.Add(this.btnAfficheListe);
+            this.Controls.Add(this.btnAfficherListe);
             this.Controls.Add(this.btnAjouterClient);
             this.Controls.Add(this.txtRechercher);
             this.Controls.Add(this.grdClient);
@@ -297,7 +308,7 @@
         private System.Windows.Forms.Button btnModifierClient;
         private System.Windows.Forms.Button btnAjouterClient;
         private System.Windows.Forms.Button btnDetailClient;
-        private System.Windows.Forms.Button btnAfficheListe;
+        private System.Windows.Forms.Button btnAfficherListe;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem feuilleExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem1;
@@ -306,6 +317,7 @@
         private System.Windows.Forms.Label lblRecherche;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button btnViderListe;
     }
 }
 

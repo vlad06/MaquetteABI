@@ -133,6 +133,11 @@ namespace WindowsFormsApplication1
         /// <returns></returns>
         private bool modifieContact()
         {
+            if(this.grdContact.CurrentRow != null)
+            {
+                int iContact = this.grdContact.CurrentRow.Index;
+                leContact = leClient.ListContact[iContact];
+            }
             try
             {
                 this.leContact.NomContact=txtNomContact.Text.ToUpper();
@@ -385,12 +390,7 @@ namespace WindowsFormsApplication1
         /// <param name="e"></param>
         private void btnRaz_Click(object sender, EventArgs e)
         {
-            this.txtIdContact.Text = "";
-            this.txtNomContact.Text = "";
-            this.txtPrenomContact.Text = "";
-            this.txtTelephoneContact.Text = "";
-            this.txtFonctionContact.Text = "";
-
+            razContactFields();
         }
         /// <summary>
         /// raffraichit les champs des contrôles liés aux contacts avec les valeurs associés dans le contact selectionné dans la datagridview
@@ -404,7 +404,7 @@ namespace WindowsFormsApplication1
             afficheContact(unContact);
         }
         /// <summary>
-        /// modifie un contact et met à jour la grid
+        /// modifie un contact, met à jour la grid et vide les txtbox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -415,6 +415,7 @@ namespace WindowsFormsApplication1
                 if (this.modifieContact())
                 {
                     majGrdContacts();
+                    razContactFields();
                 }
             }
         }
@@ -432,7 +433,8 @@ namespace WindowsFormsApplication1
                     Donnees.listContact.Add(Contact.nContact, leContact);
                     majGrdContacts();
                     Contact.nContact++;
-                    this.txtIdContact.Text = Contact.nContact.ToString();
+                    razContactFields();
+                    //this.txtIdContact.Text = Contact.nContact.ToString();
                 }
             }
         }
@@ -457,10 +459,14 @@ namespace WindowsFormsApplication1
         {
             this.txtIdContact.Text = Contact.nContact.ToString();
         }
-
-        private bool testFields()
+    
+        private void razContactFields()
         {
-            return false;
+            this.txtIdContact.Text = "";
+            this.txtNomContact.Text = "";
+            this.txtPrenomContact.Text = "";
+            this.txtTelephoneContact.Text = "";
+            this.txtFonctionContact.Text = "";
         }
     }
 }
