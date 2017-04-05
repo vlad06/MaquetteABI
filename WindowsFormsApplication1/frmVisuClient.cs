@@ -111,7 +111,6 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                //this.leClient.IdClient = int.Parse(base.txtIdClient.Text.Trim());
                 this.leClient.RaisonSociale = base.txtRaisonSociale.Text;
                 this.leClient.Nature = base.cbxNature.Text;
                 this.leClient.TypeSociete = base.cbxTypeSociete.Text;
@@ -136,7 +135,6 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                //this.leContact.IdContact=int.Parse(txtIdContact.Text.Trim());
                 this.leContact.NomContact=txtNomContact.Text;
                 this.leContact.PrenomContact=txtPrenomContact.Text;
                 this.leContact.TelContact=txtTelephoneContact.Text;
@@ -188,11 +186,7 @@ namespace WindowsFormsApplication1
 
         private void btnValiderClient_Click(object sender, EventArgs e)
         {
-            if (txtIdClient.Text == "")
-            {
-                MessageBox.Show(new Form { TopMost = true }, "l'ID du client ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
-            }
-            else if (this.modifieClient())
+            if (this.modifieClient())
             {
                 this.Close();
             }
@@ -216,7 +210,6 @@ namespace WindowsFormsApplication1
       
         private void readable()
         {
-            //this.txtIdClient.Enabled = false;
             this.txtRaisonSociale.Enabled = false;
             this.cbxNature.Enabled = false;
             this.cbxTypeSociete.Enabled = false;
@@ -234,7 +227,6 @@ namespace WindowsFormsApplication1
 
         private void writeable()
         {
-            //this.txtIdClient.Enabled = true;
             this.txtRaisonSociale.Enabled = true;
             this.cbxNature.Enabled = true;
             this.cbxTypeSociete.Enabled = true;
@@ -285,22 +277,14 @@ namespace WindowsFormsApplication1
 
         private void btnModifierContact_Click(object sender, EventArgs e)
         {
-            if (txtIdContact.Text == "")
-            {
-                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
-            }
-            else if (this.modifieContact())
+            if (this.modifieContact())
             {
                 majGrdContacts();
             }
         }
         private void btnAjouterContact_Click(object sender, EventArgs e)
         {
-            if(txtIdContact.Text == "")
-            {
-                MessageBox.Show(new Form { TopMost = true }, "l'ID du contact ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
-            }
-            else if (this.instancieContact())
+            if (this.instancieContact())
             {
                 majGrdContacts();
                 Contact.nContact++;
@@ -310,15 +294,15 @@ namespace WindowsFormsApplication1
 
         private void btnDeverrouiller_Click(object sender, EventArgs e)
         {
-            if (btnDeverrouiller.Text == "Dévérrouiller")
+            if (btnUnlock.Text == "Unlock")
             {
-                btnDeverrouiller.Text = "Vérrouiller";
+                btnUnlock.Text = "Lock";
                 this.writeable();
                 this.Show();
             }
             else
             {
-                btnDeverrouiller.Text = "Dévérrouiller";
+                btnUnlock.Text = "Unlock";
                 this.readable();
                 this.Show();
             }
@@ -327,6 +311,11 @@ namespace WindowsFormsApplication1
         private void frmVisuClient_Activated(object sender, EventArgs e)
         {
             this.txtIdContact.Text = Contact.nContact.ToString();
+        }
+
+        private bool testFields()
+        {
+            return false;
         }
     }
 }

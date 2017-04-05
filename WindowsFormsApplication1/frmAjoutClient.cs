@@ -26,6 +26,7 @@ namespace WindowsFormsApplication1
                 nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
                 nouveauClient.Nature = base.cbxNature.Text;
                 nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
+                nouveauClient.Activite = base.cbxActivite.Text;
                 nouveauClient.Telephone = base.txtTelephone.Text;
                 nouveauClient.Adresse = base.txtAdresse.Text;
                 nouveauClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
@@ -44,19 +45,43 @@ namespace WindowsFormsApplication1
 
         private void btnValiderClient_Click(object sender, EventArgs e)
         {
-            if(this.txtIdClient.Text == "")
+            if (isRaisonSocialeValid())
             {
-                MessageBox.Show(new Form { TopMost = true }, "l'ID du client ne doit pas être vide !!", "Attention", MessageBoxButtons.OK);
+                errorProvider1.SetError(this.txtRaisonSociale, "Raison Sociale required.");
             }
-            else if (this.instancieClient())
+            else
             {
-                this.DialogResult = DialogResult.OK;
+                errorProvider1.SetError(this.txtRaisonSociale, String.Empty);
             }
+            if (this.instancieClient())
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+            
         }
 
         private void btnAnnulerClient_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private Boolean isRaisonSocialeValid()
+        {
+            if (String.IsNullOrWhiteSpace(this.txtRaisonSociale.Text))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void frmAjoutClient_Activated(object sender, EventArgs e)
+        {
+            this.TopMost = true;
+        }
+
+        private bool testFields()
+        {
+            return false;
         }
     }
 }

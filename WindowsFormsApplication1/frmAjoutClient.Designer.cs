@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnAnnulerClient = new System.Windows.Forms.Button();
             this.btnAjouterClient = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEffectif
@@ -69,9 +72,9 @@
             // 
             // btnAnnulerClient
             // 
-            this.btnAnnulerClient.Location = new System.Drawing.Point(270, 46);
+            this.btnAnnulerClient.Location = new System.Drawing.Point(282, 46);
             this.btnAnnulerClient.Name = "btnAnnulerClient";
-            this.btnAnnulerClient.Size = new System.Drawing.Size(78, 34);
+            this.btnAnnulerClient.Size = new System.Drawing.Size(66, 34);
             this.btnAnnulerClient.TabIndex = 47;
             this.btnAnnulerClient.Text = "Annuler";
             this.btnAnnulerClient.UseVisualStyleBackColor = true;
@@ -79,13 +82,17 @@
             // 
             // btnAjouterClient
             // 
-            this.btnAjouterClient.Location = new System.Drawing.Point(270, 6);
+            this.btnAjouterClient.Location = new System.Drawing.Point(282, 6);
             this.btnAjouterClient.Name = "btnAjouterClient";
-            this.btnAjouterClient.Size = new System.Drawing.Size(78, 34);
+            this.btnAjouterClient.Size = new System.Drawing.Size(66, 34);
             this.btnAjouterClient.TabIndex = 48;
             this.btnAjouterClient.Text = "Ajouter un client";
             this.btnAjouterClient.UseVisualStyleBackColor = true;
             this.btnAjouterClient.Click += new System.EventHandler(this.btnValiderClient_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmAjoutClient
             // 
@@ -98,6 +105,7 @@
             this.MinimizeBox = false;
             this.Name = "frmAjoutClient";
             this.Text = "Ajout Client";
+            this.Activated += new System.EventHandler(this.frmAjoutClient_Activated);
             this.Controls.SetChildIndex(this.cbxActivite, 0);
             this.Controls.SetChildIndex(this.lblIdClient, 0);
             this.Controls.SetChildIndex(this.lblRaisonSociale, 0);
@@ -120,6 +128,7 @@
             this.Controls.SetChildIndex(this.lblCommentComm, 0);
             this.Controls.SetChildIndex(this.btnAnnulerClient, 0);
             this.Controls.SetChildIndex(this.btnAjouterClient, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,5 +137,6 @@
         #endregion
         private System.Windows.Forms.Button btnAnnulerClient;
         private System.Windows.Forms.Button btnAjouterClient;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

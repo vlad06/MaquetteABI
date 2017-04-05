@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
         private String prenomContact;
         private String telContact;
         private String fonctionContact;
+        //private Int32 idClientParent;
         //private double totalHeuresContact;
 
         public Contact()

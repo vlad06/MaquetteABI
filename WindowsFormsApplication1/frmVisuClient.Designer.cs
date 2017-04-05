@@ -49,7 +49,7 @@
             this.txtFonctionContact = new System.Windows.Forms.TextBox();
             this.lblTelephoneContact = new System.Windows.Forms.Label();
             this.btnAfficherContact = new System.Windows.Forms.Button();
-            this.btnDeverrouiller = new System.Windows.Forms.Button();
+            this.btnUnlock = new System.Windows.Forms.Button();
             this.btnValiderClient = new System.Windows.Forms.Button();
             this.btnReinitialiser = new System.Windows.Forms.Button();
             this.gbxListeContact.SuspendLayout();
@@ -293,29 +293,29 @@
             // 
             // btnAfficherContact
             // 
-            this.btnAfficherContact.Location = new System.Drawing.Point(270, 6);
+            this.btnAfficherContact.Location = new System.Drawing.Point(280, 6);
             this.btnAfficherContact.Name = "btnAfficherContact";
-            this.btnAfficherContact.Size = new System.Drawing.Size(78, 34);
+            this.btnAfficherContact.Size = new System.Drawing.Size(68, 34);
             this.btnAfficherContact.TabIndex = 58;
             this.btnAfficherContact.Text = "Afficher les contacts >>";
             this.btnAfficherContact.UseVisualStyleBackColor = true;
             this.btnAfficherContact.Click += new System.EventHandler(this.btnAfficherContact_Click);
             // 
-            // btnDeverrouiller
+            // btnUnlock
             // 
-            this.btnDeverrouiller.Location = new System.Drawing.Point(270, 46);
-            this.btnDeverrouiller.Name = "btnDeverrouiller";
-            this.btnDeverrouiller.Size = new System.Drawing.Size(78, 34);
-            this.btnDeverrouiller.TabIndex = 59;
-            this.btnDeverrouiller.Text = "Dévérrouiller";
-            this.btnDeverrouiller.UseVisualStyleBackColor = true;
-            this.btnDeverrouiller.Click += new System.EventHandler(this.btnDeverrouiller_Click);
+            this.btnUnlock.Location = new System.Drawing.Point(280, 46);
+            this.btnUnlock.Name = "btnUnlock";
+            this.btnUnlock.Size = new System.Drawing.Size(68, 33);
+            this.btnUnlock.TabIndex = 59;
+            this.btnUnlock.Text = "Unlock";
+            this.btnUnlock.UseVisualStyleBackColor = true;
+            this.btnUnlock.Click += new System.EventHandler(this.btnDeverrouiller_Click);
             // 
             // btnValiderClient
             // 
-            this.btnValiderClient.Location = new System.Drawing.Point(270, 176);
+            this.btnValiderClient.Location = new System.Drawing.Point(280, 125);
             this.btnValiderClient.Name = "btnValiderClient";
-            this.btnValiderClient.Size = new System.Drawing.Size(78, 34);
+            this.btnValiderClient.Size = new System.Drawing.Size(68, 34);
             this.btnValiderClient.TabIndex = 60;
             this.btnValiderClient.Text = "Valider et Quitter";
             this.btnValiderClient.UseVisualStyleBackColor = true;
@@ -323,9 +323,9 @@
             // 
             // btnReinitialiser
             // 
-            this.btnReinitialiser.Location = new System.Drawing.Point(270, 86);
+            this.btnReinitialiser.Location = new System.Drawing.Point(280, 85);
             this.btnReinitialiser.Name = "btnReinitialiser";
-            this.btnReinitialiser.Size = new System.Drawing.Size(78, 34);
+            this.btnReinitialiser.Size = new System.Drawing.Size(68, 34);
             this.btnReinitialiser.TabIndex = 61;
             this.btnReinitialiser.Text = "Réinitialiser client";
             this.btnReinitialiser.UseVisualStyleBackColor = true;
@@ -337,7 +337,7 @@
             this.ClientSize = new System.Drawing.Size(774, 406);
             this.Controls.Add(this.btnValiderClient);
             this.Controls.Add(this.btnReinitialiser);
-            this.Controls.Add(this.btnDeverrouiller);
+            this.Controls.Add(this.btnUnlock);
             this.Controls.Add(this.btnAfficherContact);
             this.Controls.Add(this.gbxListeContact);
             this.Controls.Add(this.gbxAjoutContact);
@@ -372,7 +372,7 @@
             this.Controls.SetChildIndex(this.gbxAjoutContact, 0);
             this.Controls.SetChildIndex(this.gbxListeContact, 0);
             this.Controls.SetChildIndex(this.btnAfficherContact, 0);
-            this.Controls.SetChildIndex(this.btnDeverrouiller, 0);
+            this.Controls.SetChildIndex(this.btnUnlock, 0);
             this.Controls.SetChildIndex(this.btnReinitialiser, 0);
             this.Controls.SetChildIndex(this.btnValiderClient, 0);
             this.gbxListeContact.ResumeLayout(false);
@@ -401,7 +401,7 @@
         private System.Windows.Forms.TextBox txtFonctionContact;
         private System.Windows.Forms.Label lblTelephoneContact;
         private System.Windows.Forms.Button btnAfficherContact;
-        private System.Windows.Forms.Button btnDeverrouiller;
+        private System.Windows.Forms.Button btnUnlock;
         private System.Windows.Forms.Button btnValiderClient;
         private System.Windows.Forms.Button btnReinitialiser;
         private System.Windows.Forms.Button btnQuitter;

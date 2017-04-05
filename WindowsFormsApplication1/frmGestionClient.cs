@@ -18,6 +18,8 @@ namespace WindowsFormsApplication1
         public frmGestionClient()
         {
             InitializeComponent();
+            this.btnImport.Visible = false;
+            this.btnExport.Visible = false;
         }
 
         private void afficheClients()
@@ -218,15 +220,15 @@ namespace WindowsFormsApplication1
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            /*
+            
             try
             {
                 OleDbConnection MyConnection;
                 DataSet DtSet;
                 OleDbDataAdapter MyCommand;
-                MyConnection = new OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:/Users/ADI/Desktop/testABI.xls';Extended Properties=Excel 8.0;");
-                MyCommand = new OleDbDataAdapter("select * from [Sheet1$]", MyConnection);
-                //MyCommand.TableMappings.Add("Table", "TestTable");
+                MyConnection = new OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:/Users/DL-CDI/Desktop/Cours/testABI.xls';Extended Properties=Excel 8.0;");
+                MyCommand = new OleDbDataAdapter("select * from [Feuil1$]", MyConnection);
+                MyCommand.TableMappings.Add("Table", "TestTable");
                 DtSet = new DataSet();
                 MyCommand.Fill(DtSet);
                 grdClient.DataSource = DtSet.Tables[0];
@@ -236,7 +238,9 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show(ex.ToString());
             }
-            */
+            
+            
+            /*
             try
             {
                 OleDbConnection conn = new OleDbConnection();
@@ -256,11 +260,13 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show(ex.ToString());
             }
+            */
         }
 
         private void frmGestionClient_Activated(object sender, EventArgs e)
         {
             this.TopMost = true;
         }
+
     }
 }

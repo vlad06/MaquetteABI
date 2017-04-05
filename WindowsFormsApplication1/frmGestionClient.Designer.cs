@@ -45,7 +45,7 @@
             this.btnModifierClient = new System.Windows.Forms.Button();
             this.btnDetailClient = new System.Windows.Forms.Button();
             this.btnAfficheListe = new System.Windows.Forms.Button();
-            this.btnConvert = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.lblRecherche = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -143,7 +143,7 @@
             this.grdClient.AllowUserToAddRows = false;
             this.grdClient.AllowUserToDeleteRows = false;
             this.grdClient.AllowUserToOrderColumns = true;
-            this.grdClient.AllowUserToResizeColumns = false;
+            this.grdClient.AllowUserToResizeRows = false;
             this.grdClient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -200,15 +200,15 @@
             this.btnAfficheListe.UseVisualStyleBackColor = true;
             this.btnAfficheListe.Click += new System.EventHandler(this.btnAfficheListe_Click);
             // 
-            // btnConvert
+            // btnExport
             // 
-            this.btnConvert.Location = new System.Drawing.Point(12, 541);
-            this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(78, 52);
-            this.btnConvert.TabIndex = 14;
-            this.btnConvert.Text = "Export to  Excel";
-            this.toolTip1.SetToolTip(this.btnConvert, "Convertit la liste de\r\nclients en feuille excel");
-            this.btnConvert.UseVisualStyleBackColor = true;
+            this.btnExport.Location = new System.Drawing.Point(12, 541);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(78, 52);
+            this.btnExport.TabIndex = 14;
+            this.btnExport.Text = "Export to  Excel";
+            this.toolTip1.SetToolTip(this.btnExport, "Convertit la liste de\r\nclients en feuille excel");
+            this.btnExport.UseVisualStyleBackColor = true;
             // 
             // lblRecherche
             // 
@@ -260,7 +260,7 @@
             this.ClientSize = new System.Drawing.Size(1091, 597);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.lblRecherche);
-            this.Controls.Add(this.btnConvert);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnSupprimerClient);
             this.Controls.Add(this.btnDetailClient);
             this.Controls.Add(this.btnModifierClient);
@@ -302,7 +302,7 @@
         private System.Windows.Forms.ToolStripMenuItem feuilleExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem2;
-        private System.Windows.Forms.Button btnConvert;
+        private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label lblRecherche;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ToolTip toolTip1;
