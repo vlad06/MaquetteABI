@@ -113,8 +113,16 @@ namespace WindowsFormsApplication1
         {
             if (this.grdClient.CurrentRow != null)
             {
-                int iClient = this.grdClient.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
-                Client leClient = Donnees.listClient[iClient];
+                //MessageBox.Show(new Form { TopMost = true },this.grdClient.SelectedRows[0].Cells[0].Value.ToString());
+                int idClient = Convert.ToInt32(this.grdClient.SelectedRows[0].Cells[0].Value);//récupère l'id du client cliqué dans la datagrid
+                Client leClient=null;
+                foreach (Client cl in Donnees.listClient)
+                {
+                    if (cl.IdClient == idClient)
+                    {
+                        leClient = cl;
+                    }
+                }
                 if (!isFormOpen())  //si la form client n'est pas encore ouverte
                 {
                     this.frmVisu = new frmVisuClient(leClient); //on crée une instance de la form client
@@ -125,9 +133,8 @@ namespace WindowsFormsApplication1
                 }
                 else
                 {
-                    Donnees.listFrmVisuClient.TryGetValue(leClient.IdClient, out frmVisu);
+                    Donnees.listFrmVisuClient.TryGetValue(leClient.IdClient, out frmVisu);//on récupère l'adresse de frmVisu ouverte
                     frmVisu.TopMost = true;
-                    //MessageBox.Show(new Form { TopMost = true },"Cette fenêtre client est déjà ouverte", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

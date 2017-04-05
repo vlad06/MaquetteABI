@@ -21,9 +21,9 @@ namespace WindowsFormsApplication1
             this.leClient = unClient; //on assigne le client passé en paramètre à notre attribut déclaré plus haut
             InitializeComponent();
             this.Size = new Size(370, 450); //on cache les contacts
-            this.txtIdClient.Enabled = false;   //les Id clients et contacs sont inaccessibles à l'utilisateur
+            this.txtIdClient.Enabled = false;   //les Id clients et contacts sont inaccessibles à l'utilisateur
             this.txtIdContact.Enabled = false;
-            this.txtIdContact.Text = Contact.nContact.ToString();   //on attribue automatiquement un id pour le futur contact qui serait crée
+            //this.txtIdContact.Text = Contact.nContact.ToString();   //on attribue automatiquement un id pour le futur contact qui serait crée
         }
         /// <summary>
         /// on remplit les champs du form de visualisation avec les propriétés de l'objet passé en paramètre
@@ -31,8 +31,8 @@ namespace WindowsFormsApplication1
         /// <param name="unClient"></param>
         private void afficheClient(Client unClient)
         {
-            this.txtRaisonSociale.Text = unClient.RaisonSociale;
             this.txtIdClient.Text = unClient.IdClient.ToString();
+            this.txtRaisonSociale.Text = unClient.RaisonSociale;
             this.txtTelephone.Text = unClient.Telephone;
             this.cbxNature.Text = unClient.Nature;
             this.cbxTypeSociete.Text = unClient.TypeSociete;
@@ -180,6 +180,7 @@ namespace WindowsFormsApplication1
         {
             this.afficheClient(this.leClient);
             this.readable();
+            //on écrit l'entête de la datatable des contacts afin d'avoir les en-têtes de colonnes
             DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("ID Contact", typeof(System.Int32)));
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
@@ -309,6 +310,7 @@ namespace WindowsFormsApplication1
             if (!Outils.isTelephoneValid(this.txtTelephoneContact.Text.Trim()))
             {
                 errorProvider2.SetError(this.txtTelephoneContact, "Téléphone contact invalide !");
+                valid = false;
             }
             else
             {

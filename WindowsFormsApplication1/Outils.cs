@@ -22,7 +22,28 @@ namespace WindowsFormsApplication1
                 for (int i = 0; i < s.Length; i++)
                 {
                     c = s[i];
-                    if (!(char.IsLetter(c)) && !(c=='-') && !(c==' ') && !(c=='_')) //on assimile -, ,_ à des lettres car elles pourraient composer une raison sociale, un prénom ou un nom
+                    if (!(char.IsLetter(c)) && !(c=='-') && !(c==' ') && !(c=='_'))
+                    {
+                        code = false;
+                    }
+                }
+            }
+            else
+            {
+                code = false;
+            }
+            return code;
+        }
+        public static bool isMadeFromLettersAndNumbers(string s)
+        {
+            char c;
+            bool code = true;
+            if (s.Length > 0)
+            {
+                for (int i = 0; i < s.Length; i++)
+                {
+                    c = s[i];
+                    if (!(char.IsLetterOrDigit(c)) && !(c == '-') && !(c == ' ') && !(c == '_'))
                     {
                         code = false;
                     }
@@ -110,7 +131,7 @@ namespace WindowsFormsApplication1
         }
         public static bool isRaisonSocialeValid(string s)
         {
-            return isMadeFromLetters(s);
+            return isMadeFromLettersAndNumbers(s);
         }
         public static bool isEffectifValid(string s)
         {
