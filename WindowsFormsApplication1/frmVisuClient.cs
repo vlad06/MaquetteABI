@@ -21,8 +21,11 @@ namespace WindowsFormsApplication1
             this.leClient = unClient; //on assigne le client passé en paramètre à notre attribut déclaré plus haut
             InitializeComponent();
             this.Size = new Size(370, 450); //on cache les contacts
-            this.txtIdClient.Enabled = false;   //les Id clients et contacts sont inaccessibles à l'utilisateur
+            this.txtIdClient.Enabled = false;   //les contrôles Id clients et contacts sont inaccessibles à l'utilisateur
             this.txtIdContact.Enabled = false;
+            //this.btnUnlock.Visible = false; //on cache les boutons unlock et visible, ils ne servent plus actuellement et seront supprimés par la suite
+            this.btnQuitter.Visible = false;//
+            //this.writeable();//on active  champs du formulaire, sera supprimé par la suite
             //this.txtIdContact.Text = Contact.nContact.ToString();   //on attribue automatiquement un id pour le futur contact qui serait crée
         }
         /// <summary>
@@ -127,16 +130,24 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Erreur :\n" + ex.Message, "Modification de client");
                 return false;
             }
-        }/// <summary>
+        }
+        /// <summary>
         /// tente de modifier un contact, renvoie true si c'est possible et false sinon
         /// </summary>
         /// <returns></returns>
         private bool modifieContact()
         {
-            if(this.grdContact.CurrentRow != null)
+            if (this.grdContact.CurrentRow != null)
             {
-                int iContact = this.grdContact.CurrentRow.Index;
-                leContact = leClient.ListContact[iContact];
+                int idContact = Convert.ToInt32(this.grdContact.SelectedRows[0].Cells[0].Value);//on récupère la valeur de l'id contact dans la cellule correspondante
+                leContact = null;
+                foreach (Contact contact in leClient.ListContact)   //pour chaque contact de la liste
+                {
+                    if(contact.IdContact == idContact)  //on cherche le contact qui correspond à l'id récupéré dans la cellule, il est forcément unique comme son ID
+                    {
+                        leContact = contact;    //si on l'a trouvé, alors on le récupère
+                    }
+                }
             }
             try
             {
@@ -179,8 +190,8 @@ namespace WindowsFormsApplication1
         private void frmVisuClient_Load(object sender, EventArgs e)
         {
             this.afficheClient(this.leClient);
-            this.readable();
-            //on écrit l'entête de la datatable des contacts afin d'avoir les en-têtes de colonnes
+            this.readable();  //anciennement utilisé pour divers tests, supprimé à terme
+            //on écrit l'entête de la datatable des contacts afin de voir les en-têtes de colonnes à l'ouverture de la fenêtre
             DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("ID Contact", typeof(System.Int32)));
             dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
@@ -196,7 +207,7 @@ namespace WindowsFormsApplication1
             {
                 if (this.modifieClient())
                 {
-                    //MessageBox.Show(new Form { TopMost = true }, "Modification du client acceptée !", "Client modifié", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(new Form { TopMost = true }, "Modification du client acceptée !", "Client modifié", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
             }
@@ -333,15 +344,15 @@ namespace WindowsFormsApplication1
         /// </summary>
         private void readable()
         {
-            this.txtRaisonSociale.Enabled = false;
+            this.txtRaisonSociale.ReadOnly = true;
             this.cbxNature.Enabled = false;
             this.cbxTypeSociete.Enabled = false;
             this.cbxActivite.Enabled = false;
-            this.txtCa.Enabled = false;
-            this.txtEffectif.Enabled = false;
-            this.txtTelephone.Enabled = false;
-            this.txtAdresse.Enabled = false;
-            this.txtCommentComm.Enabled = false;
+            this.txtCa.ReadOnly = true;
+            this.txtEffectif.ReadOnly = true;
+            this.txtTelephone.ReadOnly = true;
+            this.txtAdresse.ReadOnly = true;
+            this.txtCommentComm.ReadOnly = true;
             this.gbxAjoutContact.Enabled = false;
             this.gbxListeContact.Enabled = false;
             this.grdContact.Enabled = false;
@@ -351,15 +362,15 @@ namespace WindowsFormsApplication1
         /// </summary>
         private void writeable()
         {
-            this.txtRaisonSociale.Enabled = true;
+            this.txtRaisonSociale.ReadOnly = false;
             this.cbxNature.Enabled = true;
             this.cbxTypeSociete.Enabled = true;
             this.cbxActivite.Enabled = true;
-            this.txtCa.Enabled = true;
-            this.txtEffectif.Enabled = true;
-            this.txtTelephone.Enabled = true;
-            this.txtAdresse.Enabled = true;
-            this.txtCommentComm.Enabled = true;
+            this.txtCa.ReadOnly = false;
+            this.txtEffectif.ReadOnly = false;
+            this.txtTelephone.ReadOnly = false;
+            this.txtAdresse.ReadOnly = false;
+            this.txtCommentComm.ReadOnly = false;
             this.gbxAjoutContact.Enabled = true;
             this.gbxListeContact.Enabled = true;
             this.grdContact.Enabled = true;
@@ -401,9 +412,19 @@ namespace WindowsFormsApplication1
         /// <param name="e"></param>
         private void grdContact_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int iContact = grdContact.CurrentRow.Index;//récupère l'indice du client cliqué dans la datagrid
-            Contact unContact = leClient.ListContact[iContact];
-            afficheContact(unContact);
+            if (this.grdContact.CurrentRow != null)
+            {
+                int idContact = Convert.ToInt32(this.grdContact.SelectedRows[0].Cells[0].Value);//on récupère la valeur de l'id contact dans la cellule correspondante
+                leContact = null;
+                foreach (Contact contact in leClient.ListContact)   //pour chaque contact de la liste
+                {
+                    if (contact.IdContact == idContact)  //on cherche le contact qui correspond à l'id récupéré dans la cellule, il est forcément unique comme son ID
+                    {
+                        leContact = contact;    //si on l'a trouvé, alors on le récupère
+                    }
+                }
+            }
+            afficheContact(leContact);
         }
         /// <summary>
         /// modifie un contact, met à jour la grid et vide les txtbox
@@ -443,15 +464,15 @@ namespace WindowsFormsApplication1
 
         private void btnDeverrouiller_Click(object sender, EventArgs e)
         {
-            if (btnUnlock.Text == "Unlock")
+            if (btnUnlock.Text == "Débloquer")
             {
-                btnUnlock.Text = "Lock";
+                btnUnlock.Text = "Bloquer";
                 this.writeable();
                 this.Show();
             }
             else
             {
-                btnUnlock.Text = "Unlock";
+                btnUnlock.Text = "Débloquer";
                 this.readable();
                 this.Show();
             }
@@ -469,6 +490,11 @@ namespace WindowsFormsApplication1
             this.txtPrenomContact.Text = "";
             this.txtTelephoneContact.Text = "";
             this.txtFonctionContact.Text = "";
+        }
+
+        private void btnAjouterContact_MouseHover(object sender, EventArgs e)
+        {
+            this.txtIdContact.Text = Contact.nContact.ToString();
         }
     }
 }

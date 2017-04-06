@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static bool isMadeFromLetters(string s)
+        public static bool isMadeOfLetters(string s)
         {
             char c;
             bool code = true;
@@ -34,7 +34,7 @@ namespace WindowsFormsApplication1
             }
             return code;
         }
-        public static bool isMadeFromLettersAndNumbers(string s)
+        public static bool isMadeOfLettersAndNumbers(string s)
         {
             char c;
             bool code = true;
@@ -106,7 +106,7 @@ namespace WindowsFormsApplication1
             }
             return code;
         }
-        public static bool isANumber(string s)
+        public static bool isMadeOfNumbers(string s)
         {
             char c;
             bool code = true;   //code de retour, vrai par défaut
@@ -131,7 +131,7 @@ namespace WindowsFormsApplication1
         }
         public static bool isRaisonSocialeValid(string s)
         {
-            return isMadeFromLettersAndNumbers(s);
+            return isMadeOfLettersAndNumbers(s);
         }
         public static bool isEffectifValid(string s)
         {
@@ -143,19 +143,19 @@ namespace WindowsFormsApplication1
         }
         public static bool isTelephoneValid(string s)
         {
-            return isANumber(s);
+            return isMadeOfNumbers(s);
         }
         public static bool isNomValid(string s)
         {
-            return isMadeFromLetters(s);
+            return isMadeOfLetters(s);
         }
         public static bool isPrenomValid(string s)
         {
-            return isMadeFromLetters(s);
+            return isMadeOfLetters(s);
         }
         public static bool isFonctionValid(string s)
         {
-            return isMadeFromLetters(s);
+            return isMadeOfLetters(s);
         }
     }
 }

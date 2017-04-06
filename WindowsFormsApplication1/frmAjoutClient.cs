@@ -140,6 +140,18 @@ namespace WindowsFormsApplication1
         {
             this.TopMost = true;
         }
-
+        //private void txtRaisonSociale_TextChanged(object sender, EventArgs e)
+        //{       
+        //    if (!Outils.isRaisonSocialeValid(this.txtRaisonSociale.Text.Trim()))
+        //    {
+        //        errorProvider1.SetError(this.txtRaisonSociale, "Raison Sociale invalide !");
+        //    }
+        //    else
+        //    {
+        //        errorProvider1.SetError(this.txtRaisonSociale, String.Empty);
+        //        //errorProvider1.
+        //    }
+        //}
+        
     }
 }

@@ -32,14 +32,11 @@
             this.msGestionClient = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nouveauClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supprimerClientToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.feuilleExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quitterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.quitterToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listeClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viderListeClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdClient = new System.Windows.Forms.DataGridView();
             this.txtRechercher = new System.Windows.Forms.TextBox();
             this.btnModifierClient = new System.Windows.Forms.Button();
@@ -60,8 +57,7 @@
             // 
             this.msGestionClient.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fichierToolStripMenuItem,
-            this.afficherToolStripMenuItem,
-            this.aideToolStripMenuItem});
+            this.afficherToolStripMenuItem});
             this.msGestionClient.Location = new System.Drawing.Point(0, 0);
             this.msGestionClient.Name = "msGestionClient";
             this.msGestionClient.Size = new System.Drawing.Size(1091, 24);
@@ -72,72 +68,55 @@
             // 
             this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nouveauClientToolStripMenuItem,
-            this.quitterToolStripMenuItem,
-            this.quitterToolStripMenuItem1,
-            this.quitterToolStripMenuItem2});
+            this.supprimerClientToolStripMenuItem2,
+            this.quitterToolStripMenuItem});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
             this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fichierToolStripMenuItem.Text = "Fichier";
             // 
             // nouveauClientToolStripMenuItem
             // 
-            this.nouveauClientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clientToolStripMenuItem});
             this.nouveauClientToolStripMenuItem.Name = "nouveauClientToolStripMenuItem";
-            this.nouveauClientToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.nouveauClientToolStripMenuItem.Text = "Nouveau";
+            this.nouveauClientToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.nouveauClientToolStripMenuItem.Text = "Nouveau client";
+            this.nouveauClientToolStripMenuItem.Click += new System.EventHandler(this.nouveauClientToolStripMenuItem_Click);
             // 
-            // clientToolStripMenuItem
+            // supprimerClientToolStripMenuItem2
             // 
-            this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
-            this.clientToolStripMenuItem.Text = "Client";
+            this.supprimerClientToolStripMenuItem2.Name = "supprimerClientToolStripMenuItem2";
+            this.supprimerClientToolStripMenuItem2.Size = new System.Drawing.Size(161, 22);
+            this.supprimerClientToolStripMenuItem2.Text = "Supprimer client";
+            this.supprimerClientToolStripMenuItem2.Click += new System.EventHandler(this.supprimerClientToolStripMenuItem2_Click);
             // 
             // quitterToolStripMenuItem
             // 
-            this.quitterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.feuilleExcelToolStripMenuItem});
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.quitterToolStripMenuItem.Text = "Ouvrir";
-            // 
-            // feuilleExcelToolStripMenuItem
-            // 
-            this.feuilleExcelToolStripMenuItem.Name = "feuilleExcelToolStripMenuItem";
-            this.feuilleExcelToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.feuilleExcelToolStripMenuItem.Text = "Feuille Excel";
-            // 
-            // quitterToolStripMenuItem1
-            // 
-            this.quitterToolStripMenuItem1.Name = "quitterToolStripMenuItem1";
-            this.quitterToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
-            this.quitterToolStripMenuItem1.Text = "Enregistrer sous";
-            // 
-            // quitterToolStripMenuItem2
-            // 
-            this.quitterToolStripMenuItem2.Name = "quitterToolStripMenuItem2";
-            this.quitterToolStripMenuItem2.Size = new System.Drawing.Size(157, 22);
-            this.quitterToolStripMenuItem2.Text = "Quitter";
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.quitterToolStripMenuItem.Text = "Quitter";
+            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
             // 
             // afficherToolStripMenuItem
             // 
             this.afficherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listeClientsToolStripMenuItem});
+            this.listeClientsToolStripMenuItem,
+            this.viderListeClientsToolStripMenuItem});
             this.afficherToolStripMenuItem.Name = "afficherToolStripMenuItem";
-            this.afficherToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.afficherToolStripMenuItem.Text = "Afficher";
+            this.afficherToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.afficherToolStripMenuItem.Text = "Outils";
             // 
             // listeClientsToolStripMenuItem
             // 
             this.listeClientsToolStripMenuItem.Name = "listeClientsToolStripMenuItem";
-            this.listeClientsToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.listeClientsToolStripMenuItem.Text = "Liste clients";
+            this.listeClientsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.listeClientsToolStripMenuItem.Text = "Afficher liste clients";
+            this.listeClientsToolStripMenuItem.Click += new System.EventHandler(this.listeClientsToolStripMenuItem_Click);
             // 
-            // aideToolStripMenuItem
+            // viderListeClientsToolStripMenuItem
             // 
-            this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
-            this.aideToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.aideToolStripMenuItem.Text = "Aide";
+            this.viderListeClientsToolStripMenuItem.Name = "viderListeClientsToolStripMenuItem";
+            this.viderListeClientsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.viderListeClientsToolStripMenuItem.Text = "Vider liste clients";
+            this.viderListeClientsToolStripMenuItem.Click += new System.EventHandler(this.viderListeClientsToolStripMenuItem_Click);
             // 
             // grdClient
             // 
@@ -160,7 +139,6 @@
             this.grdClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdClient.Size = new System.Drawing.Size(899, 550);
             this.grdClient.TabIndex = 6;
-            this.grdClient.SelectionChanged += new System.EventHandler(this.grdClient_SelectionChanged);
             this.grdClient.DoubleClick += new System.EventHandler(this.grdClient_DoubleClick);
             // 
             // txtRechercher
@@ -173,17 +151,16 @@
             // 
             // btnModifierClient
             // 
-            this.btnModifierClient.Location = new System.Drawing.Point(32, 243);
+            this.btnModifierClient.Location = new System.Drawing.Point(32, 235);
             this.btnModifierClient.Name = "btnModifierClient";
             this.btnModifierClient.Size = new System.Drawing.Size(121, 52);
             this.btnModifierClient.TabIndex = 11;
             this.btnModifierClient.Text = "Passer les clients au premier plan";
             this.btnModifierClient.UseVisualStyleBackColor = true;
-            this.btnModifierClient.Click += new System.EventHandler(this.btnModifierClient_Click);
             // 
             // btnDetailClient
             // 
-            this.btnDetailClient.Location = new System.Drawing.Point(12, 214);
+            this.btnDetailClient.Location = new System.Drawing.Point(12, 206);
             this.btnDetailClient.Name = "btnDetailClient";
             this.btnDetailClient.Size = new System.Drawing.Size(163, 23);
             this.btnDetailClient.TabIndex = 1;
@@ -262,6 +239,7 @@
             this.btnViderListe.TabIndex = 17;
             this.btnViderListe.Text = "Vider liste clients";
             this.btnViderListe.UseVisualStyleBackColor = true;
+            this.btnViderListe.Click += new System.EventHandler(this.btnViderListe_Click);
             // 
             // frmGestionClient
             // 
@@ -296,12 +274,8 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip msGestionClient;
-        private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aideToolStripMenuItem;
         private System.Windows.Forms.DataGridView grdClient;
-        private System.Windows.Forms.ToolStripMenuItem nouveauClientToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listeClientsToolStripMenuItem;
         private System.Windows.Forms.TextBox txtRechercher;
         private System.Windows.Forms.Button btnSupprimerClient;
@@ -309,15 +283,16 @@
         private System.Windows.Forms.Button btnAjouterClient;
         private System.Windows.Forms.Button btnDetailClient;
         private System.Windows.Forms.Button btnAfficherListe;
-        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem feuilleExcelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem2;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label lblRecherche;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnViderListe;
+        private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nouveauClientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supprimerClientToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viderListeClientsToolStripMenuItem;
     }
 }
 
