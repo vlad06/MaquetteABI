@@ -26,7 +26,7 @@ namespace WindowsFormsApplication1
         }
         //*********************************************************
         //********************METHODES INTERNES********************TODO : faire une fonction de récupération de l'id client pour éviter les 
-        //*********************************************************         erreurs avec le travail sur l'index du datagrid
+        //*********************************************************         erreurs avec le travail sur l'index du datagrid lorsqu'il est trié
         /// <summary>
         /// affiche les headers puis certains attributs des clients de la liste sur la datagrid
         /// </summary>
