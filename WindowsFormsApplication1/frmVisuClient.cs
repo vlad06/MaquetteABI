@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1
         {
             this.leClient = unClient; //on assigne le client passé en paramètre à notre attribut déclaré plus haut
             InitializeComponent();
-            this.Size = new Size(370, 450); //on cache les contacts
+            this.Size = new Size(375, 450); //on cache les contacts
             this.txtIdClient.Enabled = false;   //les contrôles Id clients et contacts sont inaccessibles à l'utilisateur
             this.txtIdContact.Enabled = false;
             //this.btnUnlock.Visible = false; //on cache les boutons unlock et visible, ils ne servent plus actuellement et seront supprimés par la suite
@@ -177,7 +177,7 @@ namespace WindowsFormsApplication1
             else
             {
                 btnAfficherContact.Text = "Afficher les contacts >>";
-                this.Size = new Size(370, 450);
+                this.Size = new Size(375, 450);
                 this.Show();
             }
         }

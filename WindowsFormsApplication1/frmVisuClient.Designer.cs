@@ -60,6 +60,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
+            // txtCommentComm
+            // 
+            this.txtCommentComm.Size = new System.Drawing.Size(235, 123);
+            // 
             // txtEffectif
             // 
             this.txtEffectif.Size = new System.Drawing.Size(158, 20);
@@ -72,6 +76,10 @@
             // txtCa
             // 
             this.txtCa.Size = new System.Drawing.Size(158, 20);
+            // 
+            // txtAdresse
+            // 
+            this.txtAdresse.Size = new System.Drawing.Size(235, 57);
             // 
             // cbxTypeSociete
             // 
@@ -297,7 +305,7 @@
             // 
             // btnAfficherContact
             // 
-            this.btnAfficherContact.Location = new System.Drawing.Point(280, 6);
+            this.btnAfficherContact.Location = new System.Drawing.Point(283, 5);
             this.btnAfficherContact.Name = "btnAfficherContact";
             this.btnAfficherContact.Size = new System.Drawing.Size(68, 34);
             this.btnAfficherContact.TabIndex = 58;
@@ -307,7 +315,7 @@
             // 
             // btnUnlock
             // 
-            this.btnUnlock.Location = new System.Drawing.Point(280, 85);
+            this.btnUnlock.Location = new System.Drawing.Point(283, 85);
             this.btnUnlock.Name = "btnUnlock";
             this.btnUnlock.Size = new System.Drawing.Size(68, 33);
             this.btnUnlock.TabIndex = 59;
@@ -317,7 +325,7 @@
             // 
             // btnValiderClient
             // 
-            this.btnValiderClient.Location = new System.Drawing.Point(280, 176);
+            this.btnValiderClient.Location = new System.Drawing.Point(283, 176);
             this.btnValiderClient.Name = "btnValiderClient";
             this.btnValiderClient.Size = new System.Drawing.Size(68, 34);
             this.btnValiderClient.TabIndex = 60;
@@ -327,7 +335,7 @@
             // 
             // btnReinitialiser
             // 
-            this.btnReinitialiser.Location = new System.Drawing.Point(280, 45);
+            this.btnReinitialiser.Location = new System.Drawing.Point(283, 45);
             this.btnReinitialiser.Name = "btnReinitialiser";
             this.btnReinitialiser.Size = new System.Drawing.Size(68, 34);
             this.btnReinitialiser.TabIndex = 61;

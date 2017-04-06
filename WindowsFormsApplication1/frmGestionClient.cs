@@ -21,12 +21,12 @@ namespace WindowsFormsApplication1
         public frmGestionClient()
         {
             InitializeComponent();
-            this.btnImport.Visible = false; //pour une éventuelle utilisation future
-            this.btnExport.Visible = false; //  ""  ""   ""    ""  ""   ""     "" ""
+            this.btnExport.Visible = false; //pour un export éventuel de la datagrid vers une feuille excel
         }
-        //*********************************************************
-        //********************METHODES INTERNES********************TODO : faire une fonction de récupération de l'id client pour éviter les 
-        //*********************************************************         erreurs avec le travail sur l'index du datagrid lorsqu'il est trié
+        //*********************************************************TODO : faire une fonction de récupération de l'id client pour éviter les 
+        //********************METHODES INTERNES********************         erreurs avec le travail sur l'index du datagrid lorsqu'il est trié
+        //*********************************************************       et arrêter de travailler sur les index du datagrid(source d'erreur)  
+
         /// <summary>
         /// affiche les headers puis certains attributs des clients de la liste sur la datagrid
         /// </summary>
@@ -37,39 +37,34 @@ namespace WindowsFormsApplication1
                 DataRow dr;
                 for (int i = 0; i < Donnees.listClient.Count; i++)
                 {
-                    dr = dt.NewRow();
+                    dr = dt.NewRow();   //déclare une nouvelle ligne et la construit case par case (colonne par colonne)
                     dr[0] = Donnees.listClient[i].IdClient;
                     dr[1] = Donnees.listClient[i].RaisonSociale;
                     dr[2] = Donnees.listClient[i].Nature;
                     dr[3] = Donnees.listClient[i].Telephone;
                     dr[4] = Donnees.listClient[i].Ca;
                     dr[5] = Donnees.listClient[i].Effectif;
-                    dt.Rows.Add(dr);
+                    dt.Rows.Add(dr);    //une fois la ligne construite on l'ajoute à la dataTable
                 }
-                this.grdClient.DataSource = dt.DefaultView;
+                this.grdClient.DataSource = dt.DefaultView; //une fois le couple (lignes,colonnes) construit, on l'affiche
         }
-       /// <summary>
-       /// crée un jeu de clients tests
-       /// </summary>
-        private void creerClientTest()
+        private void afficheClientsTest()
         {
-            for (int i = 1; i <= 5; i++)
+            DataTable dt = new DataTable();
+            showGrdHeaders(dt); //affiche les headers sur la datagrid
+            DataRow dr;
+            for (int i = 0; i < Donnees.listClientTest.Count; i++)
             {
-                Client Client1 = new Client();
-                Client1.IdClient = Client.nClient;
-                Client1.RaisonSociale = "SA " + i;
-                Client1.Nature = "Principale";
-                Client1.TypeSociete = "Privé";
-                Client1.Telephone = "049332581" + i;
-                Client1.Adresse = i + " ,route de turin 06000 NICE";
-                Client1.Activite = "Industrie";
-                Client1.Ca = i * 10000;
-                Client1.Effectif = i * 2;
-                Client1.CommentComm = i + ") Putain de bordel de merde...";
-                Donnees.listClient.Add(Client1);
-                Client.nClient++;
+                dr = dt.NewRow();   //déclare une nouvelle ligne et la construit case par case (colonne par colonne)
+                dr[0] = Donnees.listClientTest[i].IdClient;
+                dr[1] = Donnees.listClientTest[i].RaisonSociale;
+                dr[2] = Donnees.listClientTest[i].Nature;
+                dr[3] = Donnees.listClientTest[i].Telephone;
+                dr[4] = Donnees.listClientTest[i].Ca;
+                dr[5] = Donnees.listClientTest[i].Effectif;
+                dt.Rows.Add(dr);    //une fois la ligne construite on l'ajoute à la dataTable
             }
-            this.afficheClients();
+            this.grdClient.DataSource = dt.DefaultView; //une fois le couple (lignes,colonnes) construit, on l'affiche
         }
         /// <summary>
         /// affiche le client sélectionné dans la datagrid dans les champs de frmVisuClient
@@ -180,6 +175,26 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+        private void buildClientListFromDataGrid()
+        {
+            Client theClient;
+            for (int i = 0; i < 10; i++)
+            {
+                theClient = new Client(
+                    Convert.ToInt32(grdClient.Rows[i].Cells[0].Value),      //ID client
+                    Convert.ToString(grdClient.Rows[i].Cells[1].Value),     //raison sociale
+                    "",
+                    "",
+                    "",
+                    Convert.ToString(grdClient.Rows[i].Cells[2].Value),     //nature
+                    Convert.ToString(grdClient.Rows[i].Cells[3].Value),     //téléphone
+                    Convert.ToDecimal(grdClient.Rows[i].Cells[4].Value),    //chiffre d'affaire
+                    Convert.ToInt32(grdClient.Rows[i].Cells[5].Value),      //effectif
+                    ""
+                    );
+                Donnees.listClient.Add(theClient);
+            }
+        }
         /// <summary>
         /// affiche une form d'ajout de client en mode modal
         /// </summary>
@@ -241,7 +256,8 @@ namespace WindowsFormsApplication1
         }
         private void btnAfficheListe_Click(object sender, EventArgs e)
         {
-            if (this.grdClient.CurrentRow != null)
+            //if (this.grdClient.CurrentRow != null)
+            if(Donnees.listClient.Count>0)
             {
                 this.afficheClients();
             }
@@ -279,14 +295,26 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void btnImport_Click(object sender, EventArgs e)
+        private void frmGestionClient_Activated(object sender, EventArgs e)
+        {
+            this.TopMost = true;
+        }
+
+        private void btnViderListe_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            showGrdHeaders(dt);
+        }
+
+        private void btnAfficheTest_Click(object sender, EventArgs e)
         {
             try
             {
                 OleDbConnection MyConnection;
                 DataSet DtSet;
                 OleDbDataAdapter MyCommand;
-                MyConnection = new OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:/Users/DL-CDI/Desktop/Cours/testABI.xls';Extended Properties=Excel 8.0;");
+                MyConnection = new OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:/Users/ADI/Desktop/testABI.xls';Extended Properties=Excel 8.0;");
+                //MyConnection = new OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:/Users/DL-CDI/Desktop/Cours/testABI.xls';Extended Properties=Excel 8.0;");
                 MyCommand = new OleDbDataAdapter("select * from [Feuil1$]", MyConnection);
                 MyCommand.TableMappings.Add("Table", "TestTable");
                 DtSet = new DataSet();
@@ -298,17 +326,11 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void frmGestionClient_Activated(object sender, EventArgs e)
-        {
-            this.TopMost = true;
-        }
-
-        private void btnViderListe_Click(object sender, EventArgs e)
-        {
-            DataTable dt = new DataTable();
-            showGrdHeaders(dt);
+            buildClientListFromDataGrid();
+            if (Donnees.listClient.Count > 0)
+            {
+                this.afficheClients();
+            }
         }
     }
 }

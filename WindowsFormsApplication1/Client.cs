@@ -8,7 +8,9 @@ namespace WindowsFormsApplication1
 {
     public class Client
     {
-
+        //********************************************************
+        //***********************LES ATTRIBUTS********************
+        //********************************************************
         public static int nClient=1;  //le nombre de clients crées
 
         private Int32 idClient;   //le numéro de client incrémenté pour chaque nouveau client crée
@@ -27,15 +29,15 @@ namespace WindowsFormsApplication1
         //*******************LES CONSTRUCTEURS********************
         //********************************************************
         public Client(int idClient, string raisonSociale, string typeSociete, string activite, string adresse,
-            string telephone, string nature, decimal ca, int effectif, string commentComm)
+            string nature, string telephone, decimal ca, int effectif, string commentComm)
         {
             this.IdClient = idClient;
             this.RaisonSociale = raisonSociale;
             this.TypeSociete = typeSociete;
             this.Activite = activite;
             this.Adresse = adresse;
-            this.Telephone = telephone;
             this.Nature = nature;
+            this.Telephone = telephone;
             this.Ca = ca;
             this.Effectif = effectif;
             this.CommentComm = commentComm;
@@ -114,9 +116,13 @@ namespace WindowsFormsApplication1
             get { return listContact; }
             set {  listContact = value;}
         }
+        //********************************************************
+        //**********************LES METHODES**********************
+        //********************************************************
 
         /// <summary>
         /// méthode permettant de tester le ratio chiffre d'affaire / effectif pour savoir s'il est > 1M
+        /// retourne true si le ratio est inférieur à 1M et false sinon 
         /// </summary>
         /// <returns></returns>
         public bool RatioCaEffectif()

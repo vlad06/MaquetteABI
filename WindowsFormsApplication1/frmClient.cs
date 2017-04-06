@@ -12,6 +12,9 @@ namespace WindowsFormsApplication1
 {
     public partial class frmClient : Form
     {
+        /// <summary>
+        /// Form mère qui à servi pour l'héritage des form frmajoutClient et frmVisuClient
+        /// </summary>
         public frmClient()
         {
             InitializeComponent();

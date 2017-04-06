@@ -44,11 +44,11 @@
             this.btnAfficherListe = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.lblRecherche = new System.Windows.Forms.Label();
-            this.btnImport = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnSupprimerClient = new System.Windows.Forms.Button();
             this.btnAjouterClient = new System.Windows.Forms.Button();
             this.btnViderListe = new System.Windows.Forms.Button();
+            this.btnAfficheTest = new System.Windows.Forms.Button();
             this.msGestionClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdClient)).BeginInit();
             this.SuspendLayout();
@@ -197,16 +197,6 @@
             this.lblRecherche.TabIndex = 15;
             this.lblRecherche.Text = "Rechercher : ";
             // 
-            // btnImport
-            // 
-            this.btnImport.Location = new System.Drawing.Point(100, 541);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(78, 52);
-            this.btnImport.TabIndex = 16;
-            this.btnImport.Text = "Import from  Excel";
-            this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
             // btnSupprimerClient
             // 
             this.btnSupprimerClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -241,13 +231,24 @@
             this.btnViderListe.UseVisualStyleBackColor = true;
             this.btnViderListe.Click += new System.EventHandler(this.btnViderListe_Click);
             // 
+            // btnAfficheTest
+            // 
+            this.btnAfficheTest.Location = new System.Drawing.Point(32, 314);
+            this.btnAfficheTest.Name = "btnAfficheTest";
+            this.btnAfficheTest.Size = new System.Drawing.Size(118, 129);
+            this.btnAfficheTest.TabIndex = 19;
+            this.btnAfficheTest.Text = "affiche jeu de clients test\r\nattention le jeu provient d\'une feuille excel à impo" +
+    "rter\r\nle path de la feuille devra être changé";
+            this.btnAfficheTest.UseVisualStyleBackColor = true;
+            this.btnAfficheTest.Click += new System.EventHandler(this.btnAfficheTest_Click);
+            // 
             // frmGestionClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1091, 597);
+            this.Controls.Add(this.btnAfficheTest);
             this.Controls.Add(this.btnViderListe);
-            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.lblRecherche);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnSupprimerClient);
@@ -285,7 +286,6 @@
         private System.Windows.Forms.Button btnAfficherListe;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label lblRecherche;
-        private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnViderListe;
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
@@ -293,6 +293,7 @@
         private System.Windows.Forms.ToolStripMenuItem supprimerClientToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viderListeClientsToolStripMenuItem;
+        private System.Windows.Forms.Button btnAfficheTest;
     }
 }
 

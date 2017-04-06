@@ -8,6 +8,9 @@ namespace WindowsFormsApplication1
 {
     public class Contact
     {
+        //********************************************************
+        //***********************LES ATTRIBUTS********************
+        //********************************************************
         public static int nContact=1;
 
         private Int32 idContact;
@@ -18,6 +21,9 @@ namespace WindowsFormsApplication1
         //private Int32 idClientParent;
         //private double totalHeuresContact;
 
+        //********************************************************
+        //********************LES CONSTRUCTEURS*******************
+        //********************************************************
         public Contact()
         {
 
@@ -31,7 +37,9 @@ namespace WindowsFormsApplication1
             this.TelContact = telContact;
             this.FonctionContact = fonctionContact;
         }
-
+        //********************************************************
+        //****************LES GETTERS et SETTERS******************
+        //********************************************************
         public int IdContact
         {
             get{ return idContact; }
