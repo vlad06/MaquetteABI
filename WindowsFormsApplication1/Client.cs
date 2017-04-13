@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1
     public class Client
     {
         //********************************************************
-        //***********************LES ATTRIBUTS********************
+        //***********************ATTRIBUTS************************
         //********************************************************
         public static int nClient=1;  //le nombre de clients crées
 
@@ -26,7 +26,7 @@ namespace WindowsFormsApplication1
         private List<Contact> listContact = new List<Contact>(); //liste de contact du client
 
         //********************************************************
-        //*******************LES CONSTRUCTEURS********************
+        //********************CONSTRUCTEURS***********************
         //********************************************************
         public Client(int idClient, string raisonSociale, string typeSociete, string activite, string adresse,
             string nature, string telephone, decimal ca, int effectif, string commentComm)
@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
 
         }
         //********************************************************
-        //**************LES GETTERS ET SETTERS********************
+        //******************GETTERS ET SETTERS********************
         //********************************************************
         public int IdClient
         {
@@ -117,7 +117,7 @@ namespace WindowsFormsApplication1
             set {  listContact = value;}
         }
         //********************************************************
-        //**********************LES METHODES**********************
+        //************************METHODES************************
         //********************************************************
 
         /// <summary>

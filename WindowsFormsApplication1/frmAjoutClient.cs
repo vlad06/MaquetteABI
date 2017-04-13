@@ -42,7 +42,23 @@ namespace WindowsFormsApplication1
                 nouveauClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
                 nouveauClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
                 nouveauClient.CommentComm = base.txtCommentComm.Text;
-                Donnees.listClient.Add(nouveauClient);
+                //Donnees.listClient.Add(nouveauClient);
+                TClient nouveauClientEF = new TClient();
+                nouveauClientEF.IdClient = nouveauClient.IdClient;
+                nouveauClientEF.RaisonSociale = nouveauClient.RaisonSociale;
+                nouveauClientEF.Nature = nouveauClient.Nature;
+                nouveauClientEF.TypeSociete = nouveauClient.TypeSociete;
+                nouveauClientEF.Activite = nouveauClient.Activite;
+                nouveauClientEF.Telephone = nouveauClient.Telephone;
+                nouveauClientEF.Adresse = nouveauClient.Adresse;
+                nouveauClientEF.Ca = nouveauClient.Ca;
+                nouveauClientEF.Effectif = nouveauClient.Effectif;
+                nouveauClientEF.CommentComm = nouveauClient.CommentComm;
+                //INSERTION EN DBCONTEXT
+                Donnees.abiDb.TClient.Add(nouveauClientEF);
+                //MISE A JOUR DE LA BDD
+                Donnees.abiDb.SaveChanges();
+
                 return true;
             }
             catch(Exception ex)

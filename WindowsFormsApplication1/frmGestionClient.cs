@@ -32,22 +32,36 @@ namespace WindowsFormsApplication1
         /// </summary>
         private void afficheClients()
         {
-                DataTable dt = new DataTable();
-                showGrdHeaders(dt); //affiche les headers sur la datagrid
-                DataRow dr;
-                for (int i = 0; i < Donnees.listClient.Count; i++)
-                {
-                    dr = dt.NewRow();   //déclare une nouvelle ligne et la construit case par case (colonne par colonne)
-                    dr[0] = Donnees.listClient[i].IdClient;
-                    dr[1] = Donnees.listClient[i].RaisonSociale;
-                    dr[2] = Donnees.listClient[i].Nature;
-                    dr[3] = Donnees.listClient[i].Telephone;
-                    dr[4] = Donnees.listClient[i].Ca;
-                    dr[5] = Donnees.listClient[i].Effectif;
-                    dt.Rows.Add(dr);    //une fois la ligne construite on l'ajoute à la dataTable
-                }
-                this.grdClient.DataSource = dt.DefaultView; //une fois le couple (lignes,colonnes) construit, on l'affiche
+            DataTable dt = new DataTable();
+            showGrdHeaders(dt); //affiche les headers sur la datagrid
+            DataRow dr;
+            foreach (TClient clientEF in Donnees.abiDb.TClient.ToList())
+            {
+                dr = dt.NewRow();
+                dr[0] = clientEF.IdClient;
+                dr[1] = clientEF.RaisonSociale;
+                dr[2] = clientEF.Nature;
+                dr[3] = clientEF.Telephone;
+                dr[4] = clientEF.Ca;
+                dr[5] = clientEF.Effectif;
+                dt.Rows.Add(dr);
+            }   
+            //for (int i = 0; i < Donnees.listClient.Count; i++)
+            //{
+            //    dr = dt.NewRow();   //déclare une nouvelle ligne et la construit case par case (colonne par colonne)
+            //    dr[0] = Donnees.listClient[i].IdClient;
+            //    dr[1] = Donnees.listClient[i].RaisonSociale;
+            //    dr[2] = Donnees.listClient[i].Nature;
+            //    dr[3] = Donnees.listClient[i].Telephone;
+            //    dr[4] = Donnees.listClient[i].Ca;
+            //    dr[5] = Donnees.listClient[i].Effectif;
+            //    dt.Rows.Add(dr);    //une fois la ligne construite on l'ajoute à la dataTable
+            //}
+            this.grdClient.DataSource = dt.DefaultView; //une fois le couple (lignes,colonnes) construit, on l'affiche
         }
+        /// <summary>
+        /// créee à des fins de tests mais plus référencée
+        /// </summary>
         private void afficheClientsTest()
         {
             DataTable dt = new DataTable();
@@ -137,6 +151,43 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Effectif", typeof(System.Int32)));
             this.grdClient.DataSource = dt;
         }
+
+        private void deleteClientFromDb()
+        {
+            if (this.grdClient.CurrentRow != null)
+            {
+                int idClient = Convert.ToInt32(this.grdClient.CurrentRow.Cells[0].Value);
+                //RETROUVER LE CLIENT EF DANS LA COLLECTION DBCONTEXT
+                TClient leClientEF = Donnees.abiDb.TClient.Find(idClient);
+                Client leClient = Donnees.listClient[idClient];
+                //CONFIRMER LA SUPPRESSION :
+                if (MessageBox.Show(new Form { TopMost = true }, "Voulez-vous supprimer définitivement ce client ?", "Attention",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    //SUPPRIMER LE CLIENT DE LA COLLECTION EF
+                    Donnees.abiDb.TClient.Remove(leClientEF);
+                    Client leClient = Donnees.listClient[idClient];
+
+                    if (isFormOpen()) //on vérifie si la form qui va être supprimée à déjà été ouverte par l'utilisateur
+                    {
+                            if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))   //si le dictionnaire contient la clé correspondant à la value idclient
+                            {
+                                frmVisuClient fvc = Donnees.listFrmVisuClient[leClient.IdClient]; //on récupère la référence de la form qui va être supprimée
+                                fvc.Close();    //on ferme la form
+                            }
+                            Donnees.listFrmVisuClient.Remove(leClient.IdClient); //on supprime le couple (id,form) du dictionnaire
+                            Donnees.listClient.Remove(leClient);        //on supprime le client de la liste client
+                            afficheClients();   //on met à jour l'affichage
+                    }
+                    else
+                    {
+                        Donnees.listFrmVisuClient.Remove(leClient.IdClient);
+                        Donnees.listClient.Remove(leClient);
+                        afficheClients();
+                    }
+                }
+            }
+        }
         /// <summary>
         /// supprime de la liste le client sélectionné
         /// </summary>
@@ -212,11 +263,13 @@ namespace WindowsFormsApplication1
 
         private void supprimerClientToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            this.suppressionClient();
+            this.deleteClientFromDb();
+            //this.suppressionClient();
         }
         private void btnSupprimerClient_Click(object sender, EventArgs e)
         {
-            this.suppressionClient();
+            this.deleteClientFromDb();
+            //this.suppressionClient();
         }
 
 
