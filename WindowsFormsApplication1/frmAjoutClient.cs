@@ -43,7 +43,8 @@ namespace WindowsFormsApplication1
                 nouveauClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
                 nouveauClient.CommentComm = base.txtCommentComm.Text;
                 //Donnees.listClient.Add(nouveauClient);
-                TClient nouveauClientEF = new TClient();
+
+                TClient nouveauClientEF = new TClient();    //nouvel objet EF de type TClient
                 nouveauClientEF.IdClient = nouveauClient.IdClient;
                 nouveauClientEF.RaisonSociale = nouveauClient.RaisonSociale;
                 nouveauClientEF.Nature = nouveauClient.Nature;

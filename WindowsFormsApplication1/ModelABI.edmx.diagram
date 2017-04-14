@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d7772c3e49494cb6a839fa1cc3a571c2" Name="Diagram1">
-        <EntityTypeShape EntityType="ABIdatabaseModel.sysdiagrams" Width="1.5" PointX="9.125" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABIdatabaseModel.sysdiagrams" Width="1.5" PointX="9.125" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ABIdatabaseModel.TClient" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ABIdatabaseModel.TContact" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="ABIdatabaseModel.FK_TContact_TClient" ManuallyRouted="false" />

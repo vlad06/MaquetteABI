@@ -107,9 +107,9 @@ namespace WindowsFormsApplication1
                 else
                 {
                     Donnees.listFrmVisuClient.TryGetValue(leClient.IdClient, out frmVisu);//on récupère l'adresse de frmVisu ouverte
-                    frmVisu.TopMost = true;
+                    //frmVisu.TopMost = true;
                     //frmVisu.Focus();
-                    //frmVisu.Activate();
+                    frmVisu.Activate();
                     //frmVisu.Select();
                 }
             }
@@ -129,9 +129,9 @@ namespace WindowsFormsApplication1
         /// <returns></returns>
         private bool isFormOpen()
         {
-            int iClient = this.grdClient.CurrentRow.Index;
-            Client leClient = Donnees.listClient[iClient];
-            if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))
+            int idClient = Convert.ToInt32(this.grdClient.CurrentRow.Cells[0].Value);
+            TClient leClientEF = Donnees.abiDb.TClient.Find(idClient);
+            if (Donnees.listFrmVisuClient.ContainsKey(leClientEF.IdClient))
             {
                 return true;
             }
@@ -159,30 +159,28 @@ namespace WindowsFormsApplication1
                 int idClient = Convert.ToInt32(this.grdClient.CurrentRow.Cells[0].Value);
                 //RETROUVER LE CLIENT EF DANS LA COLLECTION DBCONTEXT
                 TClient leClientEF = Donnees.abiDb.TClient.Find(idClient);
-                Client leClient = Donnees.listClient[idClient];
+                //Client leClient = Donnees.listClient[idClient];
                 //CONFIRMER LA SUPPRESSION :
                 if (MessageBox.Show(new Form { TopMost = true }, "Voulez-vous supprimer définitivement ce client ?", "Attention",
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
-                    //SUPPRIMER LE CLIENT DE LA COLLECTION EF
-                    Donnees.abiDb.TClient.Remove(leClientEF);
-                    Client leClient = Donnees.listClient[idClient];
-
                     if (isFormOpen()) //on vérifie si la form qui va être supprimée à déjà été ouverte par l'utilisateur
                     {
-                            if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))   //si le dictionnaire contient la clé correspondant à la value idclient
-                            {
-                                frmVisuClient fvc = Donnees.listFrmVisuClient[leClient.IdClient]; //on récupère la référence de la form qui va être supprimée
-                                fvc.Close();    //on ferme la form
-                            }
-                            Donnees.listFrmVisuClient.Remove(leClient.IdClient); //on supprime le couple (id,form) du dictionnaire
-                            Donnees.listClient.Remove(leClient);        //on supprime le client de la liste client
-                            afficheClients();   //on met à jour l'affichage
+                        if (Donnees.listFrmVisuClient.ContainsKey(leClientEF.IdClient))   //si le dictionnaire contient la clé correspondant à la value idclient
+                        {
+                            frmVisuClient fvc = Donnees.listFrmVisuClient[leClientEF.IdClient]; //on récupère la référence de la form qui va être supprimée
+                            fvc.Close();    //on ferme la form
+                        }
+                        Donnees.listFrmVisuClient.Remove(leClientEF.IdClient); //on supprime le couple (id,form) du dictionnaire
+                        //SUPPRIMER LE CLIENT DE LA COLLECTION EF
+                        Donnees.abiDb.TClient.Remove(leClientEF);
+                        afficheClients();   //on met à jour l'affichage
                     }
-                    else
+                    else  //si il n'y a aucune fenêtre ouverte correspondant au client que l'on veut supprimer
                     {
-                        Donnees.listFrmVisuClient.Remove(leClient.IdClient);
-                        Donnees.listClient.Remove(leClient);
+                        Donnees.listFrmVisuClient.Remove(leClientEF.IdClient);
+                        //SUPPRIMER LE CLIENT DE LA COLLECTION EF
+                        Donnees.abiDb.TClient.Remove(leClientEF);
                         afficheClients();
                     }
                 }
@@ -226,6 +224,9 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+        /// <summary>
+        /// Permet de créer une liste de client depuis un datagrid qui aurait été formé à partir d'une feuille excel
+        /// </summary>
         private void buildClientListFromDataGrid()
         {
             Client theClient;
