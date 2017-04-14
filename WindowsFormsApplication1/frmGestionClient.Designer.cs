@@ -262,7 +262,7 @@
             this.MainMenuStrip = this.msGestionClient;
             this.Name = "frmGestionClient";
             this.Text = "gestionClient";
-            this.Activated += new System.EventHandler(this.frmGestionClient_Activated);
+            //this.Activated += new System.EventHandler(this.frmGestionClient_Activated);
             this.Load += new System.EventHandler(this.frmGestionClient_Load);
             this.msGestionClient.ResumeLayout(false);
             this.msGestionClient.PerformLayout();

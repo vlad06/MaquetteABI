@@ -57,7 +57,7 @@ namespace WindowsFormsApplication1
             //    dr[5] = Donnees.listClient[i].Effectif;
             //    dt.Rows.Add(dr);    //une fois la ligne construite on l'ajoute à la dataTable
             //}
-            this.grdClient.DataSource = dt.DefaultView; //une fois le couple (lignes,colonnes) construit, on l'affiche
+            this.grdClient.DataSource = dt; //une fois le couple (lignes,colonnes) construit, on l'affiche
         }
         /// <summary>
         /// créee à des fins de tests mais plus référencée
@@ -172,16 +172,17 @@ namespace WindowsFormsApplication1
                             fvc.Close();    //on ferme la form
                         }
                         Donnees.listFrmVisuClient.Remove(leClientEF.IdClient); //on supprime le couple (id,form) du dictionnaire
-                        //SUPPRIMER LE CLIENT DE LA COLLECTION EF
-                        Donnees.abiDb.TClient.Remove(leClientEF);
-                        afficheClients();   //on met à jour l'affichage
+                        Donnees.abiDb.TClient.Remove(leClientEF);//ON SUPPRIME LE CLIENT DE LA COLLECTION EF
+                        Donnees.abiDb.SaveChanges();
+                        this.afficheClients();   //on met à jour l'affichage
                     }
                     else  //si il n'y a aucune fenêtre ouverte correspondant au client que l'on veut supprimer
                     {
                         Donnees.listFrmVisuClient.Remove(leClientEF.IdClient);
                         //SUPPRIMER LE CLIENT DE LA COLLECTION EF
                         Donnees.abiDb.TClient.Remove(leClientEF);
-                        afficheClients();
+                        Donnees.abiDb.SaveChanges();
+                        this.afficheClients();
                     }
                 }
             }
@@ -311,10 +312,10 @@ namespace WindowsFormsApplication1
         private void btnAfficheListe_Click(object sender, EventArgs e)
         {
             //if (this.grdClient.CurrentRow != null)
-            if(Donnees.listClient.Count>0)
-            {
+            //if(Donnees.listClient.Count>0)
+            //{
                 this.afficheClients();
-            }
+            //}
             //creerClientTest();
         }
         private void grdClient_DoubleClick(object sender, EventArgs e)
@@ -349,10 +350,10 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void frmGestionClient_Activated(object sender, EventArgs e)
-        {
-            this.TopMost = true;
-        }
+        //private void frmGestionClient_Activated(object sender, EventArgs e)
+        //{
+        //    this.TopMost = true;
+        //}
 
         private void btnViderListe_Click(object sender, EventArgs e)
         {
