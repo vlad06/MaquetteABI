@@ -17,8 +17,7 @@ namespace WindowsFormsApplication1
         public frmAjoutClient()
         {
             InitializeComponent();
-            this.txtIdClient.Text = (Donnees.abiDb.TClient.ToList().Count()+1).ToString();
-            //this.txtIdClient.Text = Client.nClient.ToString();//affiche le numéro de client dans sa txtbox associée
+            this.txtIdClient.Text = Outils.bestIdClient().ToString();
             this.txtIdClient.ReadOnly = true;   //passe la textbox en lecture seule pour empêcher toute manipulation
         }
         //********************************************************
@@ -34,8 +33,7 @@ namespace WindowsFormsApplication1
             Client nouveauClient = new Client();
             try
             {
-                //nouveauClient.IdClient = Client.nClient;
-                nouveauClient.IdClient = (Donnees.abiDb.TClient.ToList().Count() + 1);
+                nouveauClient.IdClient = Outils.bestIdClient();
                 nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
                 nouveauClient.Nature = base.cbxNature.Text;
                 nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
@@ -45,7 +43,6 @@ namespace WindowsFormsApplication1
                 nouveauClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
                 nouveauClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
                 nouveauClient.CommentComm = base.txtCommentComm.Text;
-                //Donnees.listClient.Add(nouveauClient);
 
                 TClient nouveauClientEF = new TClient();    //nouvel objet EF de type TClient
                 nouveauClientEF.IdClient = nouveauClient.IdClient;

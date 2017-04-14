@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
         //********************************************************
         //***********************ATTRIBUTS************************
         //********************************************************
-        public static int nClient=1;  //le nombre de clients crées
+        public static int nClient;  //le nombre de clients crées
 
         private Int32 idClient;   //le numéro de client incrémenté pour chaque nouveau client crée
         private String raisonSociale;   //raison sociale du client
@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1
         private Decimal ca;   //chiffre d'affaire du client
         private Int32 effectif; //nombre de salariés du client
         private String commentComm; //commentaire commercial concernant le projet
-        private List<Contact> listContact = new List<Contact>(); //liste de contact du client
+        //private List<Contact> listContact = new List<Contact>(); //liste de contact du client
 
         //********************************************************
         //********************CONSTRUCTEURS***********************

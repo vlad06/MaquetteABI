@@ -9,9 +9,6 @@ namespace WindowsFormsApplication1
     class Donnees
     {
         public static ABIdatabaseEntities abiDb = new ABIdatabaseEntities();
-
-        public static List<Client> listClientTest = new List<Client>();
-        public static List<Client> listClient = new List<Client>();
         /// <summary>
         /// Contient la liste de toutes les fenêtres clients ouverte, identifiée par l'idClient, propre à chaque client
         /// </summary>

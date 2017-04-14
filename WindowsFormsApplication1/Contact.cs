@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
         //********************************************************
         //***********************LES ATTRIBUTS********************
         //********************************************************
-        public static int nContact=1;
+        public static int nContact;
 
         private Int32 idContact;
         private String nomContact;

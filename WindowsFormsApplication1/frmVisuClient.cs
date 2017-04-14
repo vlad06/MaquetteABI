@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -11,7 +12,6 @@ namespace WindowsFormsApplication1
     public partial class frmVisuClient : WindowsFormsApplication1.frmClient
     {
         private Client leClient;    //leClient permet de stocker le client passé en paramètre au constructeur de la form
-        private Contact leContact;  //leContact permet d'avoir un contact global sur lequel on pourra travailler
         /// <summary>
         /// Ce constructeur reçoit un client passé en paramètre par la fenêtre appelante (frmGestionClient)
         /// </summary>
@@ -22,11 +22,9 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             this.Size = new Size(375, 450); //on cache les contacts
             this.txtIdClient.Enabled = false;   //les contrôles Id clients et contacts sont inaccessibles à l'utilisateur
-            this.txtIdContact.Enabled = false;
-            //this.btnUnlock.Visible = false; //on cache les boutons unlock et visible, ils ne servent plus actuellement et seront supprimés par la suite
-            this.btnQuitter.Visible = false;//
-            //this.writeable();//on active  champs du formulaire, sera supprimé par la suite
-            //this.txtIdContact.Text = Contact.nContact.ToString();   //on attribue automatiquement un id pour le futur contact qui serait crée
+            this.txtIdContact.Enabled = false;  //TODO:FAIRE UNE FONCTION POUR GERER LES BOUTONS ENABLED
+            this.btnQuitter.Visible = false;
+            this.txtIdContact.Text = Outils.bestIdContact().ToString();
         }
         /// <summary>
         /// on remplit les champs du form de visualisation avec les propriétés de l'objet passé en paramètre
@@ -57,18 +55,18 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
             DataRow dr;
-            for (int i = 0; i < leClient.ListContact.Count; i++)
+
+            foreach (TContact unContactEF in Donnees.abiDb.TContact.ToList())
             {
                 dr = dt.NewRow();
-                dr[0] = leClient.ListContact[i].IdContact;
-                dr[1] = leClient.ListContact[i].NomContact;
-                dr[2] = leClient.ListContact[i].PrenomContact;
-                dr[3] = leClient.ListContact[i].TelContact;
-                dr[4] = leClient.ListContact[i].FonctionContact;
-                //dr[5] = Donnees.listClient[i].TotalHeures;    //en prévision d'une utilisation future
+                dr[0] = unContactEF.IdContact;
+                dr["Nom"] = unContactEF.NomContact;
+                dr["Prénom"] = unContactEF.PrenomContact;
+                dr["Téléphone"] = unContactEF.TelContact;
+                dr["Fonction"] = unContactEF.FonctionContact;
                 dt.Rows.Add(dr);
             }
-            this.grdContact.DataSource = dt.DefaultView;
+            this.grdContact.DataSource = dt;
         }
         /// <summary>
         /// remplit les champs du grdContact avec les valeurs du contact passé en paramètre
@@ -88,21 +86,31 @@ namespace WindowsFormsApplication1
         /// <returns></returns>
         private bool instancieContact()
         {
+            Contact nouveauContact = new Contact();
             try    //pour parer aux éventuels problèmes
             {
-                leContact = new Contact();
-                leContact.IdContact = Contact.nContact;
-                leContact.NomContact = txtNomContact.Text;
-                leContact.PrenomContact = txtPrenomContact.Text;
-                leContact.TelContact = txtTelephoneContact.Text;
-                leContact.FonctionContact = txtFonctionContact.Text;
-                leClient.ListContact.Add(leContact);
+                nouveauContact.IdContact = Outils.bestIdContact();
+                nouveauContact.NomContact = txtNomContact.Text;
+                nouveauContact.PrenomContact = txtPrenomContact.Text;
+                nouveauContact.TelContact = txtTelephoneContact.Text;
+                nouveauContact.FonctionContact = txtFonctionContact.Text;
+
+                TContact nouveauContactEF = new TContact();
+                nouveauContactEF.IdContact = nouveauContact.IdContact;
+                nouveauContactEF.NomContact = nouveauContact.NomContact;
+                nouveauContactEF.PrenomContact = nouveauContact.PrenomContact;
+                nouveauContactEF.TelContact = nouveauContact.TelContact;
+                nouveauContactEF.FonctionContact= nouveauContact.FonctionContact;
+                nouveauContactEF.IdClient = leClient.IdClient;
+
+                Donnees.abiDb.TContact.Add(nouveauContactEF);
+                Donnees.abiDb.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
                 this.leClient = null;
-                MessageBox.Show("Erreur :\n" + ex.Message, "Modification de contact");
+                MessageBox.Show("Erreur :\n" + ex.Message, "Ajout de contact");
                 return false;
             }
         }
@@ -117,11 +125,26 @@ namespace WindowsFormsApplication1
                 this.leClient.RaisonSociale = base.txtRaisonSociale.Text.ToUpper();
                 this.leClient.Nature = base.cbxNature.Text;
                 this.leClient.TypeSociete = base.cbxTypeSociete.Text;
+                this.leClient.Activite = base.cbxActivite.Text;
                 this.leClient.Telephone = base.txtTelephone.Text;
-                this.leClient.Adresse= base.txtAdresse.Text;
+                this.leClient.Adresse = base.txtAdresse.Text;
                 this.leClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
                 this.leClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
                 this.leClient.CommentComm = base.txtCommentComm.Text;
+
+                TClient leClientEF = Donnees.abiDb.TClient.Find(leClient.IdClient);
+
+                leClientEF.RaisonSociale = leClient.RaisonSociale;
+                leClientEF.Nature = leClient.Nature;
+                leClientEF.TypeSociete = leClient.TypeSociete;
+                leClientEF.Activite = leClient.Activite;
+                leClientEF.Telephone = leClient.Telephone;
+                leClientEF.Adresse = leClient.Adresse;
+                leClientEF.Ca = leClient.Ca;
+                leClientEF.Effectif = leClient.Effectif;
+                leClientEF.CommentComm = leClient.CommentComm;
+
+                Donnees.abiDb.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -136,30 +159,19 @@ namespace WindowsFormsApplication1
         /// </summary>
         /// <returns></returns>
         private bool modifieContact()
-        {
-            if (this.grdContact.CurrentRow != null)
-            {
-                int idContact = Convert.ToInt32(this.grdContact.SelectedRows[0].Cells[0].Value);//on récupère la valeur de l'id contact dans la cellule correspondante
-                leContact = null;
-                foreach (Contact contact in leClient.ListContact)   //pour chaque contact de la liste
-                {
-                    if(contact.IdContact == idContact)  //on cherche le contact qui correspond à l'id récupéré dans la cellule, il est forcément unique comme son ID
-                    {
-                        leContact = contact;    //si on l'a trouvé, alors on le récupère
-                    }
-                }
-            }
+        {   //on récupère la valeur de l'id contact dans la cellule correspondante
+            int idContact = Convert.ToInt32(this.grdContact.CurrentRow.Cells[0].Value);
+            TContact leContactEF = Donnees.abiDb.TContact.Find(idContact);
             try
             {
-                this.leContact.NomContact=txtNomContact.Text.ToUpper();
-                this.leContact.PrenomContact=txtPrenomContact.Text.ToLower();
-                this.leContact.TelContact=txtTelephoneContact.Text;
-                this.leContact.FonctionContact=txtFonctionContact.Text;
+                leContactEF.NomContact = txtNomContact.Text.ToUpper();
+                leContactEF.PrenomContact = txtPrenomContact.Text.ToLower();
+                leContactEF.TelContact = txtTelephoneContact.Text;
+                leContactEF.FonctionContact = txtFonctionContact.Text;
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                this.leContact = null;
                 MessageBox.Show("Erreur :\n" + ex.Message, "Modification de contact");
                 return false;
             }
@@ -191,14 +203,15 @@ namespace WindowsFormsApplication1
         {
             this.afficheClient(this.leClient);
             this.readable();  //anciennement utilisé pour divers tests, supprimé à terme
+            majGrdContacts();
             //on écrit l'entête de la datatable des contacts afin de voir les en-têtes de colonnes à l'ouverture de la fenêtre
-            DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("ID Contact", typeof(System.Int32)));
-            dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Prénom", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
-            dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
-            this.grdContact.DataSource = dt.DefaultView;
+            //DataTable dt = new DataTable();
+            //dt.Columns.Add(new DataColumn("ID Contact", typeof(System.Int32)));
+            //dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
+            //dt.Columns.Add(new DataColumn("Prénom", typeof(System.String)));
+            //dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
+            //dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
+            //this.grdContact.DataSource = dt;
         }
 
         private void btnValiderClient_Click(object sender, EventArgs e)
@@ -389,9 +402,10 @@ namespace WindowsFormsApplication1
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if(dr == DialogResult.OK)
                 {
-                    int iContact = this.grdContact.CurrentRow.Index;
-                    Contact unContact = leClient.ListContact[iContact];
-                    leClient.ListContact.Remove(unContact);
+                    int idContact = Convert.ToInt32(this.grdContact.CurrentRow.Cells[0].Value);
+                    TContact leContactEF = Donnees.abiDb.TContact.Find(idContact);
+                    Donnees.abiDb.TContact.Remove(leContactEF);
+                    Donnees.abiDb.SaveChanges();
                     majGrdContacts();
                 }
             }
@@ -415,16 +429,16 @@ namespace WindowsFormsApplication1
             if (this.grdContact.CurrentRow != null)
             {
                 int idContact = Convert.ToInt32(this.grdContact.SelectedRows[0].Cells[0].Value);//on récupère la valeur de l'id contact dans la cellule correspondante
-                leContact = null;
-                foreach (Contact contact in leClient.ListContact)   //pour chaque contact de la liste
-                {
-                    if (contact.IdContact == idContact)  //on cherche le contact qui correspond à l'id récupéré dans la cellule, il est forcément unique comme son ID
-                    {
-                        leContact = contact;    //si on l'a trouvé, alors on le récupère
-                    }
-                }
+                TContact leContactEF = Donnees.abiDb.TContact.Find(idContact);
+                Contact leContact = new Contact(
+                    leContactEF.IdContact,
+                    leContactEF.NomContact,
+                    leContactEF.PrenomContact,
+                    leContactEF.TelContact,
+                    leContactEF.FonctionContact);
+                afficheContact(leContact);
             }
-            afficheContact(leContact);
+            
         }
         /// <summary>
         /// modifie un contact, met à jour la grid et vide les txtbox
@@ -435,11 +449,15 @@ namespace WindowsFormsApplication1
         {
             if (isFieldsContactValid())
             {
-                if (this.modifieContact())
+                if (this.grdContact.CurrentRow != null)
                 {
-                    majGrdContacts();
-                    razContactFields();
+                    if (this.modifieContact())
+                    {
+                        majGrdContacts();
+                        razContactFields();
+                    }
                 }
+
             }
         }
         /// <summary>
@@ -453,11 +471,9 @@ namespace WindowsFormsApplication1
             {
                 if (this.instancieContact())
                 {
-                    Donnees.listContact.Add(Contact.nContact, leContact);
+                    //Donnees.listContact.Add(Contact.nContact, leContact);
                     majGrdContacts();
-                    Contact.nContact++;
                     razContactFields();
-                    //this.txtIdContact.Text = Contact.nContact.ToString();
                 }
             }
         }
@@ -480,7 +496,7 @@ namespace WindowsFormsApplication1
 
         private void frmVisuClient_Activated(object sender, EventArgs e)
         {
-            this.txtIdContact.Text = Contact.nContact.ToString();
+            this.txtIdContact.Text = Outils.bestIdContact().ToString();
         }
     
         private void razContactFields()
@@ -494,7 +510,7 @@ namespace WindowsFormsApplication1
 
         private void btnAjouterContact_MouseHover(object sender, EventArgs e)
         {
-            this.txtIdContact.Text = Contact.nContact.ToString();
+            this.txtIdContact.Text = Outils.bestIdContact().ToString();
         }
     }
 }

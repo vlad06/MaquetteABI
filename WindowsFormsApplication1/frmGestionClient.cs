@@ -21,6 +21,7 @@ namespace WindowsFormsApplication1
         public frmGestionClient()
         {
             InitializeComponent();
+            Client.nClient=Outils.bestIdClient();
             this.btnExport.Visible = false; //pour un export éventuel de la datagrid vers une feuille excel
         }
         //*********************************************************TODO : faire une fonction de récupération de l'id client à partir de la liste pour éviter les 
@@ -37,48 +38,17 @@ namespace WindowsFormsApplication1
             DataRow dr;
             foreach (TClient clientEF in Donnees.abiDb.TClient.ToList())
             {
-                dr = dt.NewRow();
-                dr[0] = clientEF.IdClient;
-                dr[1] = clientEF.RaisonSociale;
-                dr[2] = clientEF.Nature;
-                dr[3] = clientEF.Telephone;
-                dr[4] = clientEF.Ca;
-                dr[5] = clientEF.Effectif;
-                dt.Rows.Add(dr);
-            }   
-            //for (int i = 0; i < Donnees.listClient.Count; i++)
-            //{
-            //    dr = dt.NewRow();   //déclare une nouvelle ligne et la construit case par case (colonne par colonne)
-            //    dr[0] = Donnees.listClient[i].IdClient;
-            //    dr[1] = Donnees.listClient[i].RaisonSociale;
-            //    dr[2] = Donnees.listClient[i].Nature;
-            //    dr[3] = Donnees.listClient[i].Telephone;
-            //    dr[4] = Donnees.listClient[i].Ca;
-            //    dr[5] = Donnees.listClient[i].Effectif;
-            //    dt.Rows.Add(dr);    //une fois la ligne construite on l'ajoute à la dataTable
-            //}
-            this.grdClient.DataSource = dt; //une fois le couple (lignes,colonnes) construit, on l'affiche
-        }
-        /// <summary>
-        /// créee à des fins de tests mais plus référencée
-        /// </summary>
-        private void afficheClientsTest()
-        {
-            DataTable dt = new DataTable();
-            showGrdHeaders(dt); //affiche les headers sur la datagrid
-            DataRow dr;
-            for (int i = 0; i < Donnees.listClientTest.Count; i++)
-            {
-                dr = dt.NewRow();   //déclare une nouvelle ligne et la construit case par case (colonne par colonne)
-                dr[0] = Donnees.listClientTest[i].IdClient;
-                dr[1] = Donnees.listClientTest[i].RaisonSociale;
-                dr[2] = Donnees.listClientTest[i].Nature;
-                dr[3] = Donnees.listClientTest[i].Telephone;
-                dr[4] = Donnees.listClientTest[i].Ca;
-                dr[5] = Donnees.listClientTest[i].Effectif;
-                dt.Rows.Add(dr);    //une fois la ligne construite on l'ajoute à la dataTable
+                dr = dt.NewRow();   //dr(datarow) est une nouvelle ligne dt(datatable)
+                dr[0] = clientEF.IdClient;          //  ligne clientEF n, première colonne
+                dr[1] = clientEF.RaisonSociale;     //ligne clientEF n, deuxième colonne
+                dr[2] = clientEF.Nature;            //ligne clientEF n, troisième colonne
+                dr[3] = clientEF.Telephone;         //ligne clientEF n, quatrième colonne
+                dr[4] = clientEF.Ca;                //ligne clientEF n, cinquième colonne
+                dr[5] = clientEF.Effectif;          //ligne clientEF n, sixième colonne
+                dt.Rows.Add(dr);    //adding the row to the datatable
             }
-            this.grdClient.DataSource = dt.DefaultView; //une fois le couple (lignes,colonnes) construit, on l'affiche
+            //once the datatable is built, we can assign it to the datasource of the datagridview  
+            this.grdClient.DataSource = dt; //une fois le couple (lignes,colonnes) construit, on l'affiche
         }
         /// <summary>
         /// affiche le client sélectionné dans la datagrid dans les champs de frmVisuClient
@@ -87,29 +57,44 @@ namespace WindowsFormsApplication1
         {
             if (this.grdClient.CurrentRow != null)
             {
-                int idClient = Convert.ToInt32(this.grdClient.SelectedRows[0].Cells[0].Value);//récupère l'id du client cliqué dans la datagrid
-                Client leClient=null;
-                foreach (Client cl in Donnees.listClient)
-                {
-                    if (cl.IdClient == idClient)
-                    {
-                        leClient = cl;
-                    }
-                }
+                //int idClient = Convert.ToInt32(this.grdClient.SelectedRows[0].Cells[0].Value);//récupère l'id du client cliqué dans la datagrid
+                int idClient = Convert.ToInt32(this.grdClient.CurrentRow.Cells[0].Value);
+                TClient leClientEF = Donnees.abiDb.TClient.Find(idClient);
+                Client leClient=new Client(
+                    leClientEF.IdClient,
+                    leClientEF.RaisonSociale,
+                    leClientEF.TypeSociete,
+                    leClientEF.Activite,
+                    leClientEF.Adresse,
+                    leClientEF.Nature,
+                    leClientEF.Telephone,
+                    leClientEF.Ca,
+                    leClientEF.Effectif,
+                    leClientEF.CommentComm);
+                //foreach (Client cl in Donnees.listClient)
+                //{
+                //    if (cl.IdClient == idClient)
+                //    {
+                //        leClient = cl;
+                //    }
+                //}
                 if (!isFormOpen())  //si la form client n'est pas encore ouverte
                 {
                     this.frmVisu = new frmVisuClient(leClient); //on crée une instance de la form client
                     this.frmVisu.Show(); //on l'affiche
-                    this.frmVisu.TopMost = true; //on force la form client au premier plan
+                    this.frmVisu.Activate();
+                    //this.frmVisu.TopMost = true; //on force la form client au premier plan
                     this.frmVisu.FormClosing += new FormClosingEventHandler(this.fermeVisu);
                     Donnees.listFrmVisuClient.Add(leClient.IdClient, frmVisu); //ajoute au dico le couple (idclient,frmvisu)
+                                                                               //qui nous permet de savoir que la form est ouverte
                 }
                 else
                 {
                     Donnees.listFrmVisuClient.TryGetValue(leClient.IdClient, out frmVisu);//on récupère l'adresse de frmVisu ouverte
                     //frmVisu.TopMost = true;
                     //frmVisu.Focus();
-                    frmVisu.Activate();
+                    this.frmVisu.Show();
+                    this.frmVisu.Activate();
                     //frmVisu.Select();
                 }
             }
@@ -165,7 +150,7 @@ namespace WindowsFormsApplication1
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     if (isFormOpen()) //on vérifie si la form qui va être supprimée à déjà été ouverte par l'utilisateur
-                    {
+                    {   //if the form is opened, we recuperate the reference from the list and we close the corresponding form
                         if (Donnees.listFrmVisuClient.ContainsKey(leClientEF.IdClient))   //si le dictionnaire contient la clé correspondant à la value idclient
                         {
                             frmVisuClient fvc = Donnees.listFrmVisuClient[leClientEF.IdClient]; //on récupère la référence de la form qui va être supprimée
@@ -178,12 +163,12 @@ namespace WindowsFormsApplication1
                     }
                     else  //si il n'y a aucune fenêtre ouverte correspondant au client que l'on veut supprimer
                     {
-                        Donnees.listFrmVisuClient.Remove(leClientEF.IdClient);
-                        //SUPPRIMER LE CLIENT DE LA COLLECTION EF
-                        Donnees.abiDb.TClient.Remove(leClientEF);
+                        //Donnees.listFrmVisuClient.Remove(leClientEF.IdClient);
+                        Donnees.abiDb.TClient.Remove(leClientEF);//SUPPRIMER LE CLIENT DE LA COLLECTION EF
                         Donnees.abiDb.SaveChanges();
                         this.afficheClients();
                     }
+                    Client.nClient = Outils.bestIdClient();
                 }
             }
         }
@@ -266,12 +251,10 @@ namespace WindowsFormsApplication1
         private void supprimerClientToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             this.deleteClientFromDb();
-            //this.suppressionClient();
         }
         private void btnSupprimerClient_Click(object sender, EventArgs e)
         {
             this.deleteClientFromDb();
-            //this.suppressionClient();
         }
 
 
@@ -311,12 +294,10 @@ namespace WindowsFormsApplication1
         }
         private void btnAfficheListe_Click(object sender, EventArgs e)
         {
-            //if (this.grdClient.CurrentRow != null)
-            //if(Donnees.listClient.Count>0)
-            //{
+            if(Donnees.abiDb.TClient.ToList().Count > 0)
+            {
                 this.afficheClients();
-            //}
-            //creerClientTest();
+            }
         }
         private void grdClient_DoubleClick(object sender, EventArgs e)
         {

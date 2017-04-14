@@ -220,5 +220,53 @@ namespace WindowsFormsApplication1
         {
             return isMadeOfLetters(s);
         }
+        /// <summary>
+        /// retourne l'id idéale pouvant être utilisée pour la création du prochain client
+        /// </summary>
+        /// <returns></returns>
+        public static int bestIdClient()
+        {
+            int id=0;
+            if (Donnees.abiDb.TClient.ToList() == null)
+            {
+                id = 1;
+            }
+            else
+            {
+                foreach (TClient clientEF in Donnees.abiDb.TClient.ToList())
+                {
+                    if (clientEF.IdClient > id)
+                    {
+                        id = clientEF.IdClient;
+                    }
+                }
+                id++;
+            }
+            return id;
+        }
+        /// <summary>
+        /// retourne l'id idéale pouvant être utilisée pour la création du prochain contact
+        /// </summary>
+        /// <returns></returns>
+        public static int bestIdContact()
+        {
+            int id = 0;
+            if (Donnees.abiDb.TContact.ToList() == null)
+            {
+                id = 1;
+            }
+            else
+            {
+                foreach (TContact contactEF in Donnees.abiDb.TContact.ToList())
+                {
+                    if (contactEF.IdContact > id)
+                    {
+                        id = contactEF.IdContact;
+                    }
+                }
+                id++;
+            }
+            return id;
+        }
     }
 }
