@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1
     public partial class frmAjoutClient : WindowsFormsApplication1.frmClient
     {
         //********************************************************
-        //********************LES CONSTRUCTEURS*******************
+        //************************CONSTRUCTEURS*******************
         //********************************************************
         public frmAjoutClient()
         {
@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
             this.txtIdClient.ReadOnly = true;   //passe la textbox en lecture seule pour empêcher toute manipulation
         }
         //********************************************************
-        //********************LES METHODES************************
+        //************************METHODES************************
         //********************************************************
         /// <summary>
         /// retourne true si le Client nouveauClient à pu être instancié via les champs associés et false sinon
@@ -85,72 +85,72 @@ namespace WindowsFormsApplication1
             {
                 errorProvider1.SetError(this.txtRaisonSociale, String.Empty);
             }
-            if (this.cbxNature.Text == "")          //vérifie uniquement si le champ est vide
-            {
-                errorProvider1.SetError(this.cbxNature, "Nature société requise !");
-                valid= false;
-            }
-            else
-            {
-                errorProvider1.SetError(this.cbxNature, String.Empty);
-            }
-            if (this.cbxTypeSociete.Text == "")         //vérifie uniquement si le champ est vide
-            {
-                errorProvider1.SetError(this.cbxTypeSociete, "Type société requis !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider1.SetError(this.cbxTypeSociete, String.Empty);
-            }
-            if (this.cbxActivite.Text == "")            //vérifie uniquement si le champ est vide
-            {
-                errorProvider1.SetError(this.cbxActivite, "Activité requise !");
-            }
-            else
-            {
-                errorProvider1.SetError(this.cbxActivite, String.Empty);
-            }
-            if (!Outils.isCaValid(this.txtCa.Text.Trim()))
-            {
-                errorProvider1.SetError(this.txtCa, "Chiffre d'affaire invalide !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider1.SetError(this.txtCa, String.Empty);
-            }
-            if (!(Outils.isEffectifValid(this.txtEffectif.Text.Trim())))
-            {
-                errorProvider1.SetError(this.txtEffectif, "Effectif invalide !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider1.SetError(this.txtEffectif, String.Empty);
-            }
-            if (!(Outils.isTelephoneValid(this.txtTelephone.Text.Trim())))
-            {
-                errorProvider1.SetError(this.txtTelephone, "Téléphone invalide !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider1.SetError(this.txtTelephone, String.Empty);
-            }
-            if (this.txtAdresse.Text.Trim() == "")
-            {
-                errorProvider1.SetError(this.txtAdresse, "Adresse requise !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider1.SetError(this.txtAdresse, String.Empty);
-            }
+            //if (this.cbxNature.Text == "")          //vérifie uniquement si le champ est vide
+            //{
+            //    errorProvider1.SetError(this.cbxNature, "Nature société requise !");
+            //    valid= false;
+            //}
+            //else
+            //{
+            //    errorProvider1.SetError(this.cbxNature, String.Empty);
+            //}
+            //if (this.cbxTypeSociete.Text == "")         //vérifie uniquement si le champ est vide
+            //{
+            //    errorProvider1.SetError(this.cbxTypeSociete, "Type société requis !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider1.SetError(this.cbxTypeSociete, String.Empty);
+            //}
+            //if (this.cbxActivite.Text == "")            //vérifie uniquement si le champ est vide
+            //{
+            //    errorProvider1.SetError(this.cbxActivite, "Activité requise !");
+            //}
+            //else
+            //{
+            //    errorProvider1.SetError(this.cbxActivite, String.Empty);
+            //}
+            //if (!Outils.isCaValid(this.txtCa.Text.Trim()))
+            //{
+            //    errorProvider1.SetError(this.txtCa, "Chiffre d'affaire invalide !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider1.SetError(this.txtCa, String.Empty);
+            //}
+            //if (!(Outils.isEffectifValid(this.txtEffectif.Text.Trim())))
+            //{
+            //    errorProvider1.SetError(this.txtEffectif, "Effectif invalide !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider1.SetError(this.txtEffectif, String.Empty);
+            //}
+            //if (!(Outils.isTelephoneValid(this.txtTelephone.Text.Trim())))
+            //{
+            //    errorProvider1.SetError(this.txtTelephone, "Téléphone invalide !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider1.SetError(this.txtTelephone, String.Empty);
+            //}
+            //if (this.txtAdresse.Text.Trim() == "")
+            //{
+            //    errorProvider1.SetError(this.txtAdresse, "Adresse requise !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider1.SetError(this.txtAdresse, String.Empty);
+            //}
             return valid;
         }
         //********************************************************
-        //********************LES EVENTS**************************
+        //************************EVENTS**************************
         //********************************************************
         /// <summary>
         /// valide le client si possible, indique les champs à corriger si la validation ne fonctionne pas

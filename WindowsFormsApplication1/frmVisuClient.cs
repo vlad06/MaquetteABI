@@ -12,6 +12,10 @@ namespace WindowsFormsApplication1
     public partial class frmVisuClient : WindowsFormsApplication1.frmClient
     {
         private Client leClient;    //leClient permet de stocker le client passé en paramètre au constructeur de la form
+
+        //********************************************************
+        //************************CONSTRUCTEURS*******************
+        //********************************************************
         /// <summary>
         /// Ce constructeur reçoit un client passé en paramètre par la fenêtre appelante (frmGestionClient)
         /// </summary>
@@ -20,12 +24,14 @@ namespace WindowsFormsApplication1
         {
             this.leClient = unClient; //on assigne le client passé en paramètre à notre attribut déclaré plus haut
             InitializeComponent();
-            this.Size = new Size(375, 450); //on cache les contacts
+            this.Size = new Size(385, 450); //on cache les contacts
             this.txtIdClient.Enabled = false;   //les contrôles Id clients et contacts sont inaccessibles à l'utilisateur
             this.txtIdContact.Enabled = false;  //TODO:FAIRE UNE FONCTION POUR GERER LES BOUTONS ENABLED
-            this.btnQuitter.Visible = false;
             this.txtIdContact.Text = Outils.bestIdContact().ToString();
         }
+        //********************************************************
+        //************************METHODES************************
+        //********************************************************
         /// <summary>
         /// on remplit les champs du form de visualisation avec les propriétés de l'objet passé en paramètre
         /// </summary>
@@ -70,6 +76,26 @@ namespace WindowsFormsApplication1
                 dt.Rows.Add(dr);
             }
             this.grdContact.DataSource = dt;
+        }
+        private void razContactFields()
+        {
+            this.txtIdContact.Text = "";
+            this.txtNomContact.Text = "";
+            this.txtPrenomContact.Text = "";
+            this.txtTelephoneContact.Text = "";
+            this.txtFonctionContact.Text = "";
+        }
+
+        private void fillContactFields()
+        {
+            if(grdContact.CurrentRow != null)
+            {
+                this.txtIdContact.Text = grdContact.CurrentRow.Cells[0].Value.ToString();
+                this.txtNomContact.Text = grdContact.CurrentRow.Cells[1].Value.ToString();
+                this.txtPrenomContact.Text = grdContact.CurrentRow.Cells[2].Value.ToString();
+                this.txtTelephoneContact.Text = grdContact.CurrentRow.Cells[3].Value.ToString();
+                this.txtFonctionContact.Text = grdContact.CurrentRow.Cells[4].Value.ToString();
+            }
         }
         /// <summary>
         /// remplit les champs du grdContact avec les valeurs du contact passé en paramètre
@@ -179,55 +205,6 @@ namespace WindowsFormsApplication1
                 return false;
             }
         }
-
-        private void btnAfficherContact_Click(object sender, EventArgs e)
-        {
-            if (btnAfficherContact.Text == "Afficher les contacts >>")
-            {
-                btnAfficherContact.Text = "Cacher les contacts";
-                this.Size = new Size(820, 450);
-                this.Show();
-                majGrdContacts();
-            }
-            else
-            {
-                btnAfficherContact.Text = "Afficher les contacts >>";
-                this.Size = new Size(375, 450);
-                this.Show();
-            }
-        }
-
-        private void btnReinitialiser_Click(object sender, EventArgs e)
-        {
-            this.afficheClient(leClient);//on réinitialise
-        }
-
-        private void frmVisuClient_Load(object sender, EventArgs e)
-        {
-            this.afficheClient(this.leClient);
-            this.readable();  //anciennement utilisé pour divers tests, supprimé à terme
-            majGrdContacts();
-            //on écrit l'entête de la datatable des contacts afin de voir les en-têtes de colonnes à l'ouverture de la fenêtre
-            //DataTable dt = new DataTable();
-            //dt.Columns.Add(new DataColumn("ID Contact", typeof(System.Int32)));
-            //dt.Columns.Add(new DataColumn("Nom", typeof(System.String)));
-            //dt.Columns.Add(new DataColumn("Prénom", typeof(System.String)));
-            //dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
-            //dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
-            //this.grdContact.DataSource = dt;
-        }
-
-        private void btnValiderClient_Click(object sender, EventArgs e)
-        {
-            if (isFieldsClientValid())
-            {
-                if (this.modifieClient())
-                {
-                    MessageBox.Show(new Form { TopMost = true }, "Modification du client acceptée !", "Client modifié", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-            }
-        }
         private Boolean isFieldsClientValid()
         {
             bool valid = true;
@@ -240,68 +217,68 @@ namespace WindowsFormsApplication1
             {
                 errorProvider2.SetError(this.txtRaisonSociale, String.Empty);
             }
-            if (this.cbxNature.Text == "")
-            {
-                errorProvider2.SetError(this.cbxNature, "Nature société requise !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider2.SetError(this.cbxNature, String.Empty);
-            }
-            if (this.cbxTypeSociete.Text == "")
-            {
-                errorProvider2.SetError(this.cbxTypeSociete, "Type société requis !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider2.SetError(this.cbxTypeSociete, String.Empty);
-            }
-            if (this.cbxActivite.Text == "")
-            {
-                errorProvider2.SetError(this.cbxActivite, "Activité requise !");
-            }
-            else
-            {
-                errorProvider2.SetError(this.cbxActivite, String.Empty);
-            }
-            if (!Outils.isCaValid(this.txtCa.Text.Trim()))
-            {
-                errorProvider2.SetError(this.txtCa, "Chiffre d'affaire invalide !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider2.SetError(this.txtCa, String.Empty);
-            }
-            if (!(Outils.isEffectifValid(this.txtEffectif.Text.Trim())))
-            {
-                errorProvider2.SetError(this.txtEffectif, "Effectif invalide !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider2.SetError(this.txtEffectif, String.Empty);
-            }
-            if (!(Outils.isTelephoneValid(this.txtTelephone.Text.Trim())))
-            {
-                errorProvider2.SetError(this.txtTelephone, "Téléphone invalide !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider2.SetError(this.txtTelephone, String.Empty);
-            }
-            if (this.txtAdresse.Text.Trim() == "")
-            {
-                errorProvider2.SetError(this.txtAdresse, "Adresse requise !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider2.SetError(this.txtAdresse, String.Empty);
-            }
+            //if (this.cbxNature.Text == "")
+            //{
+            //    errorProvider2.SetError(this.cbxNature, "Nature société requise !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.cbxNature, String.Empty);
+            //}
+            //if (this.cbxTypeSociete.Text == "")
+            //{
+            //    errorProvider2.SetError(this.cbxTypeSociete, "Type société requis !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.cbxTypeSociete, String.Empty);
+            //}
+            //if (this.cbxActivite.Text == "")
+            //{
+            //    errorProvider2.SetError(this.cbxActivite, "Activité requise !");
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.cbxActivite, String.Empty);
+            //}
+            //if (!Outils.isCaValid(this.txtCa.Text.Trim()))
+            //{
+            //    errorProvider2.SetError(this.txtCa, "Chiffre d'affaire invalide !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.txtCa, String.Empty);
+            //}
+            //if (!(Outils.isEffectifValid(this.txtEffectif.Text.Trim())))
+            //{
+            //    errorProvider2.SetError(this.txtEffectif, "Effectif invalide !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.txtEffectif, String.Empty);
+            //}
+            //if (!(Outils.isTelephoneValid(this.txtTelephone.Text.Trim())))
+            //{
+            //    errorProvider2.SetError(this.txtTelephone, "Téléphone invalide !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.txtTelephone, String.Empty);
+            //}
+            //if (this.txtAdresse.Text.Trim() == "")
+            //{
+            //    errorProvider2.SetError(this.txtAdresse, "Adresse requise !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.txtAdresse, String.Empty);
+            //}
             return valid;
         }
         private Boolean isFieldsContactValid()
@@ -316,34 +293,80 @@ namespace WindowsFormsApplication1
             {
                 errorProvider2.SetError(this.txtNomContact, String.Empty);
             }
-            if (!Outils.isPrenomValid(this.txtPrenomContact.Text.Trim()))
-            {
-                errorProvider2.SetError(this.txtPrenomContact, "Prénom contact invalide !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider2.SetError(this.txtPrenomContact, String.Empty);
-            }
-            if (!Outils.isFonctionValid(this.txtFonctionContact.Text.Trim()))
-            {
-                errorProvider2.SetError(this.txtFonctionContact, "Fonction contact invalide !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider2.SetError(this.txtFonctionContact, String.Empty);
-            }
-            if (!Outils.isTelephoneValid(this.txtTelephoneContact.Text.Trim()))
-            {
-                errorProvider2.SetError(this.txtTelephoneContact, "Téléphone contact invalide !");
-                valid = false;
-            }
-            else
-            {
-                errorProvider2.SetError(this.txtTelephoneContact, String.Empty);
-            }
+            //if (!Outils.isPrenomValid(this.txtPrenomContact.Text.Trim()))
+            //{
+            //    errorProvider2.SetError(this.txtPrenomContact, "Prénom contact invalide !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.txtPrenomContact, String.Empty);
+            //}
+            //if (!Outils.isFonctionValid(this.txtFonctionContact.Text.Trim()))
+            //{
+            //    errorProvider2.SetError(this.txtFonctionContact, "Fonction contact invalide !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.txtFonctionContact, String.Empty);
+            //}
+            //if (!Outils.isTelephoneValid(this.txtTelephoneContact.Text.Trim()))
+            //{
+            //    errorProvider2.SetError(this.txtTelephoneContact, "Téléphone contact invalide !");
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    errorProvider2.SetError(this.txtTelephoneContact, String.Empty);
+            //}
             return valid;
+        }
+
+        //********************************************************
+        //************************EVENTS**************************
+        //********************************************************
+        private void btnAfficherContact_Click(object sender, EventArgs e)
+        {
+            if (btnAfficherContact.Text == "Afficher les contacts >>")
+            {
+                btnAfficherContact.Text = "Cacher les contacts";
+                this.Size = new Size(825, 450);
+                this.Show();
+                majGrdContacts();
+                fillContactFields();
+            }
+            else
+            {
+                btnAfficherContact.Text = "Afficher les contacts >>";
+                this.Size = new Size(385, 450);
+                this.Show();
+            }
+        }
+
+        private void btnReinitialiser_Click(object sender, EventArgs e)
+        {
+            this.afficheClient(leClient);//on réinitialise
+        }
+
+        private void frmVisuClient_Load(object sender, EventArgs e)
+        {
+            this.afficheClient(this.leClient);
+            this.readable();  //on passe le form en lecture seule pour éviter les erreurs de manipulation
+            majGrdContacts();
+        }
+
+        private void btnValiderClient_Click(object sender, EventArgs e)
+        {
+            if (isFieldsClientValid())
+            {
+                if (this.modifieClient())
+                {
+                    MessageBox.Show(new Form { TopMost = true }, "Modification du client acceptée !", "Client modifié",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+            }
         }
 
         private void frmVisuClient_FormClosing(object sender, FormClosingEventArgs e)
@@ -501,15 +524,6 @@ namespace WindowsFormsApplication1
             this.txtIdContact.Text = Outils.bestIdContact().ToString();
         }
     
-        private void razContactFields()
-        {
-            this.txtIdContact.Text = "";
-            this.txtNomContact.Text = "";
-            this.txtPrenomContact.Text = "";
-            this.txtTelephoneContact.Text = "";
-            this.txtFonctionContact.Text = "";
-        }
-
         private void btnAjouterContact_MouseHover(object sender, EventArgs e)
         {
             this.txtIdContact.Text = Outils.bestIdContact().ToString();

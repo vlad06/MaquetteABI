@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.msGestionClient = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nouveauClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +41,7 @@
             this.viderListeClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdClient = new System.Windows.Forms.DataGridView();
             this.txtRechercher = new System.Windows.Forms.TextBox();
-            this.btnModifierClient = new System.Windows.Forms.Button();
+            this.btnSetClientOnTop = new System.Windows.Forms.Button();
             this.btnDetailClient = new System.Windows.Forms.Button();
             this.btnAfficherListe = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
@@ -124,12 +126,23 @@
             this.grdClient.AllowUserToDeleteRows = false;
             this.grdClient.AllowUserToOrderColumns = true;
             this.grdClient.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            this.grdClient.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grdClient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdClient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdClient.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdClient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grdClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdClient.Location = new System.Drawing.Point(184, 43);
+            this.grdClient.Location = new System.Drawing.Point(192, 43);
             this.grdClient.MultiSelect = false;
             this.grdClient.Name = "grdClient";
             this.grdClient.ReadOnly = true;
@@ -149,14 +162,15 @@
             this.txtRechercher.TabIndex = 7;
             this.txtRechercher.TextChanged += new System.EventHandler(this.txtRechercher_TextChanged);
             // 
-            // btnModifierClient
+            // btnSetClientOnTop
             // 
-            this.btnModifierClient.Location = new System.Drawing.Point(32, 235);
-            this.btnModifierClient.Name = "btnModifierClient";
-            this.btnModifierClient.Size = new System.Drawing.Size(121, 52);
-            this.btnModifierClient.TabIndex = 11;
-            this.btnModifierClient.Text = "Passer les clients au premier plan";
-            this.btnModifierClient.UseVisualStyleBackColor = true;
+            this.btnSetClientOnTop.Location = new System.Drawing.Point(32, 235);
+            this.btnSetClientOnTop.Name = "btnSetClientOnTop";
+            this.btnSetClientOnTop.Size = new System.Drawing.Size(121, 52);
+            this.btnSetClientOnTop.TabIndex = 11;
+            this.btnSetClientOnTop.Text = "Passer les clients au premier plan";
+            this.btnSetClientOnTop.UseVisualStyleBackColor = true;
+            this.btnSetClientOnTop.Click += new System.EventHandler(this.btnSetClientOnTop_Click);
             // 
             // btnDetailClient
             // 
@@ -164,7 +178,7 @@
             this.btnDetailClient.Name = "btnDetailClient";
             this.btnDetailClient.Size = new System.Drawing.Size(163, 23);
             this.btnDetailClient.TabIndex = 1;
-            this.btnDetailClient.Text = "Details client";
+            this.btnDetailClient.Text = "Details fiche client";
             this.btnDetailClient.UseVisualStyleBackColor = true;
             this.btnDetailClient.Click += new System.EventHandler(this.btnDetailClient_Click);
             // 
@@ -180,7 +194,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(12, 541);
+            this.btnExport.Location = new System.Drawing.Point(15, 469);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(78, 52);
             this.btnExport.TabIndex = 14;
@@ -196,6 +210,12 @@
             this.lblRecherche.Size = new System.Drawing.Size(72, 13);
             this.lblRecherche.TabIndex = 15;
             this.lblRecherche.Text = "Rechercher : ";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 100;
+            this.toolTip1.ReshowDelay = 100;
             // 
             // btnSupprimerClient
             // 
@@ -227,7 +247,7 @@
             this.btnViderListe.Name = "btnViderListe";
             this.btnViderListe.Size = new System.Drawing.Size(163, 23);
             this.btnViderListe.TabIndex = 17;
-            this.btnViderListe.Text = "Vider liste clients";
+            this.btnViderListe.Text = "Masquer liste clients";
             this.btnViderListe.UseVisualStyleBackColor = true;
             this.btnViderListe.Click += new System.EventHandler(this.btnViderListe_Click);
             // 
@@ -253,7 +273,7 @@
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnSupprimerClient);
             this.Controls.Add(this.btnDetailClient);
-            this.Controls.Add(this.btnModifierClient);
+            this.Controls.Add(this.btnSetClientOnTop);
             this.Controls.Add(this.btnAfficherListe);
             this.Controls.Add(this.btnAjouterClient);
             this.Controls.Add(this.txtRechercher);
@@ -279,7 +299,7 @@
         private System.Windows.Forms.ToolStripMenuItem listeClientsToolStripMenuItem;
         private System.Windows.Forms.TextBox txtRechercher;
         private System.Windows.Forms.Button btnSupprimerClient;
-        private System.Windows.Forms.Button btnModifierClient;
+        private System.Windows.Forms.Button btnSetClientOnTop;
         private System.Windows.Forms.Button btnAjouterClient;
         private System.Windows.Forms.Button btnDetailClient;
         private System.Windows.Forms.Button btnAfficherListe;

@@ -21,7 +21,6 @@ namespace WindowsFormsApplication1
         public frmGestionClient()
         {
             InitializeComponent();
-            Client.nClient=Outils.bestIdClient();
             this.btnExport.Visible = false; //pour un export éventuel de la datagrid vers une feuille excel
         }
         //*********************************************************TODO : faire une fonction de récupération de l'id client à partir de la liste pour éviter les 
@@ -31,24 +30,25 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// affiche les headers puis certains attributs des clients de la liste sur la datagrid
         /// </summary>
-        private void afficheClients()
+        private void afficheClients()   //TODO, FAIRE UN DATABIND POUR NE PAS AVOIR A REECRIRE ENTIEREMENT LE DATAGRID A CHAQUE CHANGEMENT
         {
             DataTable dt = new DataTable();
             showGrdHeaders(dt); //affiche les headers sur la datagrid
             DataRow dr;
             foreach (TClient clientEF in Donnees.abiDb.TClient.ToList())
             {
-                dr = dt.NewRow();   //dr(datarow) est une nouvelle ligne dt(datatable)
+                dr = dt.NewRow();   //dr(datarow) is a new line of the dt(datatable)
                 dr[0] = clientEF.IdClient;          //  ligne clientEF n, première colonne
-                dr[1] = clientEF.RaisonSociale;     //ligne clientEF n, deuxième colonne
-                dr[2] = clientEF.Nature;            //ligne clientEF n, troisième colonne
-                dr[3] = clientEF.Telephone;         //ligne clientEF n, quatrième colonne
-                dr[4] = clientEF.Ca;                //ligne clientEF n, cinquième colonne
-                dr[5] = clientEF.Effectif;          //ligne clientEF n, sixième colonne
+                dr[1] = clientEF.RaisonSociale;     
+                dr["Nature"] = clientEF.Nature;  
+                dr[3] = clientEF.TypeSociete;
+                dr[4] = clientEF.Activite;
+                dr[5] = clientEF.Telephone;        
+                dr["CA Client"] = clientEF.Ca;      
+                dr[7] = clientEF.Effectif;          //ligne clientEF n, sixième colonne
                 dt.Rows.Add(dr);    //adding the row to the datatable
             }
-            //once the datatable is built, we can assign it to the datasource of the datagridview  
-            this.grdClient.DataSource = dt; //une fois le couple (lignes,colonnes) construit, on l'affiche
+            this.grdClient.DataSource = dt; //once the datatable is built, we can assign it to the datasource of the datagridview  
         }
         /// <summary>
         /// affiche le client sélectionné dans la datagrid dans les champs de frmVisuClient
@@ -60,7 +60,7 @@ namespace WindowsFormsApplication1
                 //int idClient = Convert.ToInt32(this.grdClient.SelectedRows[0].Cells[0].Value);//récupère l'id du client cliqué dans la datagrid
                 int idClient = Convert.ToInt32(this.grdClient.CurrentRow.Cells[0].Value);
                 TClient leClientEF = Donnees.abiDb.TClient.Find(idClient);
-                Client leClient=new Client(
+                Client leClient=new Client(     //on instancie le client avec les attributs du clientEF récupéré dans la table TClient de la bdd
                     leClientEF.IdClient,
                     leClientEF.RaisonSociale,
                     leClientEF.TypeSociete,
@@ -71,24 +71,17 @@ namespace WindowsFormsApplication1
                     leClientEF.Ca,
                     leClientEF.Effectif,
                     leClientEF.CommentComm);
-                //foreach (Client cl in Donnees.listClient)
-                //{
-                //    if (cl.IdClient == idClient)
-                //    {
-                //        leClient = cl;
-                //    }
-                //}
-                if (!isFormOpen())  //si la form client n'est pas encore ouverte
+                if (!isFormOpen())  //si la form visuclient n'est pas encore ouverte
                 {
-                    this.frmVisu = new frmVisuClient(leClient); //on crée une instance de la form client
+                    this.frmVisu = new frmVisuClient(leClient); //on crée une instance de la form visuclient
                     this.frmVisu.Show(); //on l'affiche
                     this.frmVisu.Activate();
-                    //this.frmVisu.TopMost = true; //on force la form client au premier plan
-                    this.frmVisu.FormClosing += new FormClosingEventHandler(this.fermeVisu);
+                    this.frmVisu.FormClosing += new FormClosingEventHandler(this.fermeVisu);//on appelle la fonction fermeVisu dès qu'une form visuClient
+                                                                                            //est fermée, afin de rafraîchir le datagrid
                     Donnees.listFrmVisuClient.Add(leClient.IdClient, frmVisu); //ajoute au dico le couple (idclient,frmvisu)
-                                                                               //qui nous permet de savoir que la form est ouverte
+                                                                               //qui nous permet de tracer les formVisu ouvertes
                 }
-                else
+                else  //si la form visuclient est déjà ouverte, on la passe en avant plan
                 {
                     Donnees.listFrmVisuClient.TryGetValue(leClient.IdClient, out frmVisu);//on récupère l'adresse de frmVisu ouverte
                     //frmVisu.TopMost = true;
@@ -100,7 +93,7 @@ namespace WindowsFormsApplication1
             }
         }
         /// <summary>
-        /// "raffraichit" l'affichage sur la datagrid
+        /// "rafraîchit" l'affichage sur le datagrid
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -116,14 +109,14 @@ namespace WindowsFormsApplication1
         {
             int idClient = Convert.ToInt32(this.grdClient.CurrentRow.Cells[0].Value);
             TClient leClientEF = Donnees.abiDb.TClient.Find(idClient);
-            if (Donnees.listFrmVisuClient.ContainsKey(leClientEF.IdClient))
-            {
+            if (Donnees.listFrmVisuClient.ContainsKey(leClientEF.IdClient))//si l'id du client récupérée sur la ligne du client actuellement
+            {                                                              //sélectionné est trouvée dans le dictionnaire listant les forms ouvertes
                 return true;
             }
             return false;
         }
         /// <summary>
-        /// affiche les en-têtes sur la datagrid
+        /// affiche les en-têtes sur le datagrid
         /// </summary>
         /// <param name="dt"></param>
         private void showGrdHeaders(DataTable dt)
@@ -131,12 +124,16 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("ID Client", typeof(System.Int32)));
             dt.Columns.Add(new DataColumn("Raison sociale", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Nature", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Type", typeof(System.String)));
+            dt.Columns.Add(new DataColumn("Domaine d'activité", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
             dt.Columns.Add(new DataColumn("CA Client", typeof(System.Decimal)));
             dt.Columns.Add(new DataColumn("Effectif", typeof(System.Int32)));
             this.grdClient.DataSource = dt;
         }
-
+        /// <summary>
+        /// delete the selected client from the database
+        /// </summary>
         private void deleteClientFromDb()
         {
             if (this.grdClient.CurrentRow != null)
@@ -158,58 +155,19 @@ namespace WindowsFormsApplication1
                         }
                         Donnees.listFrmVisuClient.Remove(leClientEF.IdClient); //on supprime le couple (id,form) du dictionnaire
                         Donnees.abiDb.TClient.Remove(leClientEF);//ON SUPPRIME LE CLIENT DE LA COLLECTION EF
-                        Donnees.abiDb.SaveChanges();
+                        Donnees.abiDb.SaveChanges();    //on répercute les changements sur la bdd
                         this.afficheClients();   //on met à jour l'affichage
                     }
                     else  //si il n'y a aucune fenêtre ouverte correspondant au client que l'on veut supprimer
                     {
                         //Donnees.listFrmVisuClient.Remove(leClientEF.IdClient);
                         Donnees.abiDb.TClient.Remove(leClientEF);//SUPPRIMER LE CLIENT DE LA COLLECTION EF
-                        Donnees.abiDb.SaveChanges();
-                        this.afficheClients();
+                        Donnees.abiDb.SaveChanges();    //on répercute les changements sur la bdd
+                        this.afficheClients();  //on réecrit la datagrid
                     }
-                    Client.nClient = Outils.bestIdClient();
                 }
             }
         }
-        /// <summary>
-        /// supprime de la liste le client sélectionné
-        /// </summary>
-        //private void suppressionClient()
-        //{
-        //    if (this.grdClient.CurrentRow != null)
-        //    {
-        //        DialogResult dr = MessageBox.Show(new Form { TopMost = true }, "Etes-vous sûr de vouloir supprimer le client sélectionné ?", "Attention",
-        //            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-        //        int iClient = this.grdClient.CurrentRow.Index;
-        //        Client leClient = Donnees.listClient[iClient];
-        //        if (dr == DialogResult.OK)
-        //        {
-        //            if (isFormOpen()) //on vérifie si la form qui va être supprimée à déjà été ouverte par l'utilisateur
-        //            {
-        //                dr = MessageBox.Show(new Form { TopMost = true }, "La suppression de ce client entrainera la fermeture de la fenêtre associée, supprimer quand même ?", "Attention",
-        //                    MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-        //                if (dr == DialogResult.OK)
-        //                {
-        //                    if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))   //si le dictionnaire contient la clé correspondant à la value idclient
-        //                    {
-        //                        frmVisuClient fvc = Donnees.listFrmVisuClient[leClient.IdClient]; //on récupère la référence de la form qui va être supprimée
-        //                        fvc.Close();    //on ferme la form
-        //                    }
-        //                    Donnees.listFrmVisuClient.Remove(leClient.IdClient); //on supprime le couple (id,form) du dictionnaire
-        //                    Donnees.listClient.Remove(leClient);        //on supprime le client de la liste client
-        //                    afficheClients();   //on met à jour l'affichage
-        //                }
-        //            }
-        //            else
-        //            {
-        //                Donnees.listFrmVisuClient.Remove(leClient.IdClient);
-        //                Donnees.listClient.Remove(leClient);
-        //                afficheClients();
-        //            }
-        //        }
-        //    }
-        //}
         /// <summary>
         /// Permet de créer une liste de client depuis un datagrid qui aurait été formé à partir d'une feuille excel
         /// </summary>
@@ -233,6 +191,7 @@ namespace WindowsFormsApplication1
                 //Donnees.listClient.Add(theClient);
             }
         }
+
         /// <summary>
         /// affiche une form d'ajout de client en mode modal
         /// </summary>
@@ -244,7 +203,6 @@ namespace WindowsFormsApplication1
             if (this.frmAjout.ShowDialog() == DialogResult.OK)
             {
                 this.afficheClients();
-                Client.nClient++;
             }
         }
 
@@ -272,12 +230,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void viderListeClientsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DataTable dt = new DataTable();
-            showGrdHeaders(dt);
-        }
-
         private void frmGestionClient_Load(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
@@ -289,7 +241,6 @@ namespace WindowsFormsApplication1
             if (this.frmAjout.ShowDialog() == DialogResult.OK)
             {
                 this.afficheClients();
-                Client.nClient++;
             }
         }
         private void btnAfficheListe_Click(object sender, EventArgs e)
@@ -342,6 +293,12 @@ namespace WindowsFormsApplication1
             showGrdHeaders(dt);
         }
 
+        private void viderListeClientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            showGrdHeaders(dt);
+        }
+
         private void btnAfficheTest_Click(object sender, EventArgs e)
         {
             try
@@ -367,6 +324,16 @@ namespace WindowsFormsApplication1
             {
                 this.afficheClients();
             }
+        }
+
+        private void btnSetClientOnTop_Click(object sender, EventArgs e)
+        {
+            foreach (frmVisuClient fvc in Donnees.listFrmVisuClient.Values)
+            {
+                fvc.Show();
+                fvc.Activate();
+            }
+            
         }
     }
 }
