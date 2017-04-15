@@ -55,8 +55,11 @@ namespace WindowsFormsApplication1
             dt.Columns.Add(new DataColumn("Téléphone", typeof(System.String)));
             dt.Columns.Add(new DataColumn("Fonction", typeof(System.String)));
             DataRow dr;
-
-            foreach (TContact unContactEF in Donnees.abiDb.TContact.ToList())
+            //on fait une requête pour récupérer la liste de contacts liée au client sélectionné
+            IEnumerable<TContact> listContactEF = from lCont in Donnees.abiDb.TContact.ToList()
+                                                  where lCont.IdClient == leClient.IdClient
+                                                  select lCont;
+            foreach (TContact unContactEF in listContactEF)
             {
                 dr = dt.NewRow();
                 dr[0] = unContactEF.IdContact;
@@ -471,7 +474,6 @@ namespace WindowsFormsApplication1
             {
                 if (this.instancieContact())
                 {
-                    //Donnees.listContact.Add(Contact.nContact, leContact);
                     majGrdContacts();
                     razContactFields();
                 }

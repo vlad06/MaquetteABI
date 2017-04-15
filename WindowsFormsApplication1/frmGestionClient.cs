@@ -175,41 +175,41 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// supprime de la liste le client sélectionné
         /// </summary>
-        private void suppressionClient()
-        {
-            if (this.grdClient.CurrentRow != null)
-            {
-                DialogResult dr = MessageBox.Show(new Form { TopMost = true }, "Etes-vous sûr de vouloir supprimer le client sélectionné ?", "Attention",
-                    MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                int iClient = this.grdClient.CurrentRow.Index;
-                Client leClient = Donnees.listClient[iClient];
-                if (dr == DialogResult.OK)
-                {
-                    if (isFormOpen()) //on vérifie si la form qui va être supprimée à déjà été ouverte par l'utilisateur
-                    {
-                        dr = MessageBox.Show(new Form { TopMost = true }, "La suppression de ce client entrainera la fermeture de la fenêtre associée, supprimer quand même ?", "Attention",
-                            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                        if (dr == DialogResult.OK)
-                        {
-                            if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))   //si le dictionnaire contient la clé correspondant à la value idclient
-                            {
-                                frmVisuClient fvc = Donnees.listFrmVisuClient[leClient.IdClient]; //on récupère la référence de la form qui va être supprimée
-                                fvc.Close();    //on ferme la form
-                            }
-                            Donnees.listFrmVisuClient.Remove(leClient.IdClient); //on supprime le couple (id,form) du dictionnaire
-                            Donnees.listClient.Remove(leClient);        //on supprime le client de la liste client
-                            afficheClients();   //on met à jour l'affichage
-                        }
-                    }
-                    else
-                    {
-                        Donnees.listFrmVisuClient.Remove(leClient.IdClient);
-                        Donnees.listClient.Remove(leClient);
-                        afficheClients();
-                    }
-                }
-            }
-        }
+        //private void suppressionClient()
+        //{
+        //    if (this.grdClient.CurrentRow != null)
+        //    {
+        //        DialogResult dr = MessageBox.Show(new Form { TopMost = true }, "Etes-vous sûr de vouloir supprimer le client sélectionné ?", "Attention",
+        //            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+        //        int iClient = this.grdClient.CurrentRow.Index;
+        //        Client leClient = Donnees.listClient[iClient];
+        //        if (dr == DialogResult.OK)
+        //        {
+        //            if (isFormOpen()) //on vérifie si la form qui va être supprimée à déjà été ouverte par l'utilisateur
+        //            {
+        //                dr = MessageBox.Show(new Form { TopMost = true }, "La suppression de ce client entrainera la fermeture de la fenêtre associée, supprimer quand même ?", "Attention",
+        //                    MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+        //                if (dr == DialogResult.OK)
+        //                {
+        //                    if (Donnees.listFrmVisuClient.ContainsKey(leClient.IdClient))   //si le dictionnaire contient la clé correspondant à la value idclient
+        //                    {
+        //                        frmVisuClient fvc = Donnees.listFrmVisuClient[leClient.IdClient]; //on récupère la référence de la form qui va être supprimée
+        //                        fvc.Close();    //on ferme la form
+        //                    }
+        //                    Donnees.listFrmVisuClient.Remove(leClient.IdClient); //on supprime le couple (id,form) du dictionnaire
+        //                    Donnees.listClient.Remove(leClient);        //on supprime le client de la liste client
+        //                    afficheClients();   //on met à jour l'affichage
+        //                }
+        //            }
+        //            else
+        //            {
+        //                Donnees.listFrmVisuClient.Remove(leClient.IdClient);
+        //                Donnees.listClient.Remove(leClient);
+        //                afficheClients();
+        //            }
+        //        }
+        //    }
+        //}
         /// <summary>
         /// Permet de créer une liste de client depuis un datagrid qui aurait été formé à partir d'une feuille excel
         /// </summary>
@@ -230,7 +230,7 @@ namespace WindowsFormsApplication1
                     Convert.ToInt32(grdClient.Rows[i].Cells[5].Value),      //effectif
                     ""
                     );
-                Donnees.listClient.Add(theClient);
+                //Donnees.listClient.Add(theClient);
             }
         }
         /// <summary>
@@ -363,7 +363,7 @@ namespace WindowsFormsApplication1
                 MessageBox.Show(ex.ToString());
             }
             buildClientListFromDataGrid();
-            if (Donnees.listClient.Count > 0)
+            //if (Donnees.listClient.Count > 0)
             {
                 this.afficheClients();
             }

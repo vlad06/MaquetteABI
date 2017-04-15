@@ -111,11 +111,11 @@ namespace WindowsFormsApplication1
             set { commentComm = value;}
         }
 
-        public List<Contact> ListContact
-        {
-            get { return listContact; }
-            set {  listContact = value;}
-        }
+        //public List<Contact> ListContact
+        //{
+        //    get { return listContact; }
+        //    set {  listContact = value;}
+        //}
         //********************************************************
         //************************METHODES************************
         //********************************************************
