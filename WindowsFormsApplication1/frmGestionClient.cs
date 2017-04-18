@@ -21,7 +21,6 @@ namespace WindowsFormsApplication1
         public frmGestionClient()
         {
             InitializeComponent();
-            this.btnExport.Visible = false; //pour un export éventuel de la datagrid vers une feuille excel
         }
         //*********************************************************TODO : faire une fonction de récupération de l'id client à partir de la liste pour éviter les 
         //********************METHODES INTERNES********************         erreurs avec le travail sur l'index du datagrid lorsqu'il est trié
@@ -141,9 +140,8 @@ namespace WindowsFormsApplication1
                 int idClient = Convert.ToInt32(this.grdClient.CurrentRow.Cells[0].Value);
                 //RETROUVER LE CLIENT EF DANS LA COLLECTION DBCONTEXT
                 TClient leClientEF = Donnees.abiDb.TClient.Find(idClient);
-                //Client leClient = Donnees.listClient[idClient];
                 //CONFIRMER LA SUPPRESSION :
-                if (MessageBox.Show(new Form { TopMost = true }, "Voulez-vous supprimer définitivement ce client ?", "Attention",
+                if (MessageBox.Show(new Form { TopMost = true }, "Supprimer ce client revient à supprimer tous les contacts associés !", "Attention !",
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     if (isFormOpen()) //on vérifie si la form qui va être supprimée à déjà été ouverte par l'utilisateur
@@ -153,6 +151,16 @@ namespace WindowsFormsApplication1
                             frmVisuClient fvc = Donnees.listFrmVisuClient[leClientEF.IdClient]; //on récupère la référence de la form qui va être supprimée
                             fvc.Close();    //on ferme la form
                         }
+                        //on fait une requête pour récupérer la liste de contacts liée au client qui va être supprimé
+                        IEnumerable<TContact> listContactEF = from lCont in Donnees.abiDb.TContact.ToList()
+                                                              where lCont.IdClient == leClientEF.IdClient
+                                                              select lCont;
+                        //on supprime d'abord tous les contacts de ce client
+                        foreach (TContact unContactEF in listContactEF)
+                        {
+                            Donnees.abiDb.TContact.Remove(unContactEF);
+                            Donnees.abiDb.SaveChanges();
+                        }
                         Donnees.listFrmVisuClient.Remove(leClientEF.IdClient); //on supprime le couple (id,form) du dictionnaire
                         Donnees.abiDb.TClient.Remove(leClientEF);//ON SUPPRIME LE CLIENT DE LA COLLECTION EF
                         Donnees.abiDb.SaveChanges();    //on répercute les changements sur la bdd
@@ -160,35 +168,21 @@ namespace WindowsFormsApplication1
                     }
                     else  //si il n'y a aucune fenêtre ouverte correspondant au client que l'on veut supprimer
                     {
-                        //Donnees.listFrmVisuClient.Remove(leClientEF.IdClient);
+                        //on fait une requête pour récupérer la liste de contacts liée au client qui va être supprimé
+                        IEnumerable<TContact> listContactEF = from lCont in Donnees.abiDb.TContact.ToList()
+                                                              where lCont.IdClient == leClientEF.IdClient
+                                                              select lCont;
+                        //on supprime d'abord tous les contacts de ce client
+                        foreach (TContact unContactEF in listContactEF)
+                        {
+                            Donnees.abiDb.TContact.Remove(unContactEF);
+                            Donnees.abiDb.SaveChanges();
+                        }
                         Donnees.abiDb.TClient.Remove(leClientEF);//SUPPRIMER LE CLIENT DE LA COLLECTION EF
                         Donnees.abiDb.SaveChanges();    //on répercute les changements sur la bdd
                         this.afficheClients();  //on réecrit la datagrid
                     }
                 }
-            }
-        }
-        /// <summary>
-        /// Permet de créer une liste de client depuis un datagrid qui aurait été formé à partir d'une feuille excel
-        /// </summary>
-        private void buildClientListFromDataGrid()
-        {
-            Client theClient;
-            for (int i = 0; i < 10; i++)
-            {
-                theClient = new Client(
-                    Convert.ToInt32(grdClient.Rows[i].Cells[0].Value),      //ID client
-                    Convert.ToString(grdClient.Rows[i].Cells[1].Value),     //raison sociale
-                    "",
-                    "",
-                    "",
-                    Convert.ToString(grdClient.Rows[i].Cells[2].Value),     //nature
-                    Convert.ToString(grdClient.Rows[i].Cells[3].Value),     //téléphone
-                    Convert.ToDecimal(grdClient.Rows[i].Cells[4].Value),    //chiffre d'affaire
-                    Convert.ToInt32(grdClient.Rows[i].Cells[5].Value),      //effectif
-                    ""
-                    );
-                //Donnees.listClient.Add(theClient);
             }
         }
 
@@ -224,7 +218,7 @@ namespace WindowsFormsApplication1
 
         private void listeClientsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.grdClient.CurrentRow != null)
+            if (Donnees.abiDb.TClient.ToList().Count > 0)
             {
                 this.afficheClients();
             }
@@ -258,6 +252,10 @@ namespace WindowsFormsApplication1
         {
             this.afficheDetailClient();
         }
+        private void détailsFicheClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.afficheDetailClient();
+        }
         /// <summary>
         /// permet de rechercher un client précis en faisant une recherche sur tous les critères du datagrid
         /// </summary>
@@ -267,14 +265,17 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                string rechercheID = string.Format("CONVERT([ID Client],System.String) like '%{0}%'", this.txtRechercher.Text);//recherche sur l'id client
-                string rechercheRs = string.Format("OR [Raison sociale] like '%{0}%'", this.txtRechercher.Text);                // ou recherche sur la raison sociale
-                string rechercheNature = string.Format("OR Nature like '%{0}%'", this.txtRechercher.Text);                      // ou recherche sur la nature
-                string rechercheTel = string.Format("OR Téléphone like '%{0}%'", this.txtRechercher.Text);                      //ou recherche sur le telephone
-                string rechercheCa = string.Format("OR CONVERT([CA Client],System.String) like '%{0}%'", this.txtRechercher.Text);  //ou recherche sur le chiffre d'affaire
-                string rechercheEffectif = string.Format("OR CONVERT(Effectif,System.String) like '%{0}%'", this.txtRechercher.Text);//ou recherche sur l'effectif
+                string filterID = string.Format("CONVERT([ID Client],System.String) like '%{0}%'", this.txtRechercher.Text);//recherche sur l'id client
+                string filterRS = string.Format("OR [Raison sociale] like '%{0}%'", this.txtRechercher.Text);                // ou recherche sur la raison sociale
+                string filterNature = string.Format("OR Nature like '%{0}%'", this.txtRechercher.Text);                      // ou recherche sur la nature
+                string filterType = string.Format("OR Type like '%{0}%'",this.txtRechercher.Text);                          //ou recherche sur le type de société
+                string filterDomaine = string.Format("OR [Domaine d'activité] like '%{0}%'", this.txtRechercher.Text);      //ou recherche sur le domaine d'activité
+                string filterTel = string.Format("OR Téléphone like '%{0}%'", this.txtRechercher.Text);                      //ou recherche sur le telephone
+                string filterCa = string.Format("OR CONVERT([CA Client],System.String) like '%{0}%'", this.txtRechercher.Text);  //ou recherche sur le chiffre d'affaire
+                string filterEffectif = string.Format("OR CONVERT(Effectif,System.String) like '%{0}%'", this.txtRechercher.Text);//ou recherche sur l'effectif
                 //on fait une recherche sur tous les critères à la fois
-                ((DataView)(this.grdClient.DataSource)).RowFilter = rechercheID + rechercheRs + rechercheNature + rechercheTel + rechercheCa + rechercheEffectif;
+                ((DataTable)(this.grdClient.DataSource)).DefaultView.RowFilter = filterID + filterRS + filterNature + filterType
+                    + filterDomaine + filterTel + filterCa + filterEffectif;
             }
             catch (Exception ex)
             {
@@ -299,33 +300,6 @@ namespace WindowsFormsApplication1
             showGrdHeaders(dt);
         }
 
-        private void btnAfficheTest_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OleDbConnection MyConnection;
-                DataSet DtSet;
-                OleDbDataAdapter MyCommand;
-                MyConnection = new OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:/Users/ADI/Desktop/testABI.xls';Extended Properties=Excel 8.0;");
-                //MyConnection = new OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:/Users/DL-CDI/Desktop/Cours/testABI.xls';Extended Properties=Excel 8.0;");
-                MyCommand = new OleDbDataAdapter("select * from [Feuil1$]", MyConnection);
-                MyCommand.TableMappings.Add("Table", "TestTable");
-                DtSet = new DataSet();
-                MyCommand.Fill(DtSet);
-                grdClient.DataSource = DtSet.Tables[0];
-                MyConnection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            buildClientListFromDataGrid();
-            //if (Donnees.listClient.Count > 0)
-            {
-                this.afficheClients();
-            }
-        }
-
         private void btnSetClientOnTop_Click(object sender, EventArgs e)
         {
             foreach (frmVisuClient fvc in Donnees.listFrmVisuClient.Values)
@@ -335,5 +309,7 @@ namespace WindowsFormsApplication1
             }
             
         }
+
+
     }
 }

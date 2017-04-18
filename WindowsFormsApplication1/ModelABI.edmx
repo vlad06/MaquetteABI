@@ -26,7 +26,7 @@
           <Property Name="Adresse" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Telephone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nature" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Ca" Type="money" Nullable="false" />
+          <Property Name="Ca" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Effectif" Type="int" Nullable="false" />
           <Property Name="CommentComm" Type="varchar" MaxLength="800" />
         </EntityType>

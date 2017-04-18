@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.msGestionClient = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nouveauClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,18 +39,17 @@
             this.afficherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listeClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viderListeClientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.détailsFicheClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdClient = new System.Windows.Forms.DataGridView();
             this.txtRechercher = new System.Windows.Forms.TextBox();
             this.btnSetClientOnTop = new System.Windows.Forms.Button();
             this.btnDetailClient = new System.Windows.Forms.Button();
             this.btnAfficherListe = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
             this.lblRecherche = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnSupprimerClient = new System.Windows.Forms.Button();
             this.btnAjouterClient = new System.Windows.Forms.Button();
             this.btnViderListe = new System.Windows.Forms.Button();
-            this.btnAfficheTest = new System.Windows.Forms.Button();
             this.msGestionClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdClient)).BeginInit();
             this.SuspendLayout();
@@ -101,7 +100,8 @@
             // 
             this.afficherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listeClientsToolStripMenuItem,
-            this.viderListeClientsToolStripMenuItem});
+            this.viderListeClientsToolStripMenuItem,
+            this.détailsFicheClientToolStripMenuItem});
             this.afficherToolStripMenuItem.Name = "afficherToolStripMenuItem";
             this.afficherToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.afficherToolStripMenuItem.Text = "Outils";
@@ -109,16 +109,23 @@
             // listeClientsToolStripMenuItem
             // 
             this.listeClientsToolStripMenuItem.Name = "listeClientsToolStripMenuItem";
-            this.listeClientsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.listeClientsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.listeClientsToolStripMenuItem.Text = "Afficher liste clients";
             this.listeClientsToolStripMenuItem.Click += new System.EventHandler(this.listeClientsToolStripMenuItem_Click);
             // 
             // viderListeClientsToolStripMenuItem
             // 
             this.viderListeClientsToolStripMenuItem.Name = "viderListeClientsToolStripMenuItem";
-            this.viderListeClientsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.viderListeClientsToolStripMenuItem.Text = "Vider liste clients";
+            this.viderListeClientsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.viderListeClientsToolStripMenuItem.Text = "Masquer liste clients";
             this.viderListeClientsToolStripMenuItem.Click += new System.EventHandler(this.viderListeClientsToolStripMenuItem_Click);
+            // 
+            // détailsFicheClientToolStripMenuItem
+            // 
+            this.détailsFicheClientToolStripMenuItem.Name = "détailsFicheClientToolStripMenuItem";
+            this.détailsFicheClientToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.détailsFicheClientToolStripMenuItem.Text = "Détails fiche client";
+            this.détailsFicheClientToolStripMenuItem.Click += new System.EventHandler(this.détailsFicheClientToolStripMenuItem_Click);
             // 
             // grdClient
             // 
@@ -126,21 +133,21 @@
             this.grdClient.AllowUserToDeleteRows = false;
             this.grdClient.AllowUserToOrderColumns = true;
             this.grdClient.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
-            this.grdClient.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Silver;
+            this.grdClient.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdClient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdClient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdClient.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdClient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdClient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdClient.Location = new System.Drawing.Point(192, 43);
             this.grdClient.MultiSelect = false;
@@ -192,16 +199,6 @@
             this.btnAfficherListe.UseVisualStyleBackColor = true;
             this.btnAfficherListe.Click += new System.EventHandler(this.btnAfficheListe_Click);
             // 
-            // btnExport
-            // 
-            this.btnExport.Location = new System.Drawing.Point(15, 469);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(78, 52);
-            this.btnExport.TabIndex = 14;
-            this.btnExport.Text = "Export to  Excel";
-            this.toolTip1.SetToolTip(this.btnExport, "Convertit la liste de\r\nclients en feuille excel");
-            this.btnExport.UseVisualStyleBackColor = true;
-            // 
             // lblRecherche
             // 
             this.lblRecherche.AutoSize = true;
@@ -251,26 +248,13 @@
             this.btnViderListe.UseVisualStyleBackColor = true;
             this.btnViderListe.Click += new System.EventHandler(this.btnViderListe_Click);
             // 
-            // btnAfficheTest
-            // 
-            this.btnAfficheTest.Location = new System.Drawing.Point(32, 314);
-            this.btnAfficheTest.Name = "btnAfficheTest";
-            this.btnAfficheTest.Size = new System.Drawing.Size(118, 129);
-            this.btnAfficheTest.TabIndex = 19;
-            this.btnAfficheTest.Text = "affiche jeu de clients test\r\nattention le jeu provient d\'une feuille excel à impo" +
-    "rter\r\nle path de la feuille devra être changé";
-            this.btnAfficheTest.UseVisualStyleBackColor = true;
-            this.btnAfficheTest.Click += new System.EventHandler(this.btnAfficheTest_Click);
-            // 
             // frmGestionClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1091, 597);
-            this.Controls.Add(this.btnAfficheTest);
             this.Controls.Add(this.btnViderListe);
             this.Controls.Add(this.lblRecherche);
-            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnSupprimerClient);
             this.Controls.Add(this.btnDetailClient);
             this.Controls.Add(this.btnSetClientOnTop);
@@ -303,7 +287,6 @@
         private System.Windows.Forms.Button btnAjouterClient;
         private System.Windows.Forms.Button btnDetailClient;
         private System.Windows.Forms.Button btnAfficherListe;
-        private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label lblRecherche;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnViderListe;
@@ -312,7 +295,7 @@
         private System.Windows.Forms.ToolStripMenuItem supprimerClientToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viderListeClientsToolStripMenuItem;
-        private System.Windows.Forms.Button btnAfficheTest;
+        private System.Windows.Forms.ToolStripMenuItem détailsFicheClientToolStripMenuItem;
     }
 }
 

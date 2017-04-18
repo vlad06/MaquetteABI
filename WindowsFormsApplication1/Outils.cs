@@ -105,9 +105,9 @@ namespace WindowsFormsApplication1
             char c;
             bool code = true;   //code de retour, vrai par défaut
 
-            if (s.Length > 0) //si la longueur de la string est strictement comprise en 0 et 10 (de 1 à 9 caractères)
+            if (s.Length > 0) //si la string existe
             {
-                //on vérifie tous les caractères un à un pour s'assurer que ce sont des chiffres ou un .
+                //on vérifie tous les caractères un à un pour s'assurer que ce sont des chiffres, un point ou une virgule
                 for (int i = 0; i < s.Length; i++)
                 {
                     c = s[i];
@@ -139,7 +139,7 @@ namespace WindowsFormsApplication1
                 for (int i = 0; i < s.Length; i++)
                 {
                     c = s[i];
-                    if (!(char.IsDigit(c))) //si le char n'est pas un chiffre
+                    if (!(char.IsDigit(c)) && !(c == '+')) //si le char n'est pas un chiffre
                     {
                         code = false;   //alors on à un problème
                     }
@@ -221,50 +221,48 @@ namespace WindowsFormsApplication1
             return isMadeOfLetters(s);
         }
         /// <summary>
-        /// retourne l'id idéale pouvant être utilisée pour la création du prochain client
-        /// </summary>
-        /// <returns></returns>
-        public static int bestIdClient()
-        {
-            int id=0;
-            if (Donnees.abiDb.TClient.ToList() == null)
-            {
-                id = 1;
-            }
-            else
-            {
-                foreach (TClient clientEF in Donnees.abiDb.TClient.ToList())
-                {
-                    if (clientEF.IdClient > id)
-                    {
-                        id = clientEF.IdClient;
-                    }
-                }
-                id++;
-            }
-            return id;
-        }
-        /// <summary>
         /// retourne l'id idéale pouvant être utilisée pour la création du prochain contact
         /// </summary>
         /// <returns></returns>
         public static int bestIdContact()
         {
-            int id = 0;
-            if (Donnees.abiDb.TContact.ToList() == null)
-            {
-                id = 1;
-            }
-            else
+            int id = 1;
+            if (Donnees.abiDb.TContact.ToList() != null)
             {
                 foreach (TContact contactEF in Donnees.abiDb.TContact.ToList())
                 {
-                    if (contactEF.IdContact > id)
+                    if (contactEF.IdContact == id)
                     {
-                        id = contactEF.IdContact;
+                        id++;
+                    }
+                    else
+                    {
+                        return id;
                     }
                 }
-                id++;
+            }
+            return id;
+        }
+        /// <summary>
+        /// retourne l'id inutilisée la plus basse possible
+        /// </summary>
+        /// <returns></returns>
+        public static int bestIdClient()
+        {
+            int id = 1;
+            if(Donnees.abiDb.TClient.ToList() != null)
+            {
+                foreach (TClient clientEF in Donnees.abiDb.TClient.ToList())
+                {
+                    if (clientEF.IdClient == id)
+                    {
+                        id++;
+                    }
+                    else
+                    {
+                        return id;
+                    }
+                }
             }
             return id;
         }

@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1
             this.Size = new Size(385, 450); //on cache les contacts
             this.txtIdClient.Enabled = false;   //les contrôles Id clients et contacts sont inaccessibles à l'utilisateur
             this.txtIdContact.Enabled = false;  //TODO:FAIRE UNE FONCTION POUR GERER LES BOUTONS ENABLED
-            this.txtIdContact.Text = Outils.bestIdContact().ToString();
+            this.txtIdContact.Text = Outils.bestIdContact().ToString(); //on récupère une id de client juste au dessus de l'id client la plus haute afin d'optimiser
         }
         //********************************************************
         //************************METHODES************************
@@ -217,68 +217,6 @@ namespace WindowsFormsApplication1
             {
                 errorProvider2.SetError(this.txtRaisonSociale, String.Empty);
             }
-            //if (this.cbxNature.Text == "")
-            //{
-            //    errorProvider2.SetError(this.cbxNature, "Nature société requise !");
-            //    valid = false;
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.cbxNature, String.Empty);
-            //}
-            //if (this.cbxTypeSociete.Text == "")
-            //{
-            //    errorProvider2.SetError(this.cbxTypeSociete, "Type société requis !");
-            //    valid = false;
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.cbxTypeSociete, String.Empty);
-            //}
-            //if (this.cbxActivite.Text == "")
-            //{
-            //    errorProvider2.SetError(this.cbxActivite, "Activité requise !");
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.cbxActivite, String.Empty);
-            //}
-            //if (!Outils.isCaValid(this.txtCa.Text.Trim()))
-            //{
-            //    errorProvider2.SetError(this.txtCa, "Chiffre d'affaire invalide !");
-            //    valid = false;
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.txtCa, String.Empty);
-            //}
-            //if (!(Outils.isEffectifValid(this.txtEffectif.Text.Trim())))
-            //{
-            //    errorProvider2.SetError(this.txtEffectif, "Effectif invalide !");
-            //    valid = false;
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.txtEffectif, String.Empty);
-            //}
-            //if (!(Outils.isTelephoneValid(this.txtTelephone.Text.Trim())))
-            //{
-            //    errorProvider2.SetError(this.txtTelephone, "Téléphone invalide !");
-            //    valid = false;
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.txtTelephone, String.Empty);
-            //}
-            //if (this.txtAdresse.Text.Trim() == "")
-            //{
-            //    errorProvider2.SetError(this.txtAdresse, "Adresse requise !");
-            //    valid = false;
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.txtAdresse, String.Empty);
-            //}
             return valid;
         }
         private Boolean isFieldsContactValid()
@@ -293,33 +231,6 @@ namespace WindowsFormsApplication1
             {
                 errorProvider2.SetError(this.txtNomContact, String.Empty);
             }
-            //if (!Outils.isPrenomValid(this.txtPrenomContact.Text.Trim()))
-            //{
-            //    errorProvider2.SetError(this.txtPrenomContact, "Prénom contact invalide !");
-            //    valid = false;
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.txtPrenomContact, String.Empty);
-            //}
-            //if (!Outils.isFonctionValid(this.txtFonctionContact.Text.Trim()))
-            //{
-            //    errorProvider2.SetError(this.txtFonctionContact, "Fonction contact invalide !");
-            //    valid = false;
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.txtFonctionContact, String.Empty);
-            //}
-            //if (!Outils.isTelephoneValid(this.txtTelephoneContact.Text.Trim()))
-            //{
-            //    errorProvider2.SetError(this.txtTelephoneContact, "Téléphone contact invalide !");
-            //    valid = false;
-            //}
-            //else
-            //{
-            //    errorProvider2.SetError(this.txtTelephoneContact, String.Empty);
-            //}
             return valid;
         }
 
@@ -362,8 +273,6 @@ namespace WindowsFormsApplication1
             {
                 if (this.modifieClient())
                 {
-                    MessageBox.Show(new Form { TopMost = true }, "Modification du client acceptée !", "Client modifié",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
             }
