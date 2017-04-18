@@ -32,24 +32,24 @@ namespace WindowsFormsApplication1
             Client nouveauClient = new Client();
             try
             {
-                nouveauClient.IdClient = int.Parse(base.txtIdClient.Text);
+                nouveauClient.IdClient = Outils.bestIdClient();     //attribue une id client non utilisée
                 nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
                 nouveauClient.Nature = base.cbxNature.Text;
                 nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
                 nouveauClient.Activite = base.cbxActivite.Text;
                 nouveauClient.Telephone = base.txtTelephone.Text;
                 nouveauClient.Adresse = base.txtAdresse.Text;
-                if (base.txtCa.Text.Trim() == "")
-                {
+                if (base.txtCa.Text.Trim() == "") //si la txtbox CA n'a pas été renseignée
+                {                                   //on l'initialise pour ne pas avoir d'erreur lors du parse
                     nouveauClient.Ca = 0;
                 }
                 else
                 {
                     nouveauClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
                 }
-                if (base.txtEffectif.Text.Trim() == "")
-                {
-                    nouveauClient.Effectif = 1;
+                if (base.txtEffectif.Text.Trim() == "") //si la txtbox effectif n'a pas été renseignée
+                {                                      //on l'initialise pour éviter d'avoir une erreur lors du parse
+                    nouveauClient.Effectif = 1;     //initialise l'effectif à 1 pour eviter une division par zéro juste après
                 }
                 else
                 {
@@ -57,11 +57,11 @@ namespace WindowsFormsApplication1
                 }
                 if(nouveauClient.Ca/nouveauClient.Effectif > 1000000)
                 {
-
+                    throw new Exception("Il y a un problème avec le chiffre d'affaire ou l'effectif saisi !");
                 }
                 nouveauClient.CommentComm = base.txtCommentComm.Text;
 
-                TClient nouveauClientEF = new TClient();    //nouvel objet EF de type TClient
+                TClient nouveauClientEF = new TClient();    //nouvel objet EntityFramework de type TClient
 
                 nouveauClientEF.IdClient = nouveauClient.IdClient;
                 nouveauClientEF.RaisonSociale = nouveauClient.RaisonSociale;
