@@ -221,7 +221,7 @@ namespace WindowsFormsApplication1
             return isMadeOfLetters(s);
         }
         /// <summary>
-        /// retourne l'id idéale pouvant être utilisée pour la création du prochain contact
+        /// retourne l'id contact inutilisée la plus basse possible
         /// </summary>
         /// <returns></returns>
         public static int bestIdContact()
@@ -244,7 +244,7 @@ namespace WindowsFormsApplication1
             return id;
         }
         /// <summary>
-        /// retourne l'id inutilisée la plus basse possible
+        /// retourne l'id client inutilisée la plus basse possible
         /// </summary>
         /// <returns></returns>
         public static int bestIdClient()

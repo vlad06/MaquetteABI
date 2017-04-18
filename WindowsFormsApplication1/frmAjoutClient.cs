@@ -18,7 +18,6 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             this.txtIdClient.Text = Outils.bestIdClient().ToString();
-            this.txtIdClient.ReadOnly = true;   //passe la textbox en lecture seule pour empêcher toute manipulation
         }
         //********************************************************
         //************************METHODES************************
@@ -33,18 +32,37 @@ namespace WindowsFormsApplication1
             Client nouveauClient = new Client();
             try
             {
-                nouveauClient.IdClient = Outils.bestIdClient();
+                nouveauClient.IdClient = int.Parse(base.txtIdClient.Text);
                 nouveauClient.RaisonSociale = base.txtRaisonSociale.Text;
                 nouveauClient.Nature = base.cbxNature.Text;
                 nouveauClient.TypeSociete = base.cbxTypeSociete.Text;
                 nouveauClient.Activite = base.cbxActivite.Text;
                 nouveauClient.Telephone = base.txtTelephone.Text;
                 nouveauClient.Adresse = base.txtAdresse.Text;
-                nouveauClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
-                nouveauClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
+                if (base.txtCa.Text.Trim() == "")
+                {
+                    nouveauClient.Ca = 0;
+                }
+                else
+                {
+                    nouveauClient.Ca = decimal.Parse(base.txtCa.Text.Trim());
+                }
+                if (base.txtEffectif.Text.Trim() == "")
+                {
+                    nouveauClient.Effectif = 1;
+                }
+                else
+                {
+                    nouveauClient.Effectif = int.Parse(base.txtEffectif.Text.Trim());
+                }
+                if(nouveauClient.Ca/nouveauClient.Effectif > 1000000)
+                {
+
+                }
                 nouveauClient.CommentComm = base.txtCommentComm.Text;
 
                 TClient nouveauClientEF = new TClient();    //nouvel objet EF de type TClient
+
                 nouveauClientEF.IdClient = nouveauClient.IdClient;
                 nouveauClientEF.RaisonSociale = nouveauClient.RaisonSociale;
                 nouveauClientEF.Nature = nouveauClient.Nature;

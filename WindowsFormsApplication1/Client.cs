@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1
         //********************************************************
         public static int nClient;  //le nombre de clients crées
 
-        private Int32 idClient;   //le numéro de client incrémenté pour chaque nouveau client crée
+        private Int32 idClient;   //le numéro de client unique pour chaque client
         private String raisonSociale;   //raison sociale du client
         private String typeSociete;  //public ou privé
         private String activite;  //secteur d'activité du client (pour l'instant agro, industrie, ...)
@@ -23,7 +23,6 @@ namespace WindowsFormsApplication1
         private Decimal ca;   //chiffre d'affaire du client
         private Int32 effectif; //nombre de salariés du client
         private String commentComm; //commentaire commercial concernant le projet
-        //private List<Contact> listContact = new List<Contact>(); //liste de contact du client
 
         //********************************************************
         //********************CONSTRUCTEURS***********************
@@ -60,7 +59,17 @@ namespace WindowsFormsApplication1
         public string RaisonSociale
         {
             get { return raisonSociale.ToUpper(); }
-            set { raisonSociale = value;}
+            set
+            {
+                if (Outils.isMadeOfLettersAndNumbers(value))
+                {
+                    raisonSociale = value;
+                }
+                else
+                {
+                    throw new Exception(value.ToString() + "\n" + "n'est pas valide");
+                }
+            }
         }
 
         public string TypeSociete
@@ -109,25 +118,6 @@ namespace WindowsFormsApplication1
         {
             get {return commentComm;}
             set { commentComm = value;}
-        }
-
-        //public List<Contact> ListContact
-        //{
-        //    get { return listContact; }
-        //    set {  listContact = value;}
-        //}
-        //********************************************************
-        //************************METHODES************************
-        //********************************************************
-
-        /// <summary>
-        /// méthode permettant de tester le ratio chiffre d'affaire / effectif pour savoir s'il est > 1M
-        /// retourne true si le ratio est inférieur à 1M et false sinon 
-        /// </summary>
-        /// <returns></returns>
-        public bool RatioCaEffectif()
-        {
-            return ((this.Ca / this.Effectif)<1000000);
         }
     }
 }

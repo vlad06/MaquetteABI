@@ -280,7 +280,7 @@ namespace WindowsFormsApplication1
 
         private void frmVisuClient_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Donnees.listFrmVisuClient.Remove(leClient.IdClient);
+            Donnees.listFrmVisuClient.Remove(leClient.IdClient);//on supprime du dictionnaire le couple(id,form) de la form qui vient d'être créée
         }
 
         private void btnQuitter_Click(object sender, EventArgs e)

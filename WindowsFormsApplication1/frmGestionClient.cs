@@ -22,9 +22,9 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
-        //*********************************************************TODO : faire une fonction de récupération de l'id client à partir de la liste pour éviter les 
-        //********************METHODES INTERNES********************         erreurs avec le travail sur l'index du datagrid lorsqu'il est trié
-        //*********************************************************       et arrêter de travailler sur les index du datagrid(source d'erreur)  
+        //*********************************************************
+        //********************METHODES INTERNES********************
+        //*********************************************************
 
         /// <summary>
         /// affiche les headers puis certains attributs des clients de la liste sur la datagrid
