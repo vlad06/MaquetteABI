@@ -56,7 +56,6 @@ namespace WindowsFormsApplication1
         {
             if (this.grdClient.CurrentRow != null)
             {
-                //int idClient = Convert.ToInt32(this.grdClient.SelectedRows[0].Cells[0].Value);//récupère l'id du client cliqué dans la datagrid
                 int idClient = Convert.ToInt32(this.grdClient.CurrentRow.Cells[0].Value);
                 TClient leClientEF = Donnees.abiDb.TClient.Find(idClient);
                 Client leClient=new Client(     //on instancie le client avec les attributs du clientEF récupéré dans la table TClient de la bdd
@@ -83,11 +82,9 @@ namespace WindowsFormsApplication1
                 else  //si la form visuclient est déjà ouverte, on la passe en avant plan
                 {
                     Donnees.listFrmVisuClient.TryGetValue(leClient.IdClient, out frmVisu);//on récupère l'adresse de frmVisu ouverte
-                    //frmVisu.TopMost = true;
-                    //frmVisu.Focus();
                     this.frmVisu.Show();
                     this.frmVisu.Activate();
-                    //frmVisu.Select();
+
                 }
             }
         }
@@ -199,6 +196,14 @@ namespace WindowsFormsApplication1
                 this.afficheClients();
             }
         }
+        private void btnAjouterClient_Click(object sender, EventArgs e)
+        {
+            this.frmAjout = new frmAjoutClient();
+            if (this.frmAjout.ShowDialog() == DialogResult.OK)
+            {
+                this.afficheClients();
+            }
+        }
 
         private void supprimerClientToolStripMenuItem2_Click(object sender, EventArgs e)
         {
@@ -229,14 +234,7 @@ namespace WindowsFormsApplication1
             DataTable dt = new DataTable();
             showGrdHeaders(dt);
         }
-        private void btnAjouterClient_Click(object sender, EventArgs e)
-        {
-            this.frmAjout = new frmAjoutClient();
-            if (this.frmAjout.ShowDialog() == DialogResult.OK)
-            {
-                this.afficheClients();
-            }
-        }
+
         private void btnAfficheListe_Click(object sender, EventArgs e)
         {
             if(Donnees.abiDb.TClient.ToList().Count > 0)
@@ -282,24 +280,23 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Erreur :\n" + ex.Message, "Recherche ID Client");
             }
         }
-
-        //private void frmGestionClient_Activated(object sender, EventArgs e)
-        //{
-        //    this.TopMost = true;
-        //}
-
+        //masque la liste
         private void btnViderListe_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
             showGrdHeaders(dt);
         }
-
+        //masque la liste
         private void viderListeClientsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
             showGrdHeaders(dt);
         }
-
+        /// <summary>
+        /// Fait passer toutes les fenêtres clients ouvertes au premier plan(devant la fenêtre de gestion client)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSetClientOnTop_Click(object sender, EventArgs e)
         {
             foreach (frmVisuClient fvc in Donnees.listFrmVisuClient.Values)
@@ -307,9 +304,6 @@ namespace WindowsFormsApplication1
                 fvc.Show();
                 fvc.Activate();
             }
-            
         }
-
-
     }
 }
